@@ -1,11 +1,11 @@
 
 # Website #
 
-New simple website project.
+A new simple website project.
 
 ## About ##
 
-A repository for a new website made with Angular.
+A repository for a new simple website made with Angular.
 
 ## Status ##
 
