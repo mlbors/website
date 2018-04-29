@@ -1,0 +1,5 @@
+<div id="navigation-wrapper" class="navigation-wrapper">
+  <ul *ngFor="let navItem of _menu" class="nav">
+    <li><a href="{{navItem.link}}" id="{{navItem.id}}" target="{{navItem.target}}">{{navItem.title}}</a></li>
+  </ul>
+</div>

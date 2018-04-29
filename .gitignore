@@ -1,6 +1,11 @@
 
 # Created by https://www.gitignore.io/api/git,node,macos,angular,windows,intellij,notepadpp,sublimetext,visualstudio,visualstudiocode
 
+### Data ###
+
+data/*
+!data/.gitkeep 
+
 ### Angular ###
 ## Angular ##
 # compiled output
