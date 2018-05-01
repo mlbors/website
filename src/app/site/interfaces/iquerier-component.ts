@@ -22,4 +22,6 @@ import { IQueryService } from './iquery-service';
 
 export interface IQuerierComponent {
   queryService: IQueryService;
+
+  getData(): void;
 }

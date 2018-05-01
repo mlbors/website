@@ -12,6 +12,7 @@
 /*****************************/
 
 import { IMetaData } from './imeta-data';
+import { IQueryable } from './iqueryable';
 import { IQueryService } from './iquery-service';
 
 /********************************************************************************/
@@ -26,4 +27,6 @@ export interface IPostService {
 
   getMeta(id?: string, slug?: string): Array<IMetaData>;
   getMetaAsync(id?: string, slug?: string): Promise<Array<IMetaData>>;
+  getAllByCriteria(criteria: object): Promise<Array<IQueryable>>;
+  getAllByType(typeSlug: string): Promise<Array<IQueryable>>;
 }

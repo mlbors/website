@@ -31,7 +31,7 @@ export interface IPost {
   image?: string;
   type: IType;
   order: number;
-  taxonomy?: Array<ITaxonomy>;
+  taxonomies?: Array<ITaxonomy>;
   terms?: Array<ITerm>;
   meta?: Array<IMetaData>;
 }

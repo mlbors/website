@@ -204,7 +204,7 @@ export class PostService implements IQueryService, IPostService {
   /**
    * @param String id object id
    * @param String slug object slug
-   * @return Promise<Array<IMetaData>>>
+   * @return Promise<Array<IMetaData>>
    */
 
   getMetaAsync(id?: string, slug?: string): Promise<Array<IMetaData>> {
@@ -215,6 +215,59 @@ export class PostService implements IQueryService, IPostService {
       }
       resolve(this.getMeta(id, slug));
       return;
+    });
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*****************************************/
+  /********** GET ALL BY CRITERIA **********/
+  /*****************************************/
+
+  /**
+   * @param Object criteria object to use for filtering
+   * @return Promise<Array<IQueryable>>
+   */
+
+  getAllByCriteria(criteria: object): Promise<Array<IQueryable>> {
+    return new Promise((resolve, reject) => {
+      this.getAllAsync().then(data => {
+        Promise.all(data.filter(obj => {
+          return Object.keys(criteria).every(c => {
+            return obj[c] === criteria[c];
+          });
+        }))
+        .then(result => {
+          resolve(result);
+        });
+      });
+    });
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************/
+  /********** GET ALL BY TYPE **********/
+  /*************************************/
+
+  /**
+   * @param String slug type slug
+   * @return Promise<Array<IQueryable>>
+   */
+
+  getAllByType(slug: string): Promise<Array<IQueryable>> {
+    return new Promise((resolve, reject) => {
+      this.getAllAsync().then(data => {
+        Promise.all(data.filter(obj => {
+          const post = obj as IPost;
+          return post.type.slug === slug;
+        }))
+        .then(result => {
+          resolve(result);
+        });
+      });
     });
   }
 

@@ -47,14 +47,14 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
   /*******************************/
 
   /**
-   * @var string input id menu's id
-   * @var slug input slug menu's slug
+   * @var string input id menu id
+   * @var string input slug menu slug
    * @var IQueryService queryService querier serivce
    * @var IMenu _menu navigation menu
    */
 
   @Input('navID') id: string;
-  @Input('slug') slug: string;
+  @Input('navSlug') slug: string;
   public queryService: IQueryService;
   private _menu: IMenu;
 
@@ -74,6 +74,28 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
   /********************************************************************************/
   /********************************************************************************/
 
+  /********************************/
+  /********** NG ON INIT **********/
+  /********************************/
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************/
+  /********** GET DATA **********/
+  /******************************/
+
+  getData(): void {
+    this._getMenu();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /******************************/
   /********** GET MENU **********/
   /******************************/
@@ -88,17 +110,6 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
       this.queryService.getBySlugAsync(this.slug).then(menu => this._menu = menu as IMenu);
       return;
     }
-  }
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /********************************/
-  /********** NG ON INIT **********/
-  /********************************/
-
-  ngOnInit() {
-    this._getMenu();
   }
 
 }
