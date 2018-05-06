@@ -1,5 +1,5 @@
 /**
- * Website - Posts Component - Specs
+ * Website - Project Component - Specs
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -13,7 +13,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostsComponentComponent } from './posts-component.component';
+import { ProjectComponent } from './project.component';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -22,9 +22,9 @@ import { PostsComponentComponent } from './posts-component.component';
 /********** SET UP **********/
 /****************************/
 
-describe('PostsComponentComponent', () => {
-  let component: PostsComponentComponent;
-  let fixture: ComponentFixture<PostsComponentComponent>;
+describe('ProjectComponent', () => {
+  let component: ProjectComponent;
+  let fixture: ComponentFixture<ProjectComponent>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -35,7 +35,7 @@ describe('PostsComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostsComponentComponent ]
+      declarations: [ ProjectComponent ]
     })
     .compileComponents();
   }));
@@ -48,7 +48,7 @@ describe('PostsComponentComponent', () => {
   /*********************************/
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostsComponentComponent);
+    fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

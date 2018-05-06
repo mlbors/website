@@ -1,5 +1,5 @@
 /**
- * Website - Post Component - Component
+ * Website - Projects List Component - Component
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -13,8 +13,6 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { NavigationComponent } from '../navigation/navigation.component';
-
 /********************************************************************************/
 /********************************************************************************/
 
@@ -23,22 +21,19 @@ import { NavigationComponent } from '../navigation/navigation.component';
 /*******************************/
 
 @Component({
-  selector: 'app-site-component',
-  templateUrl: './site-component.component.html',
-  styleUrls: ['./site-component.component.scss']
+  selector: 'app-projects-list',
+  templateUrl: './projects-list.component.html',
+  styleUrls: ['./projects-list.component.scss']
 })
 
 /********************************************************************************/
 /********************************************************************************/
 
-/************************************/
-/********** SITE COMPONENT **********/
-/************************************/
+/*********************************************/
+/********** PROJECTS LIST COMPONENT **********/
+/*********************************************/
 
-export class SiteComponentComponent implements OnInit {
-
-  /********************************************************************************/
-  /********************************************************************************/
+export class ProjectsListComponent implements OnInit {
 
   /*********************************/
   /********** CONSTRUCTOR **********/

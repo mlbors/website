@@ -1,5 +1,5 @@
 /**
- * Website - Post Component - Specs
+ * Website - Navigation Component - Specs
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -13,7 +13,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostComponentComponent } from './post-component.component';
+import { NavigationComponent } from './navigation.component';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -22,9 +22,9 @@ import { PostComponentComponent } from './post-component.component';
 /********** SET UP **********/
 /****************************/
 
-describe('PostComponentComponent', () => {
-  let component: PostComponentComponent;
-  let fixture: ComponentFixture<PostComponentComponent>;
+describe('NavigationComponent', () => {
+  let component: NavigationComponent;
+  let fixture: ComponentFixture<NavigationComponent>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -35,7 +35,7 @@ describe('PostComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostComponentComponent ]
+      declarations: [ NavigationComponent ]
     })
     .compileComponents();
   }));
@@ -48,7 +48,7 @@ describe('PostComponentComponent', () => {
   /*********************************/
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostComponentComponent);
+    fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

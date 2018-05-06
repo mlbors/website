@@ -1,5 +1,5 @@
 /**
- * Website - App - Module
+ * Website - App Module - Module
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -13,6 +13,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,4 +47,17 @@ import { SiteModule } from './site/site.module';
 /********** APP MODULE **********/
 /********************************/
 
-export class AppModule { }
+export class AppModule {
+
+  /*********************************/
+  /********** CONSTRUCTOR **********/
+  /*********************************/
+
+  /**
+   * @param Router router router object
+   */
+
+  constructor(router: Router) {
+    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+  }
+}

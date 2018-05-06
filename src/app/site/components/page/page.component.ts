@@ -1,5 +1,5 @@
 /**
- * Website - Post Component - Component
+ * Website - Page Component - Component
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -12,12 +12,9 @@
 /*****************************/
 
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { IPost } from '../interfaces/ipost';
-import { IQuerierComponent } from '../interfaces/iquerier-component';
-import { IQueryService } from '../interfaces/iquery-service';
-
-import { PostService } from '../services/post.service';
+import { PostComponent } from '../post/post.component';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -27,36 +24,29 @@ import { PostService } from '../services/post.service';
 /*******************************/
 
 @Component({
-  selector: 'app-post-component',
-  templateUrl: './post-component.component.html',
-  styleUrls: ['./post-component.component.css'],
-  providers: [ PostService ]
+  selector: 'app-page',
+  templateUrl: './page.component.html',
+  styleUrls: ['./page.component.scss']
 })
 
 /********************************************************************************/
 /********************************************************************************/
 
 /************************************/
-/********** POST COMPONENT **********/
+/********** PAGE COMPONENT **********/
 /************************************/
 
-export class PostComponentComponent implements OnInit, IQuerierComponent {
+export class PageComponent implements OnInit {
 
   /*******************************/
   /********** ATTRIBUTS **********/
   /*******************************/
 
   /**
-   * @var string input id post id
-   * @var string input slug post slug
-   * @var IQueryService queryService querier serivce
-   * @var IPost _post post
+   * @var String _slug page slug
    */
 
-  @Input('postID') id: string;
-  @Input('postSlug') slug: string;
-  public queryService: IQueryService;
-  private _post: IPost;
+  private _slug: String;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -66,10 +56,15 @@ export class PostComponentComponent implements OnInit, IQuerierComponent {
   /*********************************/
 
   /**
-   * @param IQueryService queryService querier serivce
+   * @param ActivatedRoute activateRoute information about associated route
    */
 
-  constructor(queryService: PostService) { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const slug = params['slug'];
+      this._setValues(slug);
+    });
+  }
 
   /********************************************************************************/
   /********************************************************************************/
@@ -79,37 +74,36 @@ export class PostComponentComponent implements OnInit, IQuerierComponent {
   /********************************/
 
   ngOnInit() {
-    this.getData();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** SET VALUES **********/
+  /********************************/
+
+  /**
+   * @param String slug page slug
+   */
+
+  private _setValues(slug: string) {
+    this._setSlug(slug);
   }
 
   /********************************************************************************/
   /********************************************************************************/
 
   /******************************/
-  /********** GET DATA **********/
+  /********** SET SLUG **********/
   /******************************/
 
-  getData(): void {
-    this._getPost();
-  }
+  /**
+   * @param String slug page slug
+   */
 
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /******************************/
-  /********** GET POST **********/
-  /******************************/
-
-  private _getPost(): void {
-    if ((this.id && this.id.length > 0)) {
-      this.queryService.getByIDAsync(this.id).then(post => this._post = post as IPost);
-      return;
-    }
-
-    if ((this.slug && this.slug.length > 0)) {
-      this.queryService.getBySlugAsync(this.slug).then(post => this._post = post as IPost);
-      return;
-    }
+  private _setSlug(slug: string) {
+    this._slug = slug;
   }
 
 }

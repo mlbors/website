@@ -14,7 +14,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SiteComponentComponent } from './site-component/site-component.component';
+import { PageComponent } from './components/page/page.component';
+import { ProjectComponent } from './components/project/project.component';
+import { ProjectsListComponent } from './components/projects-list/projects-list.component';
+import { SiteComponent } from './components/site/site.component';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -26,7 +29,7 @@ import { SiteComponentComponent } from './site-component/site-component.componen
 const SiteRoutes: Routes = [
   {
     path: '',
-    component: SiteComponentComponent,
+    component: SiteComponent,
     children: [
       {
         path: '',
@@ -39,7 +42,7 @@ const SiteRoutes: Routes = [
       {
         path: 'projects',
         component: ProjectsListComponent
-      }
+      },
       {
         path: 'project/:slug',
         component: ProjectComponent

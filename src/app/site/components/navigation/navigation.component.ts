@@ -1,5 +1,5 @@
 /**
- * Website - Posts Component - Component
+ * Website - Navigation Component - Component
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -11,15 +11,13 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { IPost } from '../interfaces/ipost';
-import { IPostService } from '../interfaces/ipost-service';
-import { IQuerierComponent } from '../interfaces/iquerier-component';
-import { IQueryService } from '../interfaces/iquery-service';
+import { IMenu } from '../../interfaces/imenu';
+import { IQuerierComponent } from '../../interfaces/iquerier-component';
+import { IQueryService } from '../../interfaces/iquery-service';
 
-import { PostService } from '../services/post.service';
-import { IQueryable } from '../interfaces/iqueryable';
+import { MenuService } from '../../services/menu.service';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -29,34 +27,36 @@ import { IQueryable } from '../interfaces/iqueryable';
 /*******************************/
 
 @Component({
-  selector: 'app-posts-component',
-  templateUrl: './posts-component.component.html',
-  styleUrls: ['./posts-component.component.scss'],
-  providers: [ PostService ]
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.scss'],
+  providers: [ MenuService ]
 })
 
 /********************************************************************************/
 /********************************************************************************/
 
-/************************************/
-/********** POST COMPONENT **********/
-/************************************/
+/******************************************/
+/********** NAVIGATION COMPONENT **********/
+/******************************************/
 
-export class PostsComponentComponent implements OnInit, IQuerierComponent {
+export class NavigationComponent implements OnInit, IQuerierComponent {
 
   /*******************************/
   /********** ATTRIBUTS **********/
   /*******************************/
 
   /**
-   * @var string input type post type
+   * @var string input id menu id
+   * @var string input slug menu slug
    * @var IQueryService queryService querier serivce
-   * @var Array _post array of posts
+   * @var IMenu _menu navigation menu
    */
 
-  @Input('postType') type: string;
-  public queryService: IQueryService & IPostService;
-  private _posts: Array<IQueryable>;
+  @Input('navID') id: string;
+  @Input('navSlug') slug: string;
+  public queryService: IQueryService;
+  private _menu: IMenu;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -69,7 +69,7 @@ export class PostsComponentComponent implements OnInit, IQuerierComponent {
    * @param IQueryService queryService querier serivce
    */
 
-  constructor(queryService: PostService) { }
+  constructor(queryService: MenuService) { }
 
   /********************************************************************************/
   /********************************************************************************/
@@ -90,21 +90,26 @@ export class PostsComponentComponent implements OnInit, IQuerierComponent {
   /******************************/
 
   getData(): void {
-    this._getPosts();
+    this._getMenu();
   }
 
   /********************************************************************************/
   /********************************************************************************/
 
   /******************************/
-  /********** GET POST **********/
+  /********** GET MENU **********/
   /******************************/
 
-  private _getPosts(): void {
-    if (this.type && this.type.length > 0) {
-      this.queryService.getAllByType(this.type).then(posts => this._posts = posts);
+  private _getMenu(): void {
+    if ((this.id && this.id.length > 0)) {
+      this.queryService.getByIDAsync(this.id).then(menu => this._menu = menu as IMenu);
+      return;
     }
 
+    if ((this.slug && this.slug.length > 0)) {
+      this.queryService.getBySlugAsync(this.slug).then(menu => this._menu = menu as IMenu);
+      return;
+    }
   }
 
 }

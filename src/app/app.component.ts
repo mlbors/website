@@ -1,5 +1,5 @@
 /**
- * Website - App - Component
+ * Website - App Component - Component
  *
  * @since       2018.04.22
  * @version     1.0.0.0

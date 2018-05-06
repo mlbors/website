@@ -1,5 +1,5 @@
 /**
- * Website - Navigation - Specs
+ * Website - Page Component - Specs
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -13,7 +13,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavigationComponent } from './navigation.component';
+import { PageComponent } from './page.component';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -22,9 +22,9 @@ import { NavigationComponent } from './navigation.component';
 /********** SET UP **********/
 /****************************/
 
-describe('NavigationComponent', () => {
-  let component: NavigationComponent;
-  let fixture: ComponentFixture<NavigationComponent>;
+describe('PageComponent', () => {
+  let component: PageComponent;
+  let fixture: ComponentFixture<PageComponent>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -35,7 +35,7 @@ describe('NavigationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationComponent ]
+      declarations: [ PageComponent ]
     })
     .compileComponents();
   }));
@@ -48,7 +48,7 @@ describe('NavigationComponent', () => {
   /*********************************/
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavigationComponent);
+    fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

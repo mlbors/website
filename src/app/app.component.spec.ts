@@ -1,5 +1,5 @@
 /**
- * Website - App - Specs
+ * Website - App Component - Specs
  *
  * @since       2018.04.22
  * @version     1.0.0.0

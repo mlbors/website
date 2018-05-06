@@ -14,10 +14,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PostComponentComponent } from './post-component/post-component.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { PostsComponentComponent } from './posts-component/posts-component.component';
-import { SiteComponentComponent } from './site-component/site-component.component';
+import { NavigationComponent  } from './components/navigation/navigation.component';
+import { PageComponent  } from './components/page/page.component';
+import { PostComponent  } from './components/post/post.component';
+import { PostsComponent  } from './components/posts/posts.component';
+import { ProjectsListComponent  } from './components/projects-list/projects-list.component';
+import { ProjectComponent  } from './components/project/project.component';
+import { SiteComponent  } from './components/site/site.component';
 
 import { PostTaxonomyPipe } from './pipes/post-taxonomy.pipe';
 import { PostTermPipe } from './pipes/post-term.pipe';
@@ -37,15 +40,18 @@ import { SiteRoutingModule } from './site-routing.module';
     SiteRoutingModule
   ],
   exports: [
-    SiteComponentComponent
+    SiteComponent
   ],
   declarations: [
-    PostComponentComponent,
+    PostComponent,
     NavigationComponent,
-    PostsComponentComponent,
-    SiteComponentComponent,
+    PostsComponent,
+    SiteComponent,
+    PageComponent,
+    ProjectsListComponent,
+    ProjectComponent,
     PostTaxonomyPipe,
-    PostTermPipe,
+    PostTermPipe
   ]
 })
 

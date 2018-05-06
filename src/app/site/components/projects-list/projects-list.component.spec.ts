@@ -1,5 +1,5 @@
 /**
- * Website - Site Component - Specs
+ * Website - Projects List Component - Specs
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -13,7 +13,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteComponentComponent } from './site-component.component';
+import { ProjectsListComponent } from './projects-list.component';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -22,9 +22,9 @@ import { SiteComponentComponent } from './site-component.component';
 /********** SET UP **********/
 /****************************/
 
-describe('SiteComponentComponent', () => {
-  let component: SiteComponentComponent;
-  let fixture: ComponentFixture<SiteComponentComponent>;
+describe('ProjectsListComponent', () => {
+  let component: ProjectsListComponent;
+  let fixture: ComponentFixture<ProjectsListComponent>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -35,7 +35,7 @@ describe('SiteComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteComponentComponent ]
+      declarations: [ ProjectsListComponent ]
     })
     .compileComponents();
   }));
@@ -48,7 +48,7 @@ describe('SiteComponentComponent', () => {
   /*********************************/
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiteComponentComponent);
+    fixture = TestBed.createComponent(ProjectsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
