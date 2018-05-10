@@ -39,9 +39,6 @@ import { SiteRoutingModule } from './site-routing.module';
     CommonModule,
     SiteRoutingModule
   ],
-  exports: [
-    SiteComponent
-  ],
   declarations: [
     PostComponent,
     NavigationComponent,

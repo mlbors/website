@@ -47,12 +47,8 @@ export class MenuService implements IQueryService, IMenuService {
   /********** CONSTRUCTOR **********/
   /*********************************/
 
-  /**
-   * @param Array<IMenu> data data to use
-   */
-
-  constructor(@Inject(MENUS) data: Array<IMenu>) {
-    this._data = data;
+  constructor() {
+    this._data = MENUS;
   }
 
   /********************************************************************************/
@@ -162,5 +158,4 @@ export class MenuService implements IQueryService, IMenuService {
       return;
     });
   }
-
 }

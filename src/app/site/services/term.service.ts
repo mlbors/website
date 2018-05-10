@@ -47,12 +47,8 @@ export class TermService implements IQueryService, ITermService {
   /********** CONSTRUCTOR **********/
   /*********************************/
 
-  /**
-   * @param Array<ITerm> data data to use
-   */
-
-  constructor(@Inject(TERMS) data: Array<ITerm>) {
-    this._data = data;
+  constructor() {
+    this._data = TERMS;
   }
 
   /********************************************************************************/

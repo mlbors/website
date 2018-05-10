@@ -53,12 +53,11 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
   /*********************************/
 
   /**
-   * @param Array<ITaxonomy> data data to use
    * @param IQueryService termService service to use for terms
    */
 
-  constructor(@Inject(TAXONOMIES) data: Array<ITaxonomy>, termService: TermService) {
-    this._data = data;
+  constructor(termService: TermService) {
+    this._data = TAXONOMIES;
   }
 
   /********************************************************************************/

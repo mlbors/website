@@ -14,6 +14,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { IMenu } from '../../interfaces/imenu';
+import { INavigationItem } from '../../interfaces/inavigation-item';
 import { IQuerierComponent } from '../../interfaces/iquerier-component';
 import { IQueryService } from '../../interfaces/iquery-service';
 
@@ -51,12 +52,14 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
    * @var string input slug menu slug
    * @var IQueryService queryService querier serivce
    * @var IMenu _menu navigation menu
+   * @var Array<INavigationItem> _menuItems navigation items
    */
 
   @Input('navID') id: string;
   @Input('navSlug') slug: string;
   public queryService: IQueryService;
   private _menu: IMenu;
+  private _menuItems: Array<INavigationItem>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -69,7 +72,9 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
    * @param IQueryService queryService querier serivce
    */
 
-  constructor(queryService: MenuService) { }
+  constructor(service: MenuService) {
+    this._setValues(service);
+  }
 
   /********************************************************************************/
   /********************************************************************************/
@@ -80,6 +85,36 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
 
   ngOnInit() {
     this.getData();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** SET VALUES **********/
+  /********************************/
+
+  /**
+   * @param IQueryService queryService querier serivce
+   */
+
+  private _setValues(service: IQueryService) {
+    this._setQueryService(service);
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***************************************/
+  /********** SET QUERY SERVICE **********/
+  /***************************************/
+
+  /**
+   * @param IQueryService queryService querier serivce
+   */
+
+  private _setQueryService(service: IQueryService) {
+    this.queryService = service;
   }
 
   /********************************************************************************/
@@ -102,14 +137,19 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
 
   private _getMenu(): void {
     if ((this.id && this.id.length > 0)) {
-      this.queryService.getByIDAsync(this.id).then(menu => this._menu = menu as IMenu);
+      this.queryService.getByIDAsync(this.id).then(menu => {
+        this._menu = menu as IMenu;
+        this._menuItems = this._menu.items;
+      });
       return;
     }
 
     if ((this.slug && this.slug.length > 0)) {
-      this.queryService.getBySlugAsync(this.slug).then(menu => this._menu = menu as IMenu);
+      this.queryService.getBySlugAsync(this.slug).then(menu => {
+        this._menu = menu as IMenu;
+        this._menuItems = this._menu.items;
+      });
       return;
     }
   }
-
 }

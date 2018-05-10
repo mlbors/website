@@ -53,12 +53,11 @@ export class PostService implements IQueryService, IPostService {
   /*********************************/
 
   /**
-   * @param Array<IPost> data data to use
    * @param IQueryService taxonomyService service to use for taxonomies
    */
 
-  constructor(@Inject(POSTS) data: Array<IPost>, taxonomyService: TaxonomyService) {
-    this._data = data;
+  constructor(taxonomyService: TaxonomyService) {
+    this._data = POSTS;
   }
 
   /********************************************************************************/
