@@ -43,10 +43,10 @@ export class PageComponent implements OnInit {
   /*******************************/
 
   /**
-   * @var String _slug page slug
+   * @var String slug page slug
    */
 
-  private _slug: String;
+  public slug: String;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -103,7 +103,7 @@ export class PageComponent implements OnInit {
    */
 
   private _setSlug(slug: string) {
-    this._slug = slug;
+    this.slug = slug;
   }
 
 }

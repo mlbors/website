@@ -51,15 +51,15 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
    * @var string input id menu id
    * @var string input slug menu slug
    * @var IQueryService queryService querier serivce
-   * @var IMenu _menu navigation menu
-   * @var Array<INavigationItem> _menuItems navigation items
+   * @var IMenu menu navigation menu
+   * @var Array<INavigationItem> menuItems navigation items
    */
 
   @Input('navID') id: string;
   @Input('navSlug') slug: string;
   public queryService: IQueryService;
-  private _menu: IMenu;
-  private _menuItems: Array<INavigationItem>;
+  public menu: IMenu;
+  public menuItems: Array<INavigationItem>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -138,16 +138,16 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
   private _getMenu(): void {
     if ((this.id && this.id.length > 0)) {
       this.queryService.getByIDAsync(this.id).then(menu => {
-        this._menu = menu as IMenu;
-        this._menuItems = this._menu.items;
+        this.menu = menu as IMenu;
+        this.menuItems = this.menu.items;
       });
       return;
     }
 
     if ((this.slug && this.slug.length > 0)) {
       this.queryService.getBySlugAsync(this.slug).then(menu => {
-        this._menu = menu as IMenu;
-        this._menuItems = this._menu.items;
+        this.menu = menu as IMenu;
+        this.menuItems = this.menu.items;
       });
       return;
     }

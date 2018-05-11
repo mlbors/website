@@ -26,8 +26,10 @@ import { SiteModule } from './site/site.module';
 const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: 'app/site/site.module#SiteModule'
+    loadChildren: 'app/site/site.module#SiteModule',
+    data: { preload: true }
   },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', redirectTo: '/' }
 ];
 
