@@ -62,6 +62,7 @@ export class PageComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       const slug = params['slug'];
+      console.warn('slug ::: ' + slug);
       this._setValues(slug);
     });
   }

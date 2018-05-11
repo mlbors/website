@@ -15,6 +15,7 @@ export interface INavigationItem {
   id: string;
   title: string;
   link: string;
+  route: string;
   target: string;
   order: number;
 }

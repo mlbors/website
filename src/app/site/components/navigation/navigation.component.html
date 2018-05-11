@@ -1,5 +1,5 @@
 <div id="navigation-wrapper" class="navigation-wrapper">
   <ul *ngFor="let navItem of menuItems" class="nav">
-    <li><a routerLink="{{navItem.link}}" routerLinkActive="active" id="{{navItem.id}}" target="{{navItem.target}}">{{navItem.title}}</a></li>
+    <li><a [routerLink]="['/' + navItem.route]" routerLinkActive="active" id="{{navItem.id}}" target="{{navItem.target}}">{{navItem.title}}</a></li>
   </ul>
 </div>
