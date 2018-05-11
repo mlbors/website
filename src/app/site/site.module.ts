@@ -25,6 +25,9 @@ import { SiteComponent  } from './components/site/site.component';
 import { PostTaxonomyPipe } from './pipes/post-taxonomy.pipe';
 import { PostTermPipe } from './pipes/post-term.pipe';
 
+import { TaxonomyService } from './services/taxonomy.service';
+import { TermService } from './services/term.service';
+
 import { SiteRoutingModule } from './site-routing.module';
 
 /********************************************************************************/
@@ -49,6 +52,10 @@ import { SiteRoutingModule } from './site-routing.module';
     ProjectComponent,
     PostTaxonomyPipe,
     PostTermPipe
+  ],
+  providers: [
+    TaxonomyService,
+    TermService
   ]
 })
 
