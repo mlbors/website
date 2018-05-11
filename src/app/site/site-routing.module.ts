@@ -34,7 +34,7 @@ const SiteRoutes: Routes = [
       {
         path: '',
         component: PageComponent,
-        outlet: 'siteRouter'
+        outlet: 'siteRouter',
       },
       {
         path: ':slug',

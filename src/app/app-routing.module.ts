@@ -27,9 +27,9 @@ const appRoutes: Routes = [
   {
     path: '',
     loadChildren: 'app/site/site.module#SiteModule',
-    data: { preload: true }
+    data: { preload: true },
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 /********************************************************************************/

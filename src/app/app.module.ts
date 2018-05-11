@@ -18,8 +18,6 @@ import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SiteModule } from './site/site.module';
-
 /********************************************************************************/
 /********************************************************************************/
 
@@ -33,7 +31,6 @@ import { SiteModule } from './site/site.module';
   ],
   imports: [
     BrowserModule,
-    SiteModule,
     AppRoutingModule
   ],
   providers: [],
