@@ -12,7 +12,7 @@
 /*****************************/
 
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { PostComponent } from '../post/post.component';
 
@@ -60,9 +60,8 @@ export class PageComponent implements OnInit {
    */
 
   constructor(private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.queryParams.subscribe(params => {
-      const slug = params['slug'];
-      console.warn('slug ::: ' + slug);
+    this.activatedRoute.paramMap.subscribe(params => {
+      const slug = params.get('slug');
       this._setValues(slug);
     });
   }
@@ -104,7 +103,9 @@ export class PageComponent implements OnInit {
    */
 
   private _setSlug(slug: string) {
-    this.slug = slug;
+    if (typeof slug !== undefined && slug && slug.length > 0) {
+      this.slug = slug;
+    }
   }
 
 }

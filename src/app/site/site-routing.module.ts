@@ -33,23 +33,19 @@ const SiteRoutes: Routes = [
     children: [
       {
         path: '',
-        component: PageComponent,
-        outlet: 'siteRouter',
+        component: PageComponent
       },
       {
         path: ':slug',
-        component: PageComponent,
-        outlet: 'siteRouter'
+        component: PageComponent
       },
       {
         path: 'projects',
-        component: ProjectsListComponent,
-        outlet: 'siteRouter'
+        component: ProjectsListComponent
       },
       {
         path: 'project/:slug',
-        component: ProjectComponent,
-        outlet: 'siteRouter'
+        component: ProjectComponent
       }
     ]
   }

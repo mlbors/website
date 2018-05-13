@@ -1,3 +1,7 @@
 <p>
   post-component works!
 </p>
+<div *ngIf="post as p">
+  <p *ngIf="p.title">{{p.title}}</p>
+  <p *ngIf="p.content">{{p.content}}</p>
+</div>

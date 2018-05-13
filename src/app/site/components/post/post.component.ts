@@ -56,7 +56,7 @@ export class PostComponent implements OnInit, IQuerierComponent {
   @Input('postID') id: string;
   @Input('postSlug') slug: string;
   public queryService: IQueryService;
-  private _post: IPost;
+  public post: IPost;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -69,7 +69,9 @@ export class PostComponent implements OnInit, IQuerierComponent {
    * @param IQueryService queryService querier serivce
    */
 
-  constructor(queryService: PostService) { }
+  constructor(queryService: PostService) {
+    this._setValues(queryService);
+  }
 
   /********************************************************************************/
   /********************************************************************************/
@@ -80,6 +82,36 @@ export class PostComponent implements OnInit, IQuerierComponent {
 
   ngOnInit() {
     this.getData();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** SET VALUES **********/
+  /********************************/
+
+  /**
+   * @param IQueryService queryService querier serivce
+   */
+
+  private _setValues(service: IQueryService) {
+    this._setQueryService(service);
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***************************************/
+  /********** SET QUERY SERVICE **********/
+  /***************************************/
+
+  /**
+   * @param IQueryService queryService querier serivce
+   */
+
+  private _setQueryService(service: IQueryService) {
+    this.queryService = service;
   }
 
   /********************************************************************************/
@@ -102,12 +134,12 @@ export class PostComponent implements OnInit, IQuerierComponent {
 
   private _getPost(): void {
     if ((this.id && this.id.length > 0)) {
-      this.queryService.getByIDAsync(this.id).then(post => this._post = post as IPost);
+      this.queryService.getByIDAsync(this.id).then(post => this.post = post as IPost);
       return;
     }
 
     if ((this.slug && this.slug.length > 0)) {
-      this.queryService.getBySlugAsync(this.slug).then(post => this._post = post as IPost);
+      this.queryService.getBySlugAsync(this.slug).then(post => this.post = post as IPost);
       return;
     }
   }
