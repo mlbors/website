@@ -36,12 +36,12 @@ const SiteRoutes: Routes = [
         component: PageComponent
       },
       {
-        path: ':slug',
-        component: PageComponent
-      },
-      {
         path: 'projects',
         component: ProjectsListComponent
+      },
+      {
+        path: ':slug',
+        component: PageComponent
       },
       {
         path: 'project/:slug',

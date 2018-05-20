@@ -41,7 +41,6 @@ export class ProjectsListComponent implements OnInit {
   /*********************************/
 
   constructor() {
-    console.warn('projects-list');
   }
 
   /********************************************************************************/

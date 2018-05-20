@@ -103,9 +103,12 @@ export class PageComponent implements OnInit {
    */
 
   private _setSlug(slug: string) {
-    if (typeof slug !== undefined && slug && slug.length > 0) {
+    if (typeof slug !== undefined && slug && slug.length > 0 && slug !== '') {
       this.slug = slug;
+      return;
     }
+    this.slug = 'home';
+    return;
   }
 
 }

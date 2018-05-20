@@ -11,7 +11,7 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { IPost } from '../../interfaces/ipost';
 import { IQuerierComponent } from '../../interfaces/iquerier-component';
@@ -40,7 +40,7 @@ import { PostService } from '../../services/post.service';
 /********** POST COMPONENT **********/
 /************************************/
 
-export class PostComponent implements OnInit, IQuerierComponent {
+export class PostComponent implements OnInit, OnChanges, IQuerierComponent {
 
   /*******************************/
   /********** ATTRIBUTS **********/
@@ -82,6 +82,23 @@ export class PostComponent implements OnInit, IQuerierComponent {
 
   ngOnInit() {
     this.getData();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***********************************/
+  /********** NG ON CHANGES **********/
+  /***********************************/
+
+  /**
+   * @param SimpleChanges changes happened changes
+   */
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.hasOwnProperty('slug') || changes.hasOwnProperty('id')) {
+      this._getPost();
+    }
   }
 
   /********************************************************************************/
