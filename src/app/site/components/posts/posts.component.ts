@@ -51,12 +51,12 @@ export class PostsComponent implements OnInit, IQuerierComponent {
   /**
    * @var string input type post type
    * @var IQueryService queryService querier serivce
-   * @var Array _post array of posts
+   * @var Array posts array of posts
    */
 
   @Input('postType') type: string;
   public queryService: IQueryService & IPostService;
-  private _posts: Array<IQueryable>;
+  public posts: Array<IQueryable>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -69,7 +69,9 @@ export class PostsComponent implements OnInit, IQuerierComponent {
    * @param IQueryService queryService querier serivce
    */
 
-  constructor(queryService: PostService) { }
+  constructor(queryService: PostService) {
+    this._setValues(queryService);
+  }
 
   /********************************************************************************/
   /********************************************************************************/
@@ -80,6 +82,36 @@ export class PostsComponent implements OnInit, IQuerierComponent {
 
   ngOnInit() {
     this.getData();
+  }
+
+    /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** SET VALUES **********/
+  /********************************/
+
+  /**
+   * @param IQueryService queryService querier serivce
+   */
+
+  private _setValues(service: IQueryService & IPostService) {
+    this._setQueryService(service);
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***************************************/
+  /********** SET QUERY SERVICE **********/
+  /***************************************/
+
+  /**
+   * @param IQueryService queryService querier serivce
+   */
+
+  private _setQueryService(service: IQueryService & IPostService) {
+    this.queryService = service;
   }
 
   /********************************************************************************/
@@ -102,7 +134,7 @@ export class PostsComponent implements OnInit, IQuerierComponent {
 
   private _getPosts(): void {
     if (this.type && this.type.length > 0) {
-      this.queryService.getAllByType(this.type).then(posts => this._posts = posts);
+      this.queryService.getAllByType(this.type).then(posts => this.posts = posts);
     }
 
   }
