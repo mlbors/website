@@ -127,7 +127,7 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
 
   /******************************************/
   /********** SET TAXONOMY SERVICE **********/
-  /*******************************************/
+  /******************************************/
 
   /**
    * @param IQueryService queryService querier serivce
