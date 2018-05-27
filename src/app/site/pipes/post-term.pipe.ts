@@ -4,7 +4,7 @@
  * @since       2018.04.22
  * @version     1.0.0.0
  * @author		  mlbors
- * @copyright	-
+ * @copyright	  -
  */
 
 /*****************************/
@@ -41,14 +41,24 @@ export class PostTermPipe implements PipeTransform {
   /*******************************/
 
   transform(items: Array<IQueryable>, termSlug: string): Array<IQueryable> {
-    if (!termSlug || termSlug.length === 0) {
+    if (typeof termSlug === undefined || !termSlug || termSlug.length === 0 || termSlug === '') {
       return items;
     }
 
     return items.filter(item => {
-      (item as IPost).terms.filter(obj => {
-        return obj.slug === termSlug;
-      });
+      const itemTerms = (item as IPost).terms;
+
+      if (typeof itemTerms === undefined || !itemTerms || itemTerms.length === 0 || itemTerms === null) {
+        return;
+      }
+
+      const p = itemTerms.find(obj => obj.slug === termSlug);
+
+      if (p) {
+        return item;
+      }
+
+      return;
     });
   }
 

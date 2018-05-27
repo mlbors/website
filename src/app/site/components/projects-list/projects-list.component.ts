@@ -4,7 +4,7 @@
  * @since       2018.04.22
  * @version     1.0.0.0
  * @author		  mlbors
- * @copyright	-
+ * @copyright	  -
  */
 
 /*****************************/
@@ -25,6 +25,8 @@ import { ITerm } from '../../interfaces/iterm';
 
 import { PostService } from '../../services/post.service';
 import { TaxonomyService } from '../../services/taxonomy.service';
+
+import { PostTermPipe } from '../../pipes/post-term.pipe';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -55,13 +57,17 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
 
   /**
    * @var IQueryService queryService querier serivce
-   * @var Array post array of posts
+   * @var IQueryService taxonomyService querier service for taxonomy
+   * @var Array posts array of posts
+   * @var Array terms array of terms
+   * @var String selectedTerm term selected for filtering
    */
 
   public queryService: IQueryService & IPostService;
   public taxonomyService: IQueryService & ITaxonomyService;
   public posts: Array<IQueryable>;
   public terms: Array<ITerm>;
+  public selectedTerm: String;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -172,6 +178,21 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
       const tax = taxonomy as ITaxonomy;
       this.terms = tax.terms;
     });
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************/
+  /********** FILTER PROJECTS **********/
+  /*************************************/
+
+  /**
+   * @param String slug term slug
+   */
+
+  public filterProjects(slug: string): void {
+    this.selectedTerm = slug;
   }
 
 }

@@ -4,12 +4,12 @@
 
 <div id="project-category-terms-list-wrapper">
   <ul *ngFor="let term of terms">
-    <li>{{term.name}}</li>
+    <li><button (click)="filterProjects(term.slug)">{{term.name}}</button></li>
   </ul>
 </div>
 
 <div id="projects-list-wrapper">
-  <ul *ngFor="let post of posts">
+  <ul *ngFor="let post of (posts | postTerm: selectedTerm)">
     <li>{{post.title}}</li>
   </ul>
 </div>
