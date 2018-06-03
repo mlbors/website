@@ -6,6 +6,9 @@
 data/*
 !data/.gitkeep 
 
+src/assets/data/*
+src/assets/!data/.gitkeep 
+
 ### Angular ###
 ## Angular ##
 # compiled output

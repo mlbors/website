@@ -13,10 +13,13 @@
 
 import { Inject, Injectable } from '@angular/core';
 
+import { IDataService } from '../interfaces/idata-service';
 import { IMenu } from '../interfaces/imenu';
 import { IMenuService } from '../interfaces/imenu-service';
 import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
+
+import { DataService } from './data.service';
 
 import { MENUS } from '../../../../data/menus';
 
@@ -35,9 +38,11 @@ export class MenuService implements IQueryService, IMenuService {
   /*******************************/
 
   /**
+   * @var IDataService _dataService service for data
    * @var Array<IMenu> _data data to use
    */
 
+  private _dataService: IDataService;
   private _data: Array<IMenu>;
 
   /********************************************************************************/
@@ -47,8 +52,39 @@ export class MenuService implements IQueryService, IMenuService {
   /********** CONSTRUCTOR **********/
   /*********************************/
 
-  constructor() {
+  constructor(dataService: DataService) {
+    this._setValues(dataService);
     this._data = MENUS;
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** SET VALUES **********/
+  /********************************/
+
+  /**
+   * @param IDataService dataService service for data
+   */
+
+  private _setValues(dataService: IDataService) {
+    this._setDataService(dataService)
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** SET DATA SERVICE **********/
+  /**************************************/
+
+  /**
+   * @param IDataService dataService service for data
+   */
+
+  private _setDataService(dataService: IDataService) {
+    this._dataService = dataService;
   }
 
   /********************************************************************************/
