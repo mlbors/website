@@ -18,4 +18,5 @@ export interface INavigationItem {
   route: string;
   target: string;
   order: number;
+  menu: string;
 }

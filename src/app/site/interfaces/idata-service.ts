@@ -12,4 +12,5 @@
 /***********************************/
 
 export interface IDataService {
+    getData();
 }

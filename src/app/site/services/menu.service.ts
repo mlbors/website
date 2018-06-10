@@ -69,7 +69,8 @@ export class MenuService implements IQueryService, IMenuService {
    */
 
   private _setValues(dataService: IDataService) {
-    this._setDataService(dataService)
+    this._setDataService(dataService);
+    this._setData();
   }
 
   /********************************************************************************/
@@ -85,6 +86,20 @@ export class MenuService implements IQueryService, IMenuService {
 
   private _setDataService(dataService: IDataService) {
     this._dataService = dataService;
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************/
+  /********** SET DATA **********/
+  /******************************/
+
+  private _setData() {
+    this._dataService.getData().then(result => {
+      //this._data = result.navigationData;
+      console.log(result);
+    });
   }
 
   /********************************************************************************/
