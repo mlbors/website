@@ -130,20 +130,26 @@ export class DataService implements IDataService {
   private _subscribeToDataFeed() {
     return new Promise((resolve, reject) => {
       const menusFeed = this.http.get<Array<IMenu>>(this._menusJsonUrl);
+      const postsFeed = this.http.get<Array<IPost>>(this._postsJsonUrl);
       const navigationItemsFeed = this.http.get<Array<INavigationItem>>(this._navigationItemsJsonUrl);
-      const termsFeed = this.http.get<Array<ITerm>>(this._termsJsonUrl);
       const taxonomiesFeed = this.http.get<Array<ITaxonomy>>(this._taxonomiesJsonUrl);
+      const termsFeed = this.http.get<Array<ITerm>>(this._termsJsonUrl);
+      const typesFeed = this.http.get<Array<IType>>(this._typesJsonUrl);
 
       forkJoin([
         menusFeed,
         navigationItemsFeed,
+        postsFeed,
+        taxonomiesFeed,
         termsFeed,
-        taxonomiesFeed
+        typesFeed
       ]).subscribe(data => {
         this._menus = data[0];
         this._navigationItems = data[1];
-        this._terms = data[2];
+        this._posts = data[2];
         this._taxonomies = data[3];
+        this._terms = data[4];
+        this._types = data[5];
 
         this._prepareData().then(result => {
           resolve();
