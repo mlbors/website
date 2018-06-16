@@ -15,4 +15,5 @@ export interface ITerm {
   id: string;
   name: string;
   slug: string;
+  taxonomy: string;
 }

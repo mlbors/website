@@ -43,7 +43,7 @@ export class DataService implements IDataService {
    * @var String _menusJsonUrl url to json data for menus
    * @var String _navigationItemsJsonRul url to json data for navigation items
    * @var String _postsItemsJsonRul url to json data for posts
-   * @var String _taxonomiesItemsJsonRul url to json data for taxonomies
+   * @var String _taxonomiesJsonRul url to json data for taxonomies
    * @var String _termsItemsJsonRul url to json data for terms
    * @var String _typesItemsJsonRul url to json data for types
    * @var Array<IMenu> _menus data for menus
@@ -87,7 +87,7 @@ export class DataService implements IDataService {
   /**
    * @param HttpClient http http client
    */
-  
+
   constructor(private http: HttpClient) {
   }
 
@@ -106,7 +106,9 @@ export class DataService implements IDataService {
     return new Observable(observer => {
       this._subscribeToDataFeed().then(result => {
         const data = {
-          navigationData: this.navigationData
+          navigationData: this.navigationData,
+          taxonomiesData: this.taxonomiesData,
+          termsData: this.termsData
         };
         observer.next(data);
         observer.complete();
@@ -129,13 +131,19 @@ export class DataService implements IDataService {
     return new Promise((resolve, reject) => {
       const menusFeed = this.http.get<Array<IMenu>>(this._menusJsonUrl);
       const navigationItemsFeed = this.http.get<Array<INavigationItem>>(this._navigationItemsJsonUrl);
+      const termsFeed = this.http.get<Array<ITerm>>(this._termsJsonUrl);
+      const taxonomiesFeed = this.http.get<Array<ITaxonomy>>(this._taxonomiesJsonUrl);
 
       forkJoin([
         menusFeed,
-        navigationItemsFeed
+        navigationItemsFeed,
+        termsFeed,
+        taxonomiesFeed
       ]).subscribe(data => {
         this._menus = data[0];
         this._navigationItems = data[1];
+        this._terms = data[2];
+        this._taxonomies = data[3];
 
         this._prepareData().then(result => {
           resolve();
@@ -159,7 +167,8 @@ export class DataService implements IDataService {
   private _prepareData() {
     return new Promise((resolve, reject) => {
       Promise.all([
-        this._prepareNavigationData()
+        this._prepareNavigationData(),
+        this._prepareTaxonomiesData()
       ]).then(result => {
         resolve();
         return;
@@ -187,6 +196,33 @@ export class DataService implements IDataService {
       });
 
       this.navigationData = menus as Array<IQueryable>;
+      resolve();
+      return;
+    });
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************************/
+  /********** PREPARE TAXONOMIES DATA **********/
+  /*********************************************/
+
+  /**
+   * @return Promise
+   */
+
+  private _prepareTaxonomiesData() {
+    return new Promise((resolve, reject) => {
+      const taxonomies = this._taxonomies;
+
+      taxonomies.forEach(t => {
+        t.terms = this._terms.filter(i => i.taxonomy === t.id);
+      });
+
+      this.termsData = this._terms as Array<IQueryable>;
+      this.taxonomiesData = taxonomies as Array<IQueryable>;
+
       resolve();
       return;
     });
