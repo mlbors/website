@@ -14,6 +14,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { IMenu } from '../../interfaces/imenu';
+import { IMenuService } from '../../interfaces/imenu-service';
 import { INavigationItem } from '../../interfaces/inavigation-item';
 import { IQuerierComponent } from '../../interfaces/iquerier-component';
 import { IQueryService } from '../../interfaces/iquery-service';
@@ -57,7 +58,7 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
 
   @Input('navID') id: string;
   @Input('navSlug') slug: string;
-  public queryService: IQueryService;
+  public queryService: IQueryService & IMenuService;
   public menu: IMenu;
   public menuItems: Array<INavigationItem>;
 
@@ -137,7 +138,7 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
 
   private _getMenu(): void {
     if ((this.id && this.id.length > 0)) {
-      this.queryService.getByIDAsync(this.id).then(menu => {
+      this.queryService.getByIDObservable(this.id).subscribe(menu => {
         this.menu = menu as IMenu;
         this.menuItems = this.menu.items;
       });
@@ -145,7 +146,7 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
     }
 
     if ((this.slug && this.slug.length > 0)) {
-      this.queryService.getBySlugAsync(this.slug).then(menu => {
+      this.queryService.getBySlugObservale(this.slug).subscribe(menu => {
         this.menu = menu as IMenu;
         this.menuItems = this.menu.items;
       });

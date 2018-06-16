@@ -7,9 +7,23 @@
  * @copyright	  -
  */
 
+/*****************************/
+/********** IMPORTS **********/
+/*****************************/
+
+import { Observable } from 'rxjs';
+
+import { IQueryable } from './iqueryable';
+
+/********************************************************************************/
+/********************************************************************************/
+
 /***********************************/
 /********** IMENU SERVICE **********/
 /***********************************/
 
 export interface IMenuService {
+    getByIDObservable(id: string): Observable<IQueryable>;
+    getBySlugObservale(slug: string): Observable<IQueryable>;
+
 }

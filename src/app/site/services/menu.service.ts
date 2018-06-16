@@ -12,6 +12,7 @@
 /*****************************/
 
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { IDataService } from '../interfaces/idata-service';
 import { IMenu } from '../interfaces/imenu';
@@ -44,6 +45,7 @@ export class MenuService implements IQueryService, IMenuService {
 
   private _dataService: IDataService;
   private _data: Array<IMenu>;
+  private _dataObservable: Observable<Array<IMenu>>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -96,9 +98,14 @@ export class MenuService implements IQueryService, IMenuService {
   /******************************/
 
   private _setData() {
-    this._dataService.getData().then(result => {
+    this._dataService.getData().subscribe(result => {
       //this._data = result.navigationData;
+      console.log("::: SET DATA :::");
       console.log(result);
+      this._dataObservable = new Observable(observer => {
+        observer.next(result);
+        observer.complete();
+      });
     });
   }
 
@@ -209,4 +216,54 @@ export class MenuService implements IQueryService, IMenuService {
       return;
     });
   }
+
+  _getData(): Observable<object> {
+    return new Observable(observer => {
+      this._dataService.getData().subscribe(result => {
+        observer.next(result);
+        observer.complete();
+        return;
+      });
+    });
+  }
+
+
+  getByIDObservable(id: string): Observable<IQueryable> {
+    return new Observable(observer => {
+      if (!id || id.length < 0) {
+        observer.next(null);
+        observer.complete();
+        return;
+      }
+
+      this._getData().subscribe(data => {
+        const result = data.navigationData.find(menu => menu.id === id);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
+    });
+  }
+
+  getBySlugObservale(slug: string): Observable<IQueryable> {
+    return new Observable(observer => {
+      if (!slug || slug.length < 0) {
+        observer.next(null);
+        observer.complete();
+        return;
+      }
+
+      this._getData().subscribe(data => {
+        console.log("Observer");
+        console.log(typeof data);
+        console.log(data);
+        const result = data.navigationData.find(menu => menu.slug === slug);
+        console.log(result);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
+    });
+  }
+
 }
