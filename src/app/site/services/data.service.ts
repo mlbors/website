@@ -61,16 +61,8 @@ export class DataService implements IDataService {
   /**
    * @param HttpClient http http client
    */
-
-  /**
-   * see 
-   * https://github.com/jhades/angular2-rxjs-observable-data-services/blob/master/src/TodoBackendService.ts
-   * https://github.com/jhades/angular2-rxjs-observable-data-services/blob/master/src/state/TodoStore.ts
-   * https://stackoverflow.com/questions/39319279/convert-promise-to-observable
-   */
-
+  
   constructor(private http: HttpClient) {
-    console.warn('::: DATA SERVICE :::');
   }
 
   /********************************************************************************/

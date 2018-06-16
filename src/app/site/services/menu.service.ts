@@ -11,7 +11,7 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { IDataService } from '../interfaces/idata-service';
@@ -21,8 +21,6 @@ import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
 
 import { DataService } from './data.service';
-
-import { MENUS } from '../../../../data/menus';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -45,7 +43,6 @@ export class MenuService implements IQueryService, IMenuService {
 
   private _dataService: IDataService;
   private _data: Array<IMenu>;
-  private _dataObservable: Observable<Array<IMenu>>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -56,7 +53,6 @@ export class MenuService implements IQueryService, IMenuService {
 
   constructor(dataService: DataService) {
     this._setValues(dataService);
-    this._data = MENUS;
   }
 
   /********************************************************************************/
@@ -72,7 +68,7 @@ export class MenuService implements IQueryService, IMenuService {
 
   private _setValues(dataService: IDataService) {
     this._setDataService(dataService);
-    this._setData();
+    this._getData();
   }
 
   /********************************************************************************/
@@ -94,17 +90,20 @@ export class MenuService implements IQueryService, IMenuService {
   /********************************************************************************/
 
   /******************************/
-  /********** SET DATA **********/
+  /********** GET DATA **********/
   /******************************/
 
-  private _setData() {
-    this._dataService.getData().subscribe(result => {
-      //this._data = result.navigationData;
-      console.log("::: SET DATA :::");
-      console.log(result);
-      this._dataObservable = new Observable(observer => {
+  /**
+   * @return Observable<object>
+   */
+
+  private _getData(): Observable<object> {
+    return new Observable(observer => {
+      this._dataService.getData().subscribe(result => {
+        this._data = result.navigationData;
         observer.next(result);
         observer.complete();
+        return;
       });
     });
   }
@@ -217,16 +216,17 @@ export class MenuService implements IQueryService, IMenuService {
     });
   }
 
-  _getData(): Observable<object> {
-    return new Observable(observer => {
-      this._dataService.getData().subscribe(result => {
-        observer.next(result);
-        observer.complete();
-        return;
-      });
-    });
-  }
+  /********************************************************************************/
+  /********************************************************************************/
 
+  /*************************************/
+  /********** GET BY ID ASYNC **********/
+  /*************************************/
+
+  /**
+   * @param String id object id
+   * @return Observable<IQueryable>
+   */
 
   getByIDObservable(id: string): Observable<IQueryable> {
     return new Observable(observer => {
@@ -237,13 +237,25 @@ export class MenuService implements IQueryService, IMenuService {
       }
 
       this._getData().subscribe(data => {
-        const result = data.navigationData.find(menu => menu.id === id);
+        const result = this.getByID(id);
         observer.next(result);
         observer.complete();
         return;
       });
     });
   }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***************************************/
+  /********** GET BY SLUG ASYNC **********/
+  /***************************************/
+
+  /**
+   * @param String slug object slug
+   * @return Observable<IQueryable>
+   */
 
   getBySlugObservale(slug: string): Observable<IQueryable> {
     return new Observable(observer => {
@@ -254,11 +266,7 @@ export class MenuService implements IQueryService, IMenuService {
       }
 
       this._getData().subscribe(data => {
-        console.log("Observer");
-        console.log(typeof data);
-        console.log(data);
-        const result = data.navigationData.find(menu => menu.slug === slug);
-        console.log(result);
+        const result = this.getBySlug(slug);
         observer.next(result);
         observer.complete();
         return;
