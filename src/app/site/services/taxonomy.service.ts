@@ -128,7 +128,7 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);
-        this._data = result.taxonomiesData;
+        this._data = result.taxonomiesData as Array<ITaxonomy>;
         observer.next(result);
         observer.complete();
         return;

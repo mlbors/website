@@ -15,7 +15,14 @@ In progress.
 
 * Init repository
 * Basic UML
+* Basic code
+* Interfaces
+* Main module started
+* Components
+* Services
 
 ## To-Do ##
 
-* Start working
+* Improve code
+* Visual and UX
+* Content

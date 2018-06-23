@@ -101,7 +101,7 @@ export class DataService implements IDataService {
   /******************************/
 
   /**
-   * @return Promise
+   * @return Observable<IWebData>
    */
 
   public getData(): Observable<IWebData> {

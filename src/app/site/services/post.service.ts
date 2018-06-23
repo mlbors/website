@@ -128,7 +128,7 @@ export class PostService implements IQueryService, IPostService {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);
-        this._data = result.postsData;
+        this._data = result.postsData as Array<IPost>;
         observer.next(result);
         observer.complete();
         return;
