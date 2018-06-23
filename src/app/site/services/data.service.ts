@@ -20,6 +20,7 @@ import { IDataService } from '../interfaces/idata-service';
 import { IMenu } from '../interfaces/imenu';
 import { INavigationItem } from '../interfaces/inavigation-item';
 import { IPost } from '../interfaces/ipost';
+import { IPostJson } from '../interfaces/ipost-json';
 import { ITaxonomy } from '../interfaces/itaxonomy';
 import { ITerm } from '../interfaces/iterm';
 import { IType } from '../interfaces/itype';
@@ -65,7 +66,7 @@ export class DataService implements IDataService {
   private _termsJsonUrl = 'assets/data/json/terms.json';
   private _typesJsonUrl = 'assets/data/json/types.json';
 
-  private _posts: Array<IPost>;
+  private _posts: Array<IPostJson>;
   private _menus: Array<IMenu>;
   private _navigationItems: Array<INavigationItem>;
   private _taxonomies: Array<ITaxonomy>;
@@ -107,7 +108,7 @@ export class DataService implements IDataService {
       this._subscribeToDataFeed().then(result => {
         const data = {
           navigationData: this.navigationData,
-          postsData: [],
+          postsData: this.postsData,
           taxonomiesData: this.taxonomiesData,
           termsData: this.termsData
         };
@@ -131,7 +132,7 @@ export class DataService implements IDataService {
   private _subscribeToDataFeed() {
     return new Promise((resolve, reject) => {
       const menusFeed = this.http.get<Array<IMenu>>(this._menusJsonUrl);
-      const postsFeed = this.http.get<Array<IPost>>(this._postsJsonUrl);
+      const postsFeed = this.http.get<Array<IPostJson>>(this._postsJsonUrl);
       const navigationItemsFeed = this.http.get<Array<INavigationItem>>(this._navigationItemsJsonUrl);
       const taxonomiesFeed = this.http.get<Array<ITaxonomy>>(this._taxonomiesJsonUrl);
       const termsFeed = this.http.get<Array<ITerm>>(this._termsJsonUrl);
@@ -175,7 +176,8 @@ export class DataService implements IDataService {
     return new Promise((resolve, reject) => {
       Promise.all([
         this._prepareNavigationData(),
-        this._prepareTaxonomiesData()
+        this._prepareTaxonomiesData(),
+        this._preparePostsData(),
       ]).then(result => {
         resolve();
         return;
@@ -229,6 +231,68 @@ export class DataService implements IDataService {
 
       this.termsData = this._terms as Array<IQueryable>;
       this.taxonomiesData = taxonomies as Array<IQueryable>;
+
+      resolve();
+      return;
+    });
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /****************************************/
+  /********** PREPARE POSTS DATA **********/
+  /****************************************/
+
+  /**
+   * @return Promise
+   */
+
+  private _preparePostsData() {
+    return new Promise((resolve, reject) => {
+      const postsJson = this._posts;
+      const posts: Array<IPost> = [];
+
+      postsJson.forEach(p => {
+        const type = this._types.find(t => t.id === p.type);
+        const taxonomies: Array<ITaxonomy> = [];
+        const terms: Array<ITerm> = [];
+
+        if (typeof p.terms !== 'undefined' && p.terms !== null && p.terms.length > 0) {
+          p.terms.forEach(t => {
+            const s = this._terms.find(i => i.id === t);
+            if (typeof s !== 'undefined') {
+              terms.push(s);
+            }
+          });
+        }
+
+        if (typeof p.taxonomies !== 'undefined' && p.taxonomies !== null && p.taxonomies.length > 0) {
+          p.taxonomies.forEach(t => {
+            const s = this._taxonomies.find(i => i.id === t);
+            if (typeof s !== 'undefined') {
+              taxonomies.push(s);
+            }
+          });
+        }
+
+        const post: IPost = {
+          id: p.id,
+          slug: p.slug,
+          title: p.title,
+          content: p.content,
+          image: p.image,
+          type: type,
+          order: p.order,
+          taxonomies: taxonomies,
+          terms: terms,
+          meta: null
+        };
+
+        posts.push(post);
+      });
+
+      this.postsData = posts as Array<IQueryable>;
 
       resolve();
       return;

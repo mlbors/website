@@ -105,7 +105,7 @@ export class TermService implements IQueryService, ITermService {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);
-        this._data = result.navigationData;
+        this._data = result.termsData;
         observer.next(result);
         observer.complete();
         return;

@@ -105,7 +105,7 @@ export class MenuService implements IQueryService, IMenuService {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);
-        this._data = result.termsData;
+        this._data = result.navigationData;
         observer.next(result);
         observer.complete();
         return;
