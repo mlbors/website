@@ -20,6 +20,7 @@ import { IPost } from '../interfaces/ipost';
 import { IPostService } from '../interfaces/ipost-service';
 import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
+import { IWebData } from '../interfaces/iweb-data';
 
 import { DataService } from './data.service';
 import { TaxonomyService } from './taxonomy.service';
@@ -120,10 +121,10 @@ export class PostService implements IQueryService, IPostService {
   /******************************/
 
   /**
-   * @return Observable<object>
+   * @return Observable<IWebData>
    */
 
-  private _getData(): Observable<object> {
+  private _getData(): Observable<IWebData> {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);
@@ -332,7 +333,7 @@ export class PostService implements IQueryService, IPostService {
   getAllByCriteria(criteria: object): Observable<Array<IQueryable>> {
     return new Observable(observer => {
       this._getData().subscribe(data => {
-        Promise.all((data as Array<IQueryable>).filter(obj => {
+        Promise.all(data.postsData.filter(obj => {
           return Object.keys(criteria).every(c => {
             return obj[c] === criteria[c];
           });
@@ -360,7 +361,7 @@ export class PostService implements IQueryService, IPostService {
   getAllByType(slug: string): Observable<Array<IQueryable>> {
     return new Observable(observer => {
       this._getData().subscribe(data => {
-        Promise.all((data as Array<IQueryable>).filter(obj => {
+        Promise.all(data.postsData.filter(obj => {
           const post = obj as IPost;
           return post.type.slug === slug;
         })).then(result => {

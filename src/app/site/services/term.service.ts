@@ -19,6 +19,7 @@ import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
 import { ITermService } from '../interfaces/iterm-service';
 import { ITerm } from '../interfaces/iterm';
+import { IWebData } from '../interfaces/iweb-data';
 
 import { DataService } from './data.service';
 
@@ -98,10 +99,10 @@ export class TermService implements IQueryService, ITermService {
   /******************************/
 
   /**
-   * @return Observable<object>
+   * @return Observable<IWebData>
    */
 
-  private _getData(): Observable<object> {
+  private _getData(): Observable<IWebData> {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);

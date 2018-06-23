@@ -25,6 +25,7 @@ import { ITaxonomy } from '../interfaces/itaxonomy';
 import { ITerm } from '../interfaces/iterm';
 import { IType } from '../interfaces/itype';
 import { IQueryable } from '../interfaces/iqueryable';
+import { IWebData } from '../interfaces/iweb-data';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -103,10 +104,10 @@ export class DataService implements IDataService {
    * @return Promise
    */
 
-  public getData() {
+  public getData(): Observable<IWebData> {
     return new Observable(observer => {
       this._subscribeToDataFeed().then(result => {
-        const data = {
+        const data: IWebData = {
           navigationData: this.navigationData,
           postsData: this.postsData,
           taxonomiesData: this.taxonomiesData,

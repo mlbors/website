@@ -19,6 +19,7 @@ import { IMenu } from '../interfaces/imenu';
 import { IMenuService } from '../interfaces/imenu-service';
 import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
+import { IWebData } from '../interfaces/iweb-data';
 
 import { DataService } from './data.service';
 
@@ -98,10 +99,10 @@ export class MenuService implements IQueryService, IMenuService {
   /******************************/
 
   /**
-   * @return Observable<object>
+   * @return Observable<IWebData>
    */
 
-  private _getData(): Observable<object> {
+  private _getData(): Observable<IWebData> {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);

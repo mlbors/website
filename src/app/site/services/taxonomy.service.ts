@@ -20,6 +20,7 @@ import { IQueryService } from '../interfaces/iquery-service';
 import { ITaxonomyService } from '../interfaces/itaxonomy-service';
 import { ITaxonomy } from '../interfaces/itaxonomy';
 import { ITerm } from '../interfaces/iterm';
+import { IWebData } from '../interfaces/iweb-data';
 
 import { DataService } from './data.service';
 import { TermService } from './term.service';
@@ -120,10 +121,10 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
   /******************************/
 
   /**
-   * @return Observable<object>
+   * @return Observable<IWebData>
    */
 
-  private _getData(): Observable<object> {
+  private _getData(): Observable<IWebData> {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);
