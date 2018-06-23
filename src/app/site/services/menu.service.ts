@@ -51,6 +51,10 @@ export class MenuService implements IQueryService, IMenuService {
   /********** CONSTRUCTOR **********/
   /*********************************/
 
+  /**
+   * @param IDataService dataService service for data
+   */
+
   constructor(dataService: DataService) {
     this._setValues(dataService);
   }
@@ -101,7 +105,7 @@ export class MenuService implements IQueryService, IMenuService {
     return new Observable(observer => {
       this._dataService.getData().subscribe(result => {
         console.log(result);
-        this._data = result.navigationData;
+        this._data = result.termsData;
         observer.next(result);
         observer.complete();
         return;
@@ -164,56 +168,17 @@ export class MenuService implements IQueryService, IMenuService {
   /***********************************/
 
   /**
-   * @return Promise<Array<IQueryable>>
+   * @return Observable<IQueryable>
    */
 
-  getAllAsync(): Promise<Array<IQueryable>> {
-    return Promise.resolve(this.getAll());
-  }
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*************************************/
-  /********** GET BY ID ASYNC **********/
-  /*************************************/
-
-  /**
-   * @param String id object id
-   * @return Promise<IQueryable>
-   */
-
-  getByIDAsync(id: string): Promise<IQueryable> {
-    return new Promise((resolve, reject) => {
-      if (!id || id.length < 0) {
-        reject();
+  getAllAsync(): Observable<IQueryable> {
+    return new Observable(observer => {
+      this._getData().subscribe(data => {
+        const result = data;
+        observer.next(result);
+        observer.complete();
         return;
-      }
-      resolve(this.getByID(id));
-      return;
-    });
-  }
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /***************************************/
-  /********** GET BY SLUG ASYNC **********/
-  /***************************************/
-
-  /**
-   * @param String slug object slug
-   * @return Promise<IQueryable>
-   */
-
-  getBySlugAsync(slug: string): Promise<IQueryable> {
-    return new Promise((resolve, reject) => {
-      if (!slug || slug.length < 0) {
-        reject();
-        return;
-      }
-      resolve(this.getBySlug(slug));
-      return;
+      });
     });
   }
 
@@ -229,7 +194,7 @@ export class MenuService implements IQueryService, IMenuService {
    * @return Observable<IQueryable>
    */
 
-  getByIDObservable(id: string): Observable<IQueryable> {
+  getByIDAsync(id: string): Observable<IQueryable> {
     return new Observable(observer => {
       if (!id || id.length < 0) {
         observer.next(null);
@@ -258,7 +223,7 @@ export class MenuService implements IQueryService, IMenuService {
    * @return Observable<IQueryable>
    */
 
-  getBySlugObservale(slug: string): Observable<IQueryable> {
+  getBySlugAsync(slug: string): Observable<IQueryable> {
     return new Observable(observer => {
       if (!slug || slug.length < 0) {
         observer.next(null);

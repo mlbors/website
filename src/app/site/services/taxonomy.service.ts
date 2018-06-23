@@ -11,17 +11,18 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { IDataService } from '../interfaces/idata-service';
 import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
 import { ITaxonomyService } from '../interfaces/itaxonomy-service';
 import { ITaxonomy } from '../interfaces/itaxonomy';
 import { ITerm } from '../interfaces/iterm';
 
+import { DataService } from './data.service';
 import { TermService } from './term.service';
-
-import { TAXONOMIES } from '../../../../data/taxonomies';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -38,11 +39,13 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
   /*******************************/
 
   /**
+   * @var IDataService _dataService service for data
    * @var IQueryService termService querier serivce
    * @var Array<ITaxonomy> _data data to use
    */
 
   termService: IQueryService;
+  private _dataService: IDataService;
   private _data: Array<ITaxonomy>;
 
   /********************************************************************************/
@@ -53,11 +56,83 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
   /*********************************/
 
   /**
+   * @param IDataService dataService service for data
    * @param IQueryService termService service to use for terms
    */
 
-  constructor(termService: TermService) {
-    this._data = TAXONOMIES;
+  constructor(dataService: DataService, termService: TermService) {
+    this._setValues(dataService, termService);
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** SET VALUES **********/
+  /********************************/
+
+  /**
+   * @param IDataService dataService service for data
+   * @param IQueryService termService service to use for terms
+   */
+
+  private _setValues(dataService: IDataService, termService: TermService) {
+    this._setDataService(dataService);
+    this._setTermService(termService);
+    this._getData();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** SET DATA SERVICE **********/
+  /**************************************/
+
+  /**
+   * @param IDataService dataService service for data
+   */
+
+  private _setDataService(dataService: IDataService) {
+    this._dataService = dataService;
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** SET TERM SERVICE **********/
+  /**************************************/
+
+  /**
+   * @param IQueryService termService service to use for terms
+   */
+
+  private _setTermService(termService: TermService) {
+    this.termService = termService;
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************/
+  /********** GET DATA **********/
+  /******************************/
+
+  /**
+   * @return Observable<object>
+   */
+
+  private _getData(): Observable<object> {
+    return new Observable(observer => {
+      this._dataService.getData().subscribe(result => {
+        console.log(result);
+        this._data = result.taxonomiesData;
+        observer.next(result);
+        observer.complete();
+        return;
+      });
+    });
   }
 
   /********************************************************************************/
@@ -140,11 +215,18 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
   /***********************************/
 
   /**
-   * @return Promise<Array<IQueryable>>
+   * @return Observable<IQueryable>
    */
 
-  getAllAsync(): Promise<Array<IQueryable>> {
-    return Promise.resolve(this.getAll());
+  getAllAsync(): Observable<IQueryable> {
+    return new Observable(observer => {
+      this._getData().subscribe(data => {
+        const result = data;
+        observer.next(result);
+        observer.complete();
+        return;
+      });
+    });
   }
 
   /********************************************************************************/
@@ -156,17 +238,23 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
 
   /**
    * @param String id object id
-   * @return Promise<IQueryable>
+   * @return Observable<IQueryable>
    */
 
-  getByIDAsync(id: string): Promise<IQueryable> {
-    return new Promise((resolve, reject) => {
+  getByIDAsync(id: string): Observable<IQueryable> {
+    return new Observable(observer => {
       if (!id || id.length < 0) {
-        reject();
+        observer.next(null);
+        observer.complete();
         return;
       }
-      resolve(this.getByID(id));
-      return;
+
+      this._getData().subscribe(data => {
+        const result = this.getByID(id);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
     });
   }
 
@@ -179,17 +267,23 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
 
   /**
    * @param String slug object slug
-   * @return Promise<IQueryable>
+   * @return Observable<IQueryable>
    */
 
-  getBySlugAsync(slug: string): Promise<IQueryable> {
-    return new Promise((resolve, reject) => {
+  getBySlugAsync(slug: string): Observable<IQueryable> {
+    return new Observable(observer => {
       if (!slug || slug.length < 0) {
-        reject();
+        observer.next(null);
+        observer.complete();
         return;
       }
-      resolve(this.getBySlug(slug));
-      return;
+
+      this._getData().subscribe(data => {
+        const result = this.getBySlug(slug);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
     });
   }
 
@@ -203,17 +297,23 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
   /**
    * @param String id object id
    * @param String slug object slug
-   * @return Promise<Array<ITerm>>
+   * @return Observable<Array<ITerm>>
    */
 
-  getTermsAsync(id?: string, slug?: string): Promise<Array<ITerm>> {
-    return new Promise((resolve, reject) => {
+  getTermsAsync(id?: string, slug?: string): Observable<Array<ITerm>> {
+    return new Observable(observer => {
       if ((!id || id.length < 0) && (!slug && slug.length < 0)) {
-        reject();
+        observer.next(null);
+        observer.complete();
         return;
       }
-      resolve(this.getTerms(id, slug));
-      return;
+
+      this._getData().subscribe(data => {
+        const result = this.getTerms(id, slug);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
     });
   }
 

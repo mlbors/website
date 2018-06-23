@@ -134,7 +134,7 @@ export class PostsComponent implements OnInit, IQuerierComponent {
 
   private _getPosts(): void {
     if (this.type && this.type.length > 0) {
-      this.queryService.getAllByType(this.type).then(posts => this.posts = posts);
+      this.queryService.getAllByType(this.type).subscribe(posts => this.posts = posts);
     }
 
   }

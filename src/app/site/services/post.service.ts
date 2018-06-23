@@ -11,17 +11,18 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { IDataService } from '../interfaces/idata-service';
 import { IMetaData } from '../interfaces/imeta-data';
 import { IPost } from '../interfaces/ipost';
 import { IPostService } from '../interfaces/ipost-service';
 import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
 
+import { DataService } from './data.service';
 import { TaxonomyService } from './taxonomy.service';
-
-import { POSTS } from '../../../../data/posts';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -38,11 +39,13 @@ export class PostService implements IQueryService, IPostService {
   /*******************************/
 
   /**
+   * @var IDataService _dataService service for data
    * @var IQueryService taxonomyService querier serivce
    * @var Array<IPost> _data data to use
    */
 
   taxonomyService: IQueryService;
+  private _dataService: IDataService;
   private _data: Array<IPost>;
 
   /********************************************************************************/
@@ -53,11 +56,83 @@ export class PostService implements IQueryService, IPostService {
   /*********************************/
 
   /**
+   * @param IDataService dataService service for data
    * @param IQueryService taxonomyService service to use for taxonomies
    */
 
-  constructor(taxonomyService: TaxonomyService) {
-    this._data = POSTS;
+  constructor(dataService: DataService, taxonomyService: TaxonomyService) {
+    this._setValues(dataService, taxonomyService);
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** SET VALUES **********/
+  /********************************/
+
+  /**
+   * @param IDataService dataService service for data
+   * @param IQueryService taxonomyService service to use for taxonomies
+   */
+
+  private _setValues(dataService: IDataService, taxonomyService: TaxonomyService) {
+    this._setDataService(dataService);
+    this._setTaxonomyService(taxonomyService);
+    this._getData();
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** SET DATA SERVICE **********/
+  /**************************************/
+
+  /**
+   * @param IDataService dataService service for data
+   */
+
+  private _setDataService(dataService: IDataService) {
+    this._dataService = dataService;
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************/
+  /********** SET TAXONOMIES SERVICE **********/
+  /********************************************/
+
+  /**
+   * @param IQueryService taxonomyService service to use for taxonomies
+   */
+
+  private _setTaxonomyService(taxonomyService: TaxonomyService) {
+    this.taxonomyService = taxonomyService;
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************/
+  /********** GET DATA **********/
+  /******************************/
+
+  /**
+   * @return Observable<object>
+   */
+
+  private _getData(): Observable<object> {
+    return new Observable(observer => {
+      this._dataService.getData().subscribe(result => {
+        console.log(result);
+        this._data = result.postsData;
+        observer.next(result);
+        observer.complete();
+        return;
+      });
+    });
   }
 
   /********************************************************************************/
@@ -140,11 +215,18 @@ export class PostService implements IQueryService, IPostService {
   /***********************************/
 
   /**
-   * @return Promise<Array<IQueryable>>
+   * @return Observable<IQueryable>
    */
 
-  getAllAsync(): Promise<Array<IQueryable>> {
-    return Promise.resolve(this.getAll());
+  getAllAsync(): Observable<IQueryable> {
+    return new Observable(observer => {
+      this._getData().subscribe(data => {
+        const result = data;
+        observer.next(result);
+        observer.complete();
+        return;
+      });
+    });
   }
 
   /********************************************************************************/
@@ -156,17 +238,23 @@ export class PostService implements IQueryService, IPostService {
 
   /**
    * @param String id object id
-   * @return Promise<IQueryable>
+   * @return Observable<IQueryable>
    */
 
-  getByIDAsync(id: string): Promise<IQueryable> {
-    return new Promise((resolve, reject) => {
+  getByIDAsync(id: string): Observable<IQueryable> {
+    return new Observable(observer => {
       if (!id || id.length < 0) {
-        reject();
+        observer.next(null);
+        observer.complete();
         return;
       }
-      resolve(this.getByID(id));
-      return;
+
+      this._getData().subscribe(data => {
+        const result = this.getByID(id);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
     });
   }
 
@@ -179,17 +267,23 @@ export class PostService implements IQueryService, IPostService {
 
   /**
    * @param String slug object slug
-   * @return Promise<IQueryable>
+   * @return Observable<IQueryable>
    */
 
-  getBySlugAsync(slug: string): Promise<IQueryable> {
-    return new Promise((resolve, reject) => {
+  getBySlugAsync(slug: string): Observable<IQueryable> {
+    return new Observable(observer => {
       if (!slug || slug.length < 0) {
-        reject();
+        observer.next(null);
+        observer.complete();
         return;
       }
-      resolve(this.getBySlug(slug));
-      return;
+
+      this._getData().subscribe(data => {
+        const result = this.getBySlug(slug);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
     });
   }
 
@@ -203,17 +297,23 @@ export class PostService implements IQueryService, IPostService {
   /**
    * @param String id object id
    * @param String slug object slug
-   * @return Promise<Array<IMetaData>>
+   * @return Observable<Array<IMetaData>>
    */
 
-  getMetaAsync(id?: string, slug?: string): Promise<Array<IMetaData>> {
-    return new Promise((resolve, reject) => {
+  getMetaAsync(id?: string, slug?: string): Observable<Array<IMetaData>> {
+    return new Observable(observer => {
       if ((!id || id.length < 0) && (!slug && slug.length < 0)) {
-        reject();
+        observer.next(null);
+        observer.complete();
         return;
       }
-      resolve(this.getMeta(id, slug));
-      return;
+
+      this._getData().subscribe(data => {
+        const result = this.getMeta(id, slug);
+        observer.next(result);
+        observer.complete();
+        return;
+      });
     });
   }
 
@@ -226,19 +326,20 @@ export class PostService implements IQueryService, IPostService {
 
   /**
    * @param Object criteria object to use for filtering
-   * @return Promise<Array<IQueryable>>
+   * @return Observable<Array<IQueryable>>
    */
 
-  getAllByCriteria(criteria: object): Promise<Array<IQueryable>> {
-    return new Promise((resolve, reject) => {
-      this.getAllAsync().then(data => {
-        Promise.all(data.filter(obj => {
+  getAllByCriteria(criteria: object): Observable<Array<IQueryable>> {
+    return new Observable(observer => {
+      this._getData().subscribe(data => {
+        Promise.all((data as Array<IQueryable>).filter(obj => {
           return Object.keys(criteria).every(c => {
             return obj[c] === criteria[c];
           });
-        }))
-        .then(result => {
-          resolve(result);
+        })).then(result => {
+          observer.next(result);
+          observer.complete();
+          return;
         });
       });
     });
@@ -253,18 +354,19 @@ export class PostService implements IQueryService, IPostService {
 
   /**
    * @param String slug type slug
-   * @return Promise<Array<IQueryable>>
+   * @return Observable<Array<IQueryable>>
    */
 
-  getAllByType(slug: string): Promise<Array<IQueryable>> {
-    return new Promise((resolve, reject) => {
-      this.getAllAsync().then(data => {
-        Promise.all(data.filter(obj => {
+  getAllByType(slug: string): Observable<Array<IQueryable>> {
+    return new Observable(observer => {
+      this._getData().subscribe(data => {
+        Promise.all((data as Array<IQueryable>).filter(obj => {
           const post = obj as IPost;
           return post.type.slug === slug;
-        }))
-        .then(result => {
-          resolve(result);
+        })).then(result => {
+          observer.next(result);
+          observer.complete();
+          return;
         });
       });
     });

@@ -11,6 +11,8 @@
 /********** IMPORTS **********/
 /*****************************/
 
+import { Observable } from 'rxjs';
+
 import { IQueryable } from './iqueryable';
 
 /********************************************************************************/
@@ -24,7 +26,7 @@ export interface IQueryService {
   getAll(): Array<IQueryable>;
   getByID(id: string): IQueryable;
   getBySlug(slug: string): IQueryable;
-  getAllAsync(): Promise<Array<IQueryable>>;
-  getByIDAsync(id: string): Promise<IQueryable>;
-  getBySlugAsync(slug: string): Promise<IQueryable>;
+  getAllAsync(): Observable<IQueryable>;
+  getByIDAsync(id: string): Observable<IQueryable>;
+  getBySlugAsync(slug: string): Observable<IQueryable>;
 }

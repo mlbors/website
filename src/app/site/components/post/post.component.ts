@@ -151,12 +151,12 @@ export class PostComponent implements OnInit, OnChanges, IQuerierComponent {
 
   private _getPost(): void {
     if ((this.id && this.id.length > 0)) {
-      this.queryService.getByIDAsync(this.id).then(post => this.post = post as IPost);
+      this.queryService.getByIDAsync(this.id).subscribe(post => this.post = post as IPost);
       return;
     }
 
     if ((this.slug && this.slug.length > 0)) {
-      this.queryService.getBySlugAsync(this.slug).then(post => this.post = post as IPost);
+      this.queryService.getBySlugAsync(this.slug).subscribe(post => this.post = post as IPost);
       return;
     }
   }

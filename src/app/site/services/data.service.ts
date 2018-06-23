@@ -107,6 +107,7 @@ export class DataService implements IDataService {
       this._subscribeToDataFeed().then(result => {
         const data = {
           navigationData: this.navigationData,
+          postsData: [],
           taxonomiesData: this.taxonomiesData,
           termsData: this.termsData
         };

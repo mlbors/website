@@ -163,7 +163,7 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
   /******************************/
 
   private _getPosts(): void {
-    this.queryService.getAllByType('project').then(posts => this.posts = posts);
+    this.queryService.getAllByType('project').subscribe(posts => this.posts = posts);
   }
 
   /********************************************************************************/
@@ -174,7 +174,7 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
   /*******************************/
 
   private _getTerms(): void {
-    this.taxonomyService.getBySlugAsync('project-category').then(taxonomy => {
+    this.taxonomyService.getBySlugAsync('project-category').subscribe(taxonomy => {
       const tax = taxonomy as ITaxonomy;
       this.terms = tax.terms;
     });

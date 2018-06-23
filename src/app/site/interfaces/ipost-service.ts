@@ -11,6 +11,8 @@
 /********** IMPORTS **********/
 /*****************************/
 
+import { Observable } from 'rxjs';
+
 import { IMetaData } from './imeta-data';
 import { IQueryable } from './iqueryable';
 import { IQueryService } from './iquery-service';
@@ -26,7 +28,7 @@ export interface IPostService {
   taxonomyService: IQueryService;
 
   getMeta(id?: string, slug?: string): Array<IMetaData>;
-  getMetaAsync(id?: string, slug?: string): Promise<Array<IMetaData>>;
-  getAllByCriteria(criteria: object): Promise<Array<IQueryable>>;
-  getAllByType(typeSlug: string): Promise<Array<IQueryable>>;
+  getMetaAsync(id?: string, slug?: string): Observable<Array<IMetaData>>;
+  getAllByCriteria(criteria: object): Observable<Array<IQueryable>>;
+  getAllByType(typeSlug: string): Observable<Array<IQueryable>>;
 }

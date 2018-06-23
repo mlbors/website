@@ -11,6 +11,8 @@
 /********** IMPORTS **********/
 /*****************************/
 
+import { Observable } from 'rxjs';
+
 import { IQueryService } from './iquery-service';
 import { ITerm } from './iterm';
 
@@ -25,5 +27,5 @@ export interface ITaxonomyService {
   termService: IQueryService;
 
   getTerms(id?: string, slug?: string): Array<ITerm>;
-  getTermsAsync(id?: string, slug?: string): Promise<Array<ITerm>>;
+  getTermsAsync(id?: string, slug?: string): Observable<Array<ITerm>>;
 }
