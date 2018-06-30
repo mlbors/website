@@ -7,99 +7,73 @@
  * copyright	-
  */
 
-.header {
 
-    .navbar {
-        background-color: rgba(255, 255, 255, 0.8);
+.navbar {
+    padding: $navbarPadding;
+    background-color: rgba(255, 255, 255, 0.8);
 
-        .brand {
-            padding: $myDividedGutter 0 0;
+    .brand {
+        padding: $myDividedGutter 0 0;
 
-            h1 {
-                margin: 0;
-            }
-
+        h1 {
+            margin: 0;
         }
 
     }
 
-    .navbar-collapse {
-        padding: $navbarCollapsePadding;
+}
+
+.navbar-collapse {
+    padding: $navbarCollapsePadding;
+}
+
+.navbar-toggle {
+    margin: $navbarToggleMargin;
+    padding: $navbarTogglePadding;
+    @include my-border-radius(0);
+
+    span.icon-bar {
+        background-color: $navLinkColor;
     }
 
-    .navbar-toggle {
-        margin: $navbarToggleMargin;
-        padding: $navbarTogglePadding;
-        @include my-border-radius(0);
+    &:hover {
 
         span.icon-bar {
-            background-color: $navLinkColor;
-        }
-
-        &:hover {
-
-            span.icon-bar {
-                background-color: $navLinkColorH;
-            }
-
+            background-color: $navLinkColorH;
         }
 
     }
 
-    nav {
+}
 
-        ul {
+nav {
 
-            li {
-                margin: $navbarLiMargin;
+    ul {
 
-                &.active {
+        li {
+            margin: $navbarLiMargin;
 
-                    a {
+            &.active {
 
-                        &,
-                        &:link,
-                        &:visited,
-                        &:hover,
-                        &:active,
-                        &:focus {
-                            border: 1px solid $navLinkColorH;
-                            color: $myWhite !important;
-                            opacity: 0.8;
-                            background-color: $navLinkColorH;
-                        }
-
-                    }
-
-                }
-                
                 a {
-                    padding: $navbarAPadding;
 
                     &,
                     &:link,
-                    &:visited {
-                        border: 1px solid $navLinkColor;
-                        @include my-border-radius(120px);
-                        background-color: transparent;
-                    }
-
+                    &:visited,
                     &:hover,
                     &:active,
                     &:focus {
-                        border: 1px solid $navLinkColorH;
-                        @include my-border-radius(120px);
-                        background-color: $navLinkColorH;
-                        cursor: pointer;
+                        color: $navLinkColorH !important;
+                        opacity: 0.8;
                     }
 
                 }
 
-                @include my-links-setter($navLinkColor, $myWhite);
+            }
+            
+            @include my-links-setter($navLinkColor, $navLinkColorH);
 
-            }            
-
-        }
+        }            
 
     }
 

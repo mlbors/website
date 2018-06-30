@@ -13,7 +13,7 @@
         background-color: map-get($val, background-color);
         
         @include my-links-setter(map-get($val, link-color), map-get($val, link-color-h), $txtLinkDecoration, $txtLinkDecorationH, $linkOpacity, $linkOpacityH, $transition: true);
-            
+         
     }
 }
 

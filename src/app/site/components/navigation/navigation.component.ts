@@ -54,6 +54,7 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
    * @var IQueryService queryService querier serivce
    * @var IMenu menu navigation menu
    * @var Array<INavigationItem> menuItems navigation items
+   * @var Bool isCollapsed tells if menu is collapsed
    */
 
   @Input('navID') id: string;
@@ -61,6 +62,7 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
   public queryService: IQueryService;
   public menu: IMenu;
   public menuItems: Array<INavigationItem>;
+  public isCollapsed = false;
 
   /********************************************************************************/
   /********************************************************************************/

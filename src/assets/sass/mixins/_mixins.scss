@@ -117,7 +117,6 @@
     background-image: -o-linear-gradient(left, $startColor, $endColor);
     background-image: linear-gradient(to right, $startColor, $endColor);
     background-repeat: repeat-x;
-    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb($startColor),argb($endColor)));
 }
 
 /********************************************************************************/
@@ -143,55 +142,55 @@
     display: inline-flex;
 }
 
-@mixin my-flex-box-flex( $flex ) {
-    -webkit-flex: unquote( $flex );
-       -moz-flex: unquote( $flex );
-        -ms-flex: unquote( $flex );
-         -o-flex: unquote( $flex );
-            flex: unquote( $flex );
+@mixin my-flex-box-flex($flex) {
+    -webkit-flex: unquote($flex);
+       -moz-flex: unquote($flex);
+        -ms-flex: unquote($flex);
+         -o-flex: unquote($flex);
+            flex: unquote($flex);
 }
 
-@mixin my-flex-box-flow( $flow ) {
-    -webkit-flex-flow: unquote( $flow );
-       -moz-flex-flow: unquote( $flow );
-        -ms-flex-flow: unquote( $flow );
-         -o-flex-flow: unquote( $flow );
-            flex-flow: unquote( $flow );
+@mixin my-flex-box-flow($flow) {
+    -webkit-flex-flow: unquote($flow);
+       -moz-flex-flow: unquote($flow);
+        -ms-flex-flow: unquote($flow);
+         -o-flex-flow: unquote($flow);
+            flex-flow: unquote($flow);
 }
 
-@mixin my-flex-box-justify( $justify ) {
-    -webkit-justify-content: unquote( $justify );
-       -moz-justify-content: unquote( $justify );
-        -ms-justify-content: unquote( $justify );
-         -o-justify-content: unquote( $justify );
-            justify-content: unquote( $justify );
+@mixin my-flex-box-justify($justify) {
+    -webkit-justify-content: unquote($justify);
+       -moz-justify-content: unquote($justify);
+        -ms-justify-content: unquote($justify);
+         -o-justify-content: unquote($justify);
+            justify-content: unquote($justify);
 }
 
-@mixin my-flex-align-content( $align ) {
-    -webkit-align-content: unquote( $align );
-       -moz-align-content: unquote( $align );
-        -ms-align-content: unquote( $align );
-         -o-align-content: unquote( $align );
-            align-content: unquote( $align );
+@mixin my-flex-align-content($align) {
+    -webkit-align-content: unquote($align);
+       -moz-align-content: unquote($align);
+        -ms-align-content: unquote($align);
+         -o-align-content: unquote($align);
+            align-content: unquote($align);
 }
 
-@mixin my-flex-direction( $direction ) {
-    -webkit-flex-direction: unquote( $direction );
-       -moz-flex-direction: unquote( $direction );
-        -ms-flex-direction: unquote( $direction );
-         -o-flex-direction: unquote( $direction );
-            flex-direction: unquote( $direction );
+@mixin my-flex-direction($direction) {
+    -webkit-flex-direction: unquote($direction);
+       -moz-flex-direction: unquote($direction);
+        -ms-flex-direction: unquote($direction);
+         -o-flex-direction: unquote($direction);
+            flex-direction: unquote($direction);
 }
 
-@mixin my-flex-wrap( $wrap ) {
-    -webkit-flex-wrap: unquote( $wrap );
-       -moz-flex-wrap: unquote( $wrap );
-        -ms-flex-wrap: unquote( $wrap );
-         -o-flex-wrap: unquote( $wrap );
-            flex-wrap: unquote( $wrap );
+@mixin my-flex-wrap($wrap) {
+    -webkit-flex-wrap: unquote($wrap);
+       -moz-flex-wrap: unquote($wrap);
+        -ms-flex-wrap: unquote($wrap);
+         -o-flex-wrap: unquote($wrap);
+            flex-wrap: unquote($wrap);
 }
 
-@mixin my-flex-item-grow( $grow ) {
+@mixin my-flex-item-grow($grow) {
     -webkit-flex-grow: $grow;
        -moz-flex-grow: $grow;
         -ms-flex-grow: $grow;
@@ -199,7 +198,7 @@
             flex-grow: $grow;
 }
 
-@mixin my-flex-item-shrink( $shrink ) {
+@mixin my-flex-item-shrink($shrink) {
     -webkit-flex-shrink: $shrink;
        -moz-flex-shrink: $shrink;
         -ms-flex-shrink: $shrink;
@@ -207,20 +206,20 @@
             flex-shrink: $shrink;
 }
 
-@mixin my-flex-item-align-self( $align ) {
-    -webkit-align-self: unquote( $align );
-       -moz-align-self: unquote( $align );
-        -ms-align-self: unquote( $align );
-         -o-align-self: unquote( $align );
-            align-self: unquote( $align );
+@mixin my-flex-item-align-self($align) {
+    -webkit-align-self: unquote($align);
+       -moz-align-self: unquote($align);
+        -ms-align-self: unquote($align);
+         -o-align-self: unquote($align);
+            align-self: unquote($align);
 }
 
-@mixin my-flex-item-align-items( $align ) {
-    -webkit-align-items: unquote( $align );
-       -moz-align-items: unquote( $align );
-        -ms-align-items: unquote( $align );
-         -o-align-items: unquote( $align );
-            align-items: unquote( $align );
+@mixin my-flex-item-align-items($align) {
+    -webkit-align-items: unquote($align);
+       -moz-align-items: unquote($align);
+        -ms-align-items: unquote($align);
+         -o-align-items: unquote($align);
+            align-items: unquote($align);
 }
 
 /********************************************************************************/

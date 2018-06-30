@@ -51,23 +51,6 @@
         @include my-transition(all ease 0.25s);
     }
 
-    .project-detail {
-
-        .row {
-
-            div[class*="col-md"] {
-                margin-bottom: $myGutter;
-
-                &:last-of-type {
-                    margin-bottom: 0;
-                }
-
-            }
-
-        }
-
-    }
-
 }
 
 /********************************************************************************/
@@ -111,11 +94,6 @@
             margin: 0;
             padding: 0;
             height: auto;
-
-            .brand {
-                padding: $myDividedGutter;
-            }
-
         }
 
         .navbar-collapse {
