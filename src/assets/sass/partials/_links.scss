@@ -1,0 +1,10 @@
+/**
+ * mlbors - SCSS - Links
+ *
+ * since		04.01.2017
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+
+@include my-links-setter($txtLink, $txtLinkH, $txtLinkDecoration, $txtLinkDecoration, $linkOpacity, $linkOpacityH, $transition: true)
