@@ -255,6 +255,7 @@
             color: $color;
             text-decoration: $textDecoration;
             opacity: $opacity;
+            outline: none;
             @if $transition == true {
                 @extend %my-standard-transition;
             }
@@ -267,6 +268,7 @@
             color: $colorH;
             text-decoration: $textDecorationH;
             opacity: $opacityH;
+            outline: none;
             @if $transition == true {
                 @extend %my-standard-transition;
             }

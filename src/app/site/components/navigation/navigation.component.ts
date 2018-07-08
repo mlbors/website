@@ -20,6 +20,7 @@ import { IQuerierComponent } from '../../interfaces/iquerier-component';
 import { IQueryService } from '../../interfaces/iquery-service';
 
 import { MenuService } from '../../services/menu.service';
+import { IQueryable } from '../../interfaces/iqueryable';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -124,6 +125,25 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
   /********************************************************************************/
 
   /******************************/
+  /********** SET DATA **********/
+  /******************************/
+
+  /**
+   * @param IQueryable menu data menu
+   */
+
+  private _setData(menu: IQueryable): void {
+    this.menu = menu as IMenu;
+    this.menuItems = this.menu.items;
+    this.menuItems.sort((a, b) => {
+      return a.order - b.order;
+    });
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************/
   /********** GET DATA **********/
   /******************************/
 
@@ -141,16 +161,14 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
   private _getMenu(): void {
     if ((this.id && this.id.length > 0)) {
       this.queryService.getByIDAsync(this.id).subscribe(menu => {
-        this.menu = menu as IMenu;
-        this.menuItems = this.menu.items;
+        this._setData(menu);
       });
       return;
     }
 
     if ((this.slug && this.slug.length > 0)) {
       this.queryService.getBySlugAsync(this.slug).subscribe(menu => {
-        this.menu = menu as IMenu;
-        this.menuItems = this.menu.items;
+        this._setData(menu);
       });
       return;
     }

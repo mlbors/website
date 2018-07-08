@@ -163,7 +163,12 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
   /******************************/
 
   private _getPosts(): void {
-    this.queryService.getAllByType('project').subscribe(posts => this.posts = posts);
+    this.queryService.getAllByType('project').subscribe(posts => {
+      (posts as Array<IPost>).sort((a, b) => {
+        return a.order - b.order;
+      });
+      this.posts = posts;
+    });
   }
 
   /********************************************************************************/
