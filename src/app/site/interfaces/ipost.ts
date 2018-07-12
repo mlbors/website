@@ -34,4 +34,5 @@ export interface IPost {
   taxonomies?: Array<ITaxonomy>;
   terms?: Array<ITerm>;
   meta?: Array<IMetaData>;
+  template: string;
 }

@@ -287,7 +287,8 @@ export class DataService implements IDataService {
           order: p.order,
           taxonomies: taxonomies,
           terms: terms,
-          meta: null
+          meta: null,
+          template: p.template
         };
 
         posts.push(post);

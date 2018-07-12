@@ -50,13 +50,15 @@ export class PostComponent implements OnInit, OnChanges, IQuerierComponent {
    * @var string input id post id
    * @var string input slug post slug
    * @var IQueryService queryService querier serivce
-   * @var IPost _post post
+   * @var IPost post post
+   * @var string template
    */
 
   @Input('postID') id: string;
   @Input('postSlug') slug: string;
   public queryService: IQueryService;
   public post: IPost;
+  public template: String = 'default';
 
   /********************************************************************************/
   /********************************************************************************/
@@ -135,6 +137,22 @@ export class PostComponent implements OnInit, OnChanges, IQuerierComponent {
   /********************************************************************************/
 
   /******************************/
+  /********** SET DATA **********/
+  /******************************/
+
+  /**
+   * @param IPost post post
+   */
+
+  _setData(currentPost: IPost): void {
+    this.post = currentPost;
+    this.template = this.post.template;
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************/
   /********** GET DATA **********/
   /******************************/
 
@@ -151,12 +169,12 @@ export class PostComponent implements OnInit, OnChanges, IQuerierComponent {
 
   private _getPost(): void {
     if ((this.id && this.id.length > 0)) {
-      this.queryService.getByIDAsync(this.id).subscribe(post => this.post = post as IPost);
+      this.queryService.getByIDAsync(this.id).subscribe(post => this._setData(post as IPost));
       return;
     }
 
     if ((this.slug && this.slug.length > 0)) {
-      this.queryService.getBySlugAsync(this.slug).subscribe(post => this.post = post as IPost);
+      this.queryService.getBySlugAsync(this.slug).subscribe(post => this._setData(post as IPost));
       return;
     }
   }

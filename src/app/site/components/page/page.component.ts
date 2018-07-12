@@ -46,7 +46,7 @@ export class PageComponent implements OnInit {
    * @var String slug page slug
    */
 
-  public slug: String;
+  public slug: string;
 
   /********************************************************************************/
   /********************************************************************************/

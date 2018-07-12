@@ -22,4 +22,5 @@ export interface IPostJson {
   taxonomies?: Array<string>;
   terms?: Array<string>;
   meta?: Array<string>;
+  template: string;
 }

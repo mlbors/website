@@ -1,16 +1,44 @@
-<div class="row">
+<div *ngIf="post as p">
 
-  <div class="col-sm">
-    <p>
-      post-component works!
-    </p>
+  <div [ngSwitch]="template" id="post-template-wrapper" class="post-template-wrapper">
+    <ng-template [ngSwitchCase]="'default'">
+      <div *ngIf="p.image" class="row">
+        <div class="col">
+          <img src="{{p.image}}" class="post-cover-image" />
+        </div>
+      </div>
+    
+      <section class="row white-section text-center">
+        <div class="col">
+          <h1 *ngIf="p.title">{{p.title}}</h1>
+          <p *ngIf="p.content">{{p.content}}</p>
+        </div>
+      </section> 
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'text'">
+      <section class="row white-section text-center">
+        <div class="col">
+          <h1 *ngIf="p.title">{{p.title}}<</h1>
+          <p *ngIf="p.content">{{p.content}}</p>
+        </div>
+      </section> 
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'home'">
+      <div *ngIf="p.image" class="row">
+        <div class="col">
+          <img src="{{p.image}}" class="post-cover-image" />
+        </div>
+      </div>
+
+      <section class="row white-section text-center">
+        <div class="col">
+          <p *ngIf="p.content">{{p.content}}</p>
+        </div>
+      </section>
+    </ng-template>
+
   </div>
-
-  <div class="col-sm">
-    <div *ngIf="post as p">
-      <p *ngIf="p.title">{{p.title}}</p>
-      <p *ngIf="p.content">{{p.content}}</p>
-    </div>
-  </div>
-
 </div>
+  
