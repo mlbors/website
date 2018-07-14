@@ -1,3 +1,14 @@
-<p>
-  project works!
-</p>
+<div *ngIf="post as p">
+  <div *ngIf="p.image" class="row">
+    <div class="col">
+      <img src="{{p.image}}" class="post-cover-image" />
+    </div>
+  </div>
+
+  <section class="row white-section text-center">
+    <div class="col">
+      <h1 *ngIf="p.title">{{p.title}}</h1>
+      <p *ngIf="p.content">{{p.content}}</p>
+    </div>
+  </section> 
+</div>
