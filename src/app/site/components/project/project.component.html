@@ -11,4 +11,12 @@
       <p *ngIf="p.content">{{p.content}}</p>
     </div>
   </section> 
+
+  <section *ngIf="p.meta" class="row white-section text-center">
+    <div class="col">
+      <ul *ngFor="let meta of p.meta">
+        <li><strong>{{meta.name}}: </strong>{{meta.content}}</li>
+      </ul>
+    </div>
+  </section> 
 </div>

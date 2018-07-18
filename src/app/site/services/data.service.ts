@@ -26,6 +26,7 @@ import { ITerm } from '../interfaces/iterm';
 import { IType } from '../interfaces/itype';
 import { IQueryable } from '../interfaces/iqueryable';
 import { IWebData } from '../interfaces/iweb-data';
+import { IMetaData } from '../interfaces/imeta-data';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -258,6 +259,7 @@ export class DataService implements IDataService {
         const type = this._types.find(t => t.id === p.type);
         const taxonomies: Array<ITaxonomy> = [];
         const terms: Array<ITerm> = [];
+        const meta: Array<IMetaData> = [];
 
         if (typeof p.terms !== 'undefined' && p.terms !== null && p.terms.length > 0) {
           p.terms.forEach(t => {
@@ -277,17 +279,30 @@ export class DataService implements IDataService {
           });
         }
 
+        if (typeof p.meta !== 'undefined' && p.meta !== null && p.meta.length > 0) {
+          p.meta.forEach(m => {
+            const v: IMetaData = {
+              id: m.id,
+              name: m.name,
+              content: m.content
+            };
+            meta.push(v);
+          });
+        }
+
         const post: IPost = {
           id: p.id,
           slug: p.slug,
           title: p.title,
+          excerpt: p.excerpt,
           content: p.content,
           image: p.image,
+          images: p.images,
           type: type,
           order: p.order,
           taxonomies: taxonomies,
           terms: terms,
-          meta: null,
+          meta: meta,
           template: p.template
         };
 

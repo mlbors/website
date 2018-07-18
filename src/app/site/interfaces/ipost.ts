@@ -27,8 +27,10 @@ export interface IPost {
   id: string;
   slug: string;
   title: string;
+  excerpt: string;
   content: string;
   image?: string;
+  images?: Array<string>;
   type: IType;
   order: number;
   taxonomies?: Array<ITaxonomy>;
