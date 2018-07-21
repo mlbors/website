@@ -12,6 +12,7 @@
 /*****************************/
 
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { IPost } from '../../interfaces/ipost';
 import { IQuerierComponent } from '../../interfaces/iquerier-component';
@@ -30,7 +31,18 @@ import { PostService } from '../../services/post.service';
   selector: 'app-post-component',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
-  providers: [ PostService ]
+  providers: [ PostService ],
+  animations: [
+    trigger('fadeAnimation', [
+      state('in', style({opacity: 1})),
+      transition(':enter', [
+        style({opacity: 0}),
+        animate(300)
+      ]),
+      transition(':leave',
+        animate(300, style({opacity: 0})))
+    ])
+  ]
 })
 
 /********************************************************************************/

@@ -1,26 +1,28 @@
-<section class="row white-section text-center">
-  <div class="col">
-    <h1>My projects</h1>
-    <p>Lorem ipsum dolor sit amet.</p>
-  </div>
-</section> 
-
-<section class="row white-section text-center">
-  <div class="col">
-    <div id="project-category-terms-list-wrapper">
-      <ul *ngFor="let term of terms">
-        <li><button (click)="filterProjects(term.slug)">{{term.name}}</button></li>
-      </ul>
+<div id="post-template-wrapper" class="post-template-wrapper" [@fadeAnimation]="'in'">
+  <section class="row white-section text-center">
+    <div class="col">
+      <h1>My projects</h1>
+      <p>Lorem ipsum dolor sit amet.</p>
     </div>
-  </div>
-</section> 
+  </section> 
 
-<section class="row white-section text-center">
-  <div class="col">
-    <div id="projects-list-wrapper">
-      <ul *ngFor="let post of (posts | postTerm: selectedTerm)">
-        <li><a [routerLink]="['/project', post.slug]">{{post.title}}</a></li>
-      </ul>
+  <section class="row white-section text-center">
+    <div class="col">
+      <div id="project-category-terms-list-wrapper">
+        <ul *ngFor="let term of terms">
+          <li><button (click)="filterProjects(term.slug)">{{term.name}}</button></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section> 
+  </section> 
+
+  <section class="row white-section text-center">
+    <div class="col">
+      <div id="projects-list-wrapper">
+        <ul *ngFor="let post of (posts | postTerm: selectedTerm)">
+          <li><a [routerLink]="['/project', post.slug]">{{post.title}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </section> 
+</div>

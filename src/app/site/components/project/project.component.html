@@ -1,22 +1,26 @@
 <div *ngIf="post as p">
-  <div *ngIf="p.image" class="row">
-    <div class="col">
-      <img src="{{p.image}}" class="post-cover-image" />
-    </div>
+
+  <div id="post-template-wrapper" class="post-template-wrapper" [@fadeAnimation]="'in'">
+    <section *ngIf="p.image" class="row white-section text-center">
+      <div class="col">
+        <img src="{{p.image}}" class="post-cover-image" />
+      </div>
+    </section> 
+  
+    <section class="row white-section text-center">
+      <div class="col">
+        <h1 *ngIf="p.title">{{p.title}}</h1>
+        <p *ngIf="p.content">{{p.content}}</p>
+      </div>
+    </section> 
+  
+    <section *ngIf="p.meta" class="row white-section text-center">
+      <div class="col">
+        <ul *ngFor="let meta of p.meta">
+          <li><strong>{{meta.name}}: </strong>{{meta.content}}</li>
+        </ul>
+      </div>
+    </section> 
   </div>
 
-  <section class="row white-section text-center">
-    <div class="col">
-      <h1 *ngIf="p.title">{{p.title}}</h1>
-      <p *ngIf="p.content">{{p.content}}</p>
-    </div>
-  </section> 
-
-  <section *ngIf="p.meta" class="row white-section text-center">
-    <div class="col">
-      <ul *ngFor="let meta of p.meta">
-        <li><strong>{{meta.name}}: </strong>{{meta.content}}</li>
-      </ul>
-    </div>
-  </section> 
 </div>

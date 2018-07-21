@@ -1,6 +1,6 @@
 <div *ngIf="post as p">
 
-  <div [ngSwitch]="template" id="post-template-wrapper" class="post-template-wrapper">
+  <div [ngSwitch]="template" id="post-template-wrapper" class="post-template-wrapper" [@fadeAnimation]="'in'">
     <ng-template [ngSwitchCase]="'default'">
       <div *ngIf="p.image" class="row">
         <div class="col">

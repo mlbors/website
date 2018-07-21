@@ -13,6 +13,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { IPost } from '../../interfaces/ipost';
 import { IPostService } from '../../interfaces/ipost-service';
@@ -39,7 +40,18 @@ import { PostTermPipe } from '../../pipes/post-term.pipe';
   selector: 'app-projects-list',
   templateUrl: './projects-list.component.html',
   styleUrls: ['./projects-list.component.scss'],
-  providers: [ PostService, TaxonomyService ]
+  providers: [ PostService, TaxonomyService ],
+  animations: [
+    trigger('fadeAnimation', [
+      state('in', style({opacity: 1})),
+      transition(':enter', [
+        style({opacity: 0}),
+        animate(300)
+      ]),
+      transition(':leave',
+        animate(300, style({opacity: 0})))
+    ])
+  ]
 })
 
 /********************************************************************************/
