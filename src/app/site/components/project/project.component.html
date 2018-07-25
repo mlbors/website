@@ -12,7 +12,13 @@
         <h1 *ngIf="p.title">{{p.title}}</h1>
         <p *ngIf="p.content">{{p.content}}</p>
       </div>
-    </section> 
+    </section>
+
+    <section *ngIf="p.images" class="row white-section text-center">
+      <div *ngFor="let img of p.images; index as i" class="col">
+        <a (click)="openModal(img)"><img src="{{img}}" id="img-{{i}}" class="post-meta-image"/></a>
+      </div>
+    </section>
   
     <section *ngIf="p.meta" class="row white-section text-center">
       <div class="col">
@@ -21,6 +27,7 @@
         </ul>
       </div>
     </section> 
+
   </div>
 
 </div>

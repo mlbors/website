@@ -23,6 +23,7 @@ import { PostsComponent  } from './components/posts/posts.component';
 import { ProjectsListComponent  } from './components/projects-list/projects-list.component';
 import { ProjectComponent  } from './components/project/project.component';
 import { SiteComponent  } from './components/site/site.component';
+import { SiteModalComponent } from './components/site-modal/site-modal.component';
 
 import { PostTaxonomyPipe } from './pipes/post-taxonomy.pipe';
 import { PostTermPipe } from './pipes/post-term.pipe';
@@ -55,7 +56,10 @@ import { SiteRoutingModule } from './site-routing.module';
     ProjectsListComponent,
     ProjectComponent,
     PostTaxonomyPipe,
-    PostTermPipe
+    PostTermPipe,
+    SiteModalComponent
+  ],
+  entryComponents: [
   ],
   providers: [
     DataService,

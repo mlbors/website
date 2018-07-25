@@ -21,6 +21,8 @@ import { IQueryService } from '../../interfaces/iquery-service';
 
 import { PostService } from '../../services/post.service';
 
+import { SiteModalComponent } from '../site-modal/site-modal.component';
+
 /********************************************************************************/
 /********************************************************************************/
 
