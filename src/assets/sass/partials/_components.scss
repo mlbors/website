@@ -1,0 +1,49 @@
+/**
+ * mlbors - SCSS - Components
+ *
+ * since		07.12.2016
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+ 
+.image-viewer-wrapper {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 150px;
+    margin: 0;
+    padding: 0 0 90% 0;
+    overflow: hidden;
+    clear: both;
+    opacity: 1;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @extend %my-standard-transition;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        @extend %my-standard-transition;
+    }
+}
+
+.image-viewer {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clear: both;
+
+    img {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+}

@@ -14,6 +14,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
 import { PageComponent } from './components/page/page.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
@@ -46,6 +47,10 @@ const SiteRoutes: Routes = [
       {
         path: 'project/:slug',
         component: ProjectComponent
+      },
+      {
+        path: 'image-viewer/:img/:previous',
+        component: ImageViewerComponent
       }
     ]
   }

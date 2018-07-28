@@ -16,6 +16,8 @@ import { CommonModule } from '@angular/common';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
+import { ImageViewerWrapperComponent } from './components/image-viewer-wrapper/image-viewer-wrapper.component';
 import { NavigationComponent  } from './components/navigation/navigation.component';
 import { PageComponent  } from './components/page/page.component';
 import { PostComponent  } from './components/post/post.component';
@@ -23,7 +25,6 @@ import { PostsComponent  } from './components/posts/posts.component';
 import { ProjectsListComponent  } from './components/projects-list/projects-list.component';
 import { ProjectComponent  } from './components/project/project.component';
 import { SiteComponent  } from './components/site/site.component';
-import { SiteModalComponent } from './components/site-modal/site-modal.component';
 
 import { PostTaxonomyPipe } from './pipes/post-taxonomy.pipe';
 import { PostTermPipe } from './pipes/post-term.pipe';
@@ -48,16 +49,17 @@ import { SiteRoutingModule } from './site-routing.module';
     NgbModule
   ],
   declarations: [
-    PostComponent,
+    ImageViewerComponent,
+    ImageViewerWrapperComponent,
     NavigationComponent,
-    PostsComponent,
-    SiteComponent,
     PageComponent,
+    PostComponent,
+    PostsComponent,
     ProjectsListComponent,
     ProjectComponent,
     PostTaxonomyPipe,
     PostTermPipe,
-    SiteModalComponent
+    SiteComponent
   ],
   entryComponents: [
   ],

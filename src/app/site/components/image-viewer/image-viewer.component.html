@@ -1,0 +1,13 @@
+<section class="row white-section text-center">
+  <div class="col">
+    <div *ngIf="imageUrl" class="image-viewer">
+      <img src="{{imageUrl}}" />
+    </div>
+  </div>
+</section>
+
+<section class="row white-section text-center">
+  <div class="col">
+    <a class="btn btn-outline-primary" [routerLink]="['/' + previousUrl]" role="button">Back</a>
+  </div>
+</section>

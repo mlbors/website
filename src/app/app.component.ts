@@ -11,7 +11,8 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -33,6 +34,31 @@ import { Component } from '@angular/core';
 /********** APP COMPONENT **********/
 /***********************************/
 
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+
+  /*********************************/
+  /********** CONSTRUCTOR **********/
+  /*********************************/
+
+  /**
+   * @param Router router router used
+   */
+
+  constructor(private router: Router) { }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************/
+  /********** NG ON INIT **********/
+  /********************************/
+
+  ngOnInit() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
+  }
 }

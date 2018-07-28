@@ -1,5 +1,5 @@
 /**
- * Website - Site Modal Component - Specs
+ * Website - Image Viewer Wrapper Component - Specs
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -13,7 +13,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteModalComponent } from './site-modal.component';
+import { ImageViewerWrapperComponent } from './image-viewer-wrapper.component';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -22,9 +22,9 @@ import { SiteModalComponent } from './site-modal.component';
 /********** SET UP **********/
 /****************************/
 
-describe('SiteModalComponent', () => {
-  let component: SiteModalComponent;
-  let fixture: ComponentFixture<SiteModalComponent>;
+describe('ImageViewerWrapperComponent', () => {
+  let component: ImageViewerWrapperComponent;
+  let fixture: ComponentFixture<ImageViewerWrapperComponent>;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -35,7 +35,7 @@ describe('SiteModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteModalComponent ]
+      declarations: [ ImageViewerWrapperComponent ]
     })
     .compileComponents();
   }));
@@ -48,7 +48,7 @@ describe('SiteModalComponent', () => {
   /*********************************/
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SiteModalComponent);
+    fixture = TestBed.createComponent(ImageViewerWrapperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

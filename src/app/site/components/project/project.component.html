@@ -16,7 +16,7 @@
 
     <section *ngIf="p.images" class="row white-section text-center">
       <div *ngFor="let img of p.images; index as i" class="col">
-        <a (click)="openModal(img)"><img src="{{img}}" id="img-{{i}}" class="post-meta-image"/></a>
+        <app-image-viewer-wrapper imageUrl="{{img}}"></app-image-viewer-wrapper>
       </div>
     </section>
   

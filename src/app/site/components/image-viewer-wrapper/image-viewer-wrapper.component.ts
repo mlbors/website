@@ -1,5 +1,5 @@
 /**
- * Website - Site Modal Component - Component
+ * Website - Image Viewer Wrapper Component - Component
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -11,9 +11,8 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { Component, OnInit } from '@angular/core';
-
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -23,29 +22,31 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 /*******************************/
 
 @Component({
-  selector: 'app-site-modal',
-  templateUrl: './site-modal.component.html',
-  styleUrls: ['./site-modal.component.scss']
+  selector: 'app-image-viewer-wrapper',
+  templateUrl: './image-viewer-wrapper.component.html',
+  styleUrls: ['./image-viewer-wrapper.component.scss']
 })
 
 /********************************************************************************/
 /********************************************************************************/
 
-/******************************************/
-/********** SITE MODAL COMPONENT **********/
-/******************************************/
+/****************************************************/
+/********** IMAGE VIEWER WRAPPER COMPONENT **********/
+/****************************************************/
 
-export class SiteModalComponent implements OnInit {
+export class ImageViewerWrapperComponent implements OnInit {
 
   /*******************************/
   /********** ATTRIBUTS **********/
   /*******************************/
 
   /**
-   * @var String content
+   * @var String imageUrl source of the image
+   * @var String currentUrl current url
    */
 
-  public content: string;
+  @Input() imageUrl: string;
+  public currentUrl: string;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -55,10 +56,10 @@ export class SiteModalComponent implements OnInit {
   /*********************************/
 
   /**
-   * @param NgbActiveModal activeModal modal service
+   * @param Router router router used
    */
 
-  constructor(public modal: NgbModal, public activeModal: NgbActiveModal) {
+  constructor(private router: Router) {
   }
 
   /********************************************************************************/
@@ -69,10 +70,18 @@ export class SiteModalComponent implements OnInit {
   /********************************/
 
   ngOnInit() {
+    this.currentUrl = this.router.url;
   }
 
-  open(content: string) {
-    const modalRef = this.modal.open(content);
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*****************************/
+  /********** ENLARGE **********/
+  /*****************************/
+
+  enlarge() {
+    this.router.navigate(['/image-viewer', this.imageUrl, this.currentUrl]);
   }
 
 }
