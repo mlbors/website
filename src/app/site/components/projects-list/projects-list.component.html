@@ -8,21 +8,32 @@
 
   <section class="row white-section text-center">
     <div class="col">
-      <div id="project-category-terms-list-wrapper">
-        <ul *ngFor="let term of terms">
-          <li><button (click)="filterProjects(term.slug)">{{term.name}}</button></li>
+      <div id="project-category-terms-list-wrapper" class="project-category-terms-list-wrapper">
+        <ul>
+          <li *ngFor="let term of terms">
+            <button class="btn btn-primary" (click)="filterProjects(term.slug)">{{term.name}}</button>
+          </li>
         </ul>
       </div>
     </div>
   </section> 
 
-  <section class="row white-section text-center">
+  <section *ngIf="posts" class="row white-section projects-list">
     <div class="col">
-      <div id="projects-list-wrapper">
-        <ul *ngFor="let post of (posts | postTerm: selectedTerm)">
-          <li><a [routerLink]="['/project', post.slug]">{{post.title}}</a></li>
-        </ul>
+      <div class="card-columns">
+        <div *ngFor="let post of (posts | postTerm: selectedTerm)" class="card" [@filterStateAnimation]="filterState">
+          <img *ngIf="post.image" class="card-img-top" src="{{post.image}}" alt="{{post.title}}">
+          <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+            <p *ngIf="post.excerpt" class="card-text">{{post.excerpt}}</p>
+            <a [routerLink]="['/project', post.slug]" class="btn btn-primary">See more</a>
+          </div>
+        </div>
       </div>
     </div>
-  </section> 
+  </section>
 </div>
+
+
+
+

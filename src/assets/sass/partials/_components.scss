@@ -7,6 +7,32 @@
  * copyright	-
  */
  
+.post-template-wrapper {
+
+    .post-cover-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    ul.meta {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        text-align: left;
+
+        li {
+
+            &:first-letter {
+                text-transform: uppercase;
+            }
+
+        }
+
+    }
+
+}
+
 .image-viewer-wrapper {
     content: ' ';
     display: block;
@@ -46,4 +72,30 @@
         padding: 0;
         overflow: hidden;
     }
+}
+
+.project-category-terms-list-wrapper {
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        
+        li {
+            display: inline-block;
+            margin: 0 $myDividedGutter/2;
+            padding: 0;
+        }
+
+    }
+
+}
+
+.projects-list {
+    
+    .card {
+        display: inline-block;
+        border-color: $myBrandGrayLightest;
+    }
+
 }

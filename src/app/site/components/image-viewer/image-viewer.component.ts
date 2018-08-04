@@ -13,6 +13,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -24,7 +25,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-image-viewer',
   templateUrl: './image-viewer.component.html',
-  styleUrls: ['./image-viewer.component.scss']
+  styleUrls: ['./image-viewer.component.scss'],
+  animations: [
+    trigger('fadeAnimation', [
+      state('in', style({opacity: 1})),
+      transition(':enter', [
+        style({opacity: 0}),
+        animate(300)
+      ]),
+      transition(':leave',
+        animate(300, style({opacity: 0})))
+    ])
+  ]
 })
 
 /********************************************************************************/

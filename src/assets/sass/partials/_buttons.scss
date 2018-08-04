@@ -19,17 +19,22 @@
         font-weight: $btnFontWeight;
         opacity: $btnOpacity;
         background-color: $btnBgColor;
+        outline: none;
         @include my-border-radius($btnBorderRadius);
+        @include my-box-shadow(none);
         @extend %my-standard-transition;
     }
     
     &:hover,
     &:active,
-    &:focus {
+    &:focus,
+    &.active {
         border: $btnBorderH !important;
         color: $btnTxtColorH !important;
         opacity: $btnOpacityH;
-        background-color: $btnBgColor !important;
+        background-color: $btnBgColorH !important;
+        outline: none;
+        @include my-box-shadow(none);
         @extend %my-standard-transition;
     }
     

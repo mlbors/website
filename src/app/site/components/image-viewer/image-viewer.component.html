@@ -1,13 +1,15 @@
-<section class="row white-section text-center">
-  <div class="col">
-    <div *ngIf="imageUrl" class="image-viewer">
-      <img src="{{imageUrl}}" />
+<div class="image-viewer-container" [@fadeAnimation]="'in'">
+  <section class="row white-section text-center">
+    <div class="col">
+      <div *ngIf="imageUrl" class="image-viewer">
+        <img src="{{imageUrl}}" />
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="row white-section text-center">
-  <div class="col">
-    <a class="btn btn-outline-primary" [routerLink]="['/' + previousUrl]" role="button">Back</a>
-  </div>
-</section>
+  </section>
+  
+  <section class="row white-section text-center">
+    <div class="col">
+      <a class="btn btn-outline-primary" [routerLink]="['/' + previousUrl]" role="button">Back</a>
+    </div>
+  </section>
+</div>

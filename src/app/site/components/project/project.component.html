@@ -10,6 +10,11 @@
     <section class="row white-section text-center">
       <div class="col">
         <h1 *ngIf="p.title">{{p.title}}</h1>
+      </div>
+    </section>
+
+    <section class="row white-section text-center">
+      <div class="col">
         <p *ngIf="p.content">{{p.content}}</p>
       </div>
     </section>
@@ -22,7 +27,7 @@
   
     <section *ngIf="p.meta" class="row white-section text-center">
       <div class="col">
-        <ul *ngFor="let meta of p.meta">
+        <ul *ngFor="let meta of p.meta" class="meta">
           <li><strong>{{meta.name}}: </strong>{{meta.content}}</li>
         </ul>
       </div>

@@ -50,6 +50,16 @@ import { PostTermPipe } from '../../pipes/post-term.pipe';
       ]),
       transition(':leave',
         animate(300, style({opacity: 0})))
+    ]),
+    trigger('filterStateAnimation', [
+      state('filtering', style({
+        opacity: 0
+      })),
+      state('filtered', style({
+        opacity: 100
+      })),
+      transition('filtered => filtering', animate('100ms ease-in')),
+      transition('filtering => filtered', animate('100ms ease-out'))
     ])
   ]
 })
@@ -73,6 +83,7 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
    * @var Array posts array of posts
    * @var Array terms array of terms
    * @var String selectedTerm term selected for filtering
+   * @var String filterState indicates if the project filter is active
    */
 
   public queryService: IQueryService & IPostService;
@@ -80,6 +91,7 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
   public posts: Array<IQueryable>;
   public terms: Array<ITerm>;
   public selectedTerm: String;
+  public filterState: String = 'filtered';
 
   /********************************************************************************/
   /********************************************************************************/
@@ -209,7 +221,13 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
    */
 
   public filterProjects(slug: string): void {
-    this.selectedTerm = slug;
+    this.filterState = 'filtering';
+    setTimeout(() => {
+      this.selectedTerm = slug;
+    }, 150);
+    setTimeout(() => {
+      this.filterState = 'filtered';
+    }, 150);
   }
 
 }
