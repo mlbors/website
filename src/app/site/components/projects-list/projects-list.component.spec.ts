@@ -63,4 +63,16 @@ describe('ProjectsListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /************************************************************/
+  /********** CHECK PROPERTIES PASSED BY CONSTRUCTOR **********/
+  /************************************************************/
+
+  it('should have queryService and taxonomyService', () => {
+    expect(component.queryService).not.toBeNull();
+    expect(component.taxonomyService).not.toBeNull();
+  });
 });
