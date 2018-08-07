@@ -12,6 +12,8 @@
 /*****************************/
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule} from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ImageViewerComponent } from './image-viewer.component';
 
@@ -35,7 +37,13 @@ describe('ImageViewerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageViewerComponent ]
+      declarations: [
+        ImageViewerComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NoopAnimationsModule
+      ]
     })
     .compileComponents();
   }));
