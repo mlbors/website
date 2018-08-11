@@ -12,7 +12,15 @@
     .post-cover-image {
         width: 100%;
         height: auto;
-        max-width: 100%;
+        max-width: 480px;
+    }
+
+    .excerpt {
+
+        p {
+            font-size: $bodyFontSize*1.2;
+        }
+
     }
 
     ul.meta {

@@ -17,6 +17,7 @@ export interface IPostJson {
   title: string;
   excerpt: string;
   content: string;
+  sections?: Array<any>;
   image?: string;
   images?: Array<string>;
   type: string;

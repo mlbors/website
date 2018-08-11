@@ -191,4 +191,23 @@ export class PostComponent implements OnInit, OnChanges, IQuerierComponent {
     }
   }
 
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*******************************************/
+  /********** CHECK IF IMAGE EXISTS **********/
+  /*******************************************/
+
+  /**
+   * @param Number index array index
+   * @return string
+   */
+
+  public checkIfImageExists(index: number): string {
+    if (typeof this.post.images[index] !== 'undefined' && this.post.images[index] !== null && this.post.images[index] !== '') {
+      return this.post.images[index];
+    }
+    return null;
+  }
+
 }

@@ -8,17 +8,23 @@
         </div>
       </section>
     
-      <section class="row white-section text-center">
+      <section *ngIf="p.title" class="row white-section text-center">
         <div class="col">
-          <h1 *ngIf="p.title">{{p.title}}</h1>
+          <h1>{{p.title}}</h1>
         </div>
       </section> 
 
-      <section class="row white-section text-center">
-          <div class="col">
-            <p *ngIf="p.content">{{p.content}}</p>
-          </div>
-        </section> 
+      <section *ngIf="p.excerpt" class="row white-section text-center excerpt">
+        <div class="col">
+          <p>{{p.excerpt}}</p>
+        </div>
+      </section> 
+
+      <section *ngIf="p.content" class="row white-section text-center">
+        <div class="col">
+          <p>{{p.content}}</p>
+        </div>
+      </section> 
     </ng-template>
 
     <ng-template [ngSwitchCase]="'images-middle'">
@@ -28,41 +34,124 @@
         </div>
       </section>
 
-      <section class="row white-section text-center">
+      <section *ngIf="p.title" class="row white-section text-center">
         <div class="col">
-          <h1 *ngIf="p.title">{{p.title}}</h1>
+          <h1>{{p.title}}</h1>
         </div>
       </section> 
 
-      <section class="row white-section text-center">
+      <section *ngIf="p.excerpt" class="row white-section text-center excerpt">
         <div class="col">
-          <p *ngIf="p.content">{{p.excerpt}}</p>
+          <p>{{p.excerpt}}</p>
         </div>
       </section> 
   
       <section *ngIf="p.images" class="row white-section text-center">
-        <div *ngFor="let img of p.images" class="col">
+        <div *ngFor="let img of p.images" class="col-sm">
           <img src="{{img}}" class="post-meta-image" />
         </div>
       </section>
     
-      <section class="row white-section text-center">
+      <section *ngIf="p.content" class="row white-section text-center">
         <div class="col">
-          <p *ngIf="p.content">{{p.content}}</p>
+          <p>{{p.content}}</p>
         </div>
       </section> 
     </ng-template>
 
-    <ng-template [ngSwitchCase]="'text'">
-      <section class="row white-section text-center">
+    <ng-template [ngSwitchCase]="'sections'">
+      <section *ngIf="p.image" class="row white-section text-center">
         <div class="col">
-          <h1 *ngIf="p.title">{{p.title}}</h1>
+          <img src="{{p.image}}" class="post-cover-image" />
+        </div>
+      </section>
+
+      <section *ngIf="p.title" class="row white-section text-center">
+        <div class="col">
+          <h1>{{p.title}}</h1>
         </div>
       </section> 
 
-      <section class="row white-section text-center">
+      <section *ngIf="p.excerpt" class="row white-section text-center excerpt">
         <div class="col">
-          <p *ngIf="p.content">{{p.content}}</p>
+          <p>{{p.excerpt}}</p>
+        </div>
+      </section> 
+    
+      <section *ngIf="p.content" class="row white-section text-center">
+        <div class="col">
+          <p>{{p.content}}</p>
+        </div>
+      </section> 
+
+      <div *ngIf="p.sections" class="content-sections">
+        <section *ngFor="let section of p.sections" class="row white-section text-center">
+          <div class="col">
+            <h2>{{section.title}}</h2>
+            <p>{{section.content}}</p>
+          </div>
+        </section> 
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'sections-image'">
+      <section *ngIf="p.image" class="row white-section text-center">
+        <div class="col">
+          <img src="{{p.image}}" class="post-cover-image" />
+        </div>
+      </section>
+
+      <section *ngIf="p.title" class="row white-section text-center">
+        <div class="col">
+          <h1>{{p.title}}</h1>
+        </div>
+      </section> 
+
+      <section *ngIf="p.excerpt" class="row white-section text-center excerpt">
+        <div class="col">
+          <p>{{p.excerpt}}</p>
+        </div>
+      </section> 
+    
+      <section *ngIf="p.content" class="row white-section text-center">
+        <div class="col">
+          <p>{{p.content}}</p>
+        </div>
+      </section> 
+
+      <div *ngIf="p.sections" class="content-sections">
+        <div *ngFor="let section of p.sections; index as i" class="content-section">
+          <section *ngIf="checkIfImageExists(i)" class="row white-section text-center">
+            <div class="col">
+              <img src="{{checkIfImageExists(i)}}" class="post-meta-image" />
+            </div>
+          </section> 
+          <section class="row white-section text-center">
+            <div class="col">
+              <h2>{{section.title}}</h2>
+              <p>{{section.content}}</p>
+            </div>
+          </section> 
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'text'">
+      <section *ngIf="p.title" class="row white-section text-center">
+        <div class="col">
+          <h1>{{p.title}}</h1>
+        </div>
+      </section> 
+
+      <section *ngIf="p.excerpt" class="row white-section text-center excerpt">
+          <div class="col">
+            <p>{{p.excerpt}}</p>
+          </div>
+      </section> 
+
+      <section *ngIf="p.content" class="row white-section text-center">
+        <div class="col">
+          <p>{{p.content}}</p>
         </div>
       </section> 
     </ng-template>
@@ -74,9 +163,15 @@
         </div>
       </section>
 
-      <section class="row white-section text-center">
+      <section *ngIf="p.excerpt" class="row white-section text-center excerpt">
         <div class="col">
-          <p *ngIf="p.content">{{p.content}}</p>
+          <p>{{p.excerpt}}</p>
+        </div>
+      </section> 
+
+      <section *ngIf="p.content" class="row white-section text-center">
+        <div class="col">
+          <p>{{p.content}}</p>
         </div>
       </section>
     </ng-template>

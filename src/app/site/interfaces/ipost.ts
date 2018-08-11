@@ -12,6 +12,7 @@
 /*****************************/
 
 import { IMetaData } from './imeta-data';
+import { ISection } from './isection';
 import { ITaxonomy } from './itaxonomy';
 import { ITerm } from './iterm';
 import { IType } from './itype';
@@ -29,6 +30,7 @@ export interface IPost {
   title: string;
   excerpt: string;
   content: string;
+  sections: Array<ISection>;
   image?: string;
   images?: Array<string>;
   type: IType;

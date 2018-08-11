@@ -136,6 +136,19 @@
     }
 
     /**********/
+    /********** SECTIONS **********/
+    /**********/
+
+    .content {
+
+        section.row {
+            padding-top: $myGutter;
+            padding-bottom: $myGutter;
+        }
+    
+    }
+
+    /**********/
     /********** UTILS **********/
     /**********/
     

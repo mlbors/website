@@ -21,6 +21,7 @@ import { IMenu } from '../interfaces/imenu';
 import { INavigationItem } from '../interfaces/inavigation-item';
 import { IPost } from '../interfaces/ipost';
 import { IPostJson } from '../interfaces/ipost-json';
+import { ISection } from '../interfaces/isection';
 import { ITaxonomy } from '../interfaces/itaxonomy';
 import { ITerm } from '../interfaces/iterm';
 import { IType } from '../interfaces/itype';
@@ -260,6 +261,7 @@ export class DataService implements IDataService {
         const taxonomies: Array<ITaxonomy> = [];
         const terms: Array<ITerm> = [];
         const meta: Array<IMetaData> = [];
+        const sections: Array<ISection> = [];
 
         if (typeof p.terms !== 'undefined' && p.terms !== null && p.terms.length > 0) {
           p.terms.forEach(t => {
@@ -290,12 +292,23 @@ export class DataService implements IDataService {
           });
         }
 
+        if (typeof p.sections !== 'undefined' && p.sections !== null && p.sections.length > 0) {
+          p.sections.forEach(s => {
+            const v: ISection = {
+              title: s.title,
+              content: s.content
+            };
+            sections.push(v);
+          });
+        }
+
         const post: IPost = {
           id: p.id,
           slug: p.slug,
           title: p.title,
           excerpt: p.excerpt,
           content: p.content,
+          sections: sections,
           image: p.image,
           images: p.images,
           type: type,

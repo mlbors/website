@@ -24,17 +24,20 @@
         padding-bottom: $myDoubleGutter;
 
         &:first-of-type {
-            padding-top: $myGutter;
+            
         }
 
         &:last-of-type {
-            padding-bottom: $myQuadrupleGutter;
         }
         
         .text-section {
             float: none;
             margin: 0 auto;
             max-width: 991px;
+        }
+
+        & + section.row {
+            padding-top: 0;
         }
 
     }
