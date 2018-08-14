@@ -13,7 +13,12 @@
         background-color: map-get($val, background-color);
         
         @include my-links-setter(map-get($val, link-color), map-get($val, link-color-h), $txtLinkDecoration, $txtLinkDecorationH, $linkOpacity, $linkOpacityH, $transition: true);
-         
+     
+        @for $i from 1 through 6 {
+            h#{$i}:only-child, .h#{$i}:only-child {
+                margin-bottom: 0;
+            } 
+        }
     }
 }
 
@@ -38,6 +43,11 @@
 
         & + section.row {
             padding-top: 0;
+        }
+
+        &.image-section {
+            padding-top: 0;
+            padding-bottom: 0;
         }
 
     }

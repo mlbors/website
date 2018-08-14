@@ -28,7 +28,7 @@
     </ng-template>
 
     <ng-template [ngSwitchCase]="'images-middle'">
-      <section *ngIf="p.image" class="row white-section text-center">
+      <section *ngIf="p.image" class="row white-section text-center image-section">
         <div class="col">
           <img src="{{p.image}}" class="post-cover-image" />
         </div>
@@ -60,7 +60,7 @@
     </ng-template>
 
     <ng-template [ngSwitchCase]="'sections'">
-      <section *ngIf="p.image" class="row white-section text-center">
+      <section *ngIf="p.image" class="row white-section text-center image-section">
         <div class="col">
           <img src="{{p.image}}" class="post-cover-image" />
         </div>
@@ -95,7 +95,7 @@
     </ng-template>
 
     <ng-template [ngSwitchCase]="'sections-image'">
-      <section *ngIf="p.image" class="row white-section text-center">
+      <section *ngIf="p.image" class="row white-section text-center image-section">
         <div class="col">
           <img src="{{p.image}}" class="post-cover-image" />
         </div>
@@ -121,7 +121,7 @@
 
       <div *ngIf="p.sections" class="content-sections">
         <div *ngFor="let section of p.sections; index as i" class="content-section">
-          <section *ngIf="checkIfImageExists(i)" class="row white-section text-center">
+          <section *ngIf="checkIfImageExists(i)" class="row white-section text-center image-section">
             <div class="col">
               <img src="{{checkIfImageExists(i)}}" class="post-meta-image" />
             </div>
@@ -157,7 +157,7 @@
     </ng-template>
 
     <ng-template [ngSwitchCase]="'home'">
-      <section *ngIf="p.image" class="row white-section text-center">
+      <section *ngIf="p.image" class="row white-section text-center image-section">
         <div class="col">
           <img src="{{p.image}}" class="post-cover-image" />
         </div>

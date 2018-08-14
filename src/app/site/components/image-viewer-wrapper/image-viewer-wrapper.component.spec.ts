@@ -13,6 +13,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule} from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ImageViewerWrapperComponent } from './image-viewer-wrapper.component';
 
@@ -40,7 +41,8 @@ describe('ImageViewerWrapperComponent', () => {
         ImageViewerWrapperComponent
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        NoopAnimationsModule
       ]
     })
     .compileComponents();
