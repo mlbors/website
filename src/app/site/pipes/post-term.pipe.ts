@@ -41,7 +41,7 @@ export class PostTermPipe implements PipeTransform {
   /*******************************/
 
   transform(items: Array<IQueryable>, termSlug: string): Array<IQueryable> {
-    if (typeof termSlug === undefined || !termSlug || termSlug.length === 0 || termSlug === '') {
+    if (typeof termSlug === undefined || !termSlug || termSlug.length === 0 || termSlug === '' || termSlug === 'all') {
       return items;
     }
 

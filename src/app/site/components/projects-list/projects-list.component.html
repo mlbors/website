@@ -2,7 +2,7 @@
   <section class="row white-section text-center">
     <div class="col">
       <h1>My projects</h1>
-      <p>Lorem ipsum dolor sit amet.</p>
+      <p>Find a selection of some my project down below.</p>
     </div>
   </section> 
 
@@ -10,6 +10,9 @@
     <div class="col">
       <div id="project-category-terms-list-wrapper" class="project-category-terms-list-wrapper">
         <ul>
+          <li>
+              <button class="btn btn-primary" (click)="filterProjects('all')">all</button>
+          </li>
           <li *ngFor="let term of terms">
             <button class="btn btn-primary" (click)="filterProjects(term.slug)">{{term.name}}</button>
           </li>

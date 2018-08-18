@@ -114,6 +114,12 @@
     .card {
         display: inline-block;
         border-color: $myBrandGrayLightest;
+
+        .card-title,
+        .card-text {
+            text-align: left;
+        }
+
     }
 
 }
