@@ -12,8 +12,27 @@
 /*****************************/
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule} from '@angular/router/testing';
+
+import { Component, Input } from '@angular/core';
 
 import { SiteComponent } from './site.component';
+
+/********************************************************************************/
+/********************************************************************************/
+
+/***********************************************/
+/********** NAVIGATION COMPONENT MOCK **********/
+/***********************************************/
+
+@Component({
+  selector: 'app-navigation',
+  template: ''
+})
+class MockNavigationComponent {
+  @Input('navID') id: string;
+  @Input('navSlug') slug: string;
+}
 
 /********************************************************************************/
 /********************************************************************************/
@@ -35,7 +54,13 @@ describe('SiteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SiteComponent ]
+      declarations: [
+        MockNavigationComponent,
+        SiteComponent
+      ],
+      imports: [
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));

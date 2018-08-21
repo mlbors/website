@@ -12,7 +12,10 @@
 /*****************************/
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule} from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { Pipe, PipeTransform } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -265,6 +268,23 @@ class MockTermService implements IQueryService, ITermService {
 /********************************************************************************/
 /********************************************************************************/
 
+/*****************************************/
+/********** POST TERM PIPE MOCK **********/
+/*****************************************/
+
+@Pipe({
+  name: 'postTerm'
+})
+class MockPostTermPipe implements PipeTransform {
+  transform(items: Array<IQueryable>, termSlug: string): Array<IQueryable> {
+    const result: IQueryable = {};
+    return [result];
+  }
+}
+
+/********************************************************************************/
+/********************************************************************************/
+
 /****************************/
 /********** SET UP **********/
 /****************************/
@@ -283,7 +303,12 @@ describe('ProjectsListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        MockPostTermPipe,
         ProjectsListComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NoopAnimationsModule
       ],
       providers: [
         { provide: DataService, useClass: MockDataService },

@@ -13,6 +13,9 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule} from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { Component, Input } from '@angular/core';
 
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -37,7 +40,6 @@ import { TaxonomyService } from '../../services/taxonomy.service';
 import { TermService } from '../../services/term.service';
 
 import { ProjectComponent } from './project.component';
-
 
 /********************************************************************************/
 /********************************************************************************/
@@ -269,6 +271,21 @@ class MockTermService implements IQueryService, ITermService {
 /********************************************************************************/
 /********************************************************************************/
 
+/*************************************************************/
+/********** APP IMAGE VIEWER WRAPPER COMPONENT MOCK **********/
+/*************************************************************/
+
+@Component({
+  selector: 'app-image-viewer-wrapper',
+  template: ''
+})
+class MockImageViewerWrapperComponent {
+  @Input() imageUrl: string;
+}
+
+/********************************************************************************/
+/********************************************************************************/
+
 /****************************/
 /********** SET UP **********/
 /****************************/
@@ -287,10 +304,12 @@ describe('ProjectComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        MockImageViewerWrapperComponent,
         ProjectComponent
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        NoopAnimationsModule
       ],
       providers: [
         { provide: DataService, useClass: MockDataService },

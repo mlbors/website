@@ -13,7 +13,36 @@
 
 import { TestBed, inject } from '@angular/core/testing';
 
+import { Observable } from 'rxjs';
+
+import { IDataService } from '../interfaces/idata-service';
+import { IWebData } from '../interfaces/iweb-data';
+import { DataService } from './data.service';
+
 import { TermService } from './term.service';
+
+/********************************************************************************/
+/********************************************************************************/
+
+/***************************************/
+/********** MOCK DATA SERVICE **********/
+/***************************************/
+
+class MockDataService implements IDataService {
+  getData(): Observable<IWebData> {
+    const result: IWebData = {
+      navigationData: null,
+      postsData: null,
+      taxonomiesData: null,
+      termsData: null
+    };
+    return new Observable(observer => {
+      observer.next(result);
+      observer.complete();
+      return;
+    });
+  }
+}
 
 /********************************************************************************/
 /********************************************************************************/
@@ -33,7 +62,10 @@ describe('TermService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TermService]
+      providers: [
+        { provide: DataService, useClass: MockDataService },
+        TermService
+      ]
     });
   });
 

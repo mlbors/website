@@ -103,7 +103,8 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "mlbors:serve"
+            "devServerTarget": "mlbors:serve",
+            "port": 4201
           }
         },
         "lint": {
