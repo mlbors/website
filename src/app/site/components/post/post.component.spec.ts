@@ -15,6 +15,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule} from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { SimpleChange } from '@angular/core';
+
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
 import { Observable } from 'rxjs';
 
 import { IDataService } from '../../interfaces/idata-service';
@@ -27,6 +32,7 @@ import { ITaxonomy } from '../../interfaces/itaxonomy';
 import { ITaxonomyService } from '../../interfaces/itaxonomy-service';
 import { ITerm} from '../../interfaces/iterm';
 import { ITermService } from '../../interfaces/iterm-service';
+import { IType} from '../../interfaces/itype';
 import { IWebData } from '../../interfaces/iweb-data';
 
 import { DataService } from '../../services/data.service';
@@ -273,6 +279,8 @@ class MockTermService implements IQueryService, ITermService {
 describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
+  let debugElement: DebugElement;
+  let htmlElement: HTMLElement;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -322,5 +330,164 @@ describe('PostComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*****************************************/
+  /********** CHECK QUERY SERVICE **********/
+  /*****************************************/
+
+  it('should have queryService', () => {
+    expect(component.queryService).not.toBeNull();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************************/
+  /********** RECIEVED VALUES WITH ID **********/
+  /*********************************************/
+
+  it('should have recieved values with given id', () => {
+    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: null,
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    const spy = spyOn(PostService.prototype, 'getByIDAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.componentInstance.id = 'foo-id';
+    fixture.componentInstance.ngOnChanges({
+      id: new SimpleChange(null, fixture.componentInstance.id, true),
+    });
+    fixture.detectChanges();
+    expect(component.post.title).toEqual('foo title');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***********************************************/
+  /********** RECIEVED VALUES WITH SLUG **********/
+  /***********************************************/
+
+  it('should have recieved values with given slug', () => {
+    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: null,
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    const spy = spyOn(PostService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.componentInstance.slug = 'foo-slug';
+    fixture.componentInstance.ngOnChanges({
+      slug: new SimpleChange(null, fixture.componentInstance.slug, true),
+    });
+    fixture.detectChanges();
+    expect(component.post.title).toEqual('foo title');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************************/
+  /********** SHOULD RETURN IMAGE WHEN IT EXISTS **********/
+  /********************************************************/
+
+  it('should return image when it exists', () => {
+    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: ['foo', 'foo2'],
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    component.post = post;
+    fixture.detectChanges();
+
+    expect(component.checkIfImageExists(1)).toEqual('foo2');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************************************/
+  /********** SHOULD NOT RETURN IMAGE WHEN IT DOES NOT EXIST **********/
+  /********************************************************************/
+
+  it('should not return image when it does not exists', () => {
+    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: ['foo', 'foo2'],
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    component.post = post;
+    fixture.detectChanges();
+
+    expect(component.checkIfImageExists(2)).toBeNull();
   });
 });

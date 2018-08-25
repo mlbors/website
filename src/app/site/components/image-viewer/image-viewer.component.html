@@ -7,7 +7,7 @@
     </div>
   </section>
   
-  <section class="row white-section text-center">
+  <section *ngIf="previousUrl" class="row white-section text-center">
     <div class="col">
       <a class="btn btn-outline-primary" [routerLink]="['/' + previousUrl]" role="button">Back</a>
     </div>
