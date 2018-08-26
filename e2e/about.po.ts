@@ -126,7 +126,18 @@ export class AppPage {
   /**********************************/
 
   getSections() {
-    return element(by.css('.content-section'));
+    return element(by.css('.content-sections'));
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************************/
+  /********** GET SECTIONS CONTENT **********/
+  /******************************************/
+
+  getSectionsContent() {
+    return element.all(by.css('.content-sections .content-section'));
   }
 
   /********************************************************************************/
@@ -137,7 +148,7 @@ export class AppPage {
   /****************************************/
 
   getSectionImages() {
-    return element.all(by.css('.content-section .image-section'));
+    return element.all(by.css('.content-sections .image-section'));
   }
 
   /********************************************************************************/
@@ -148,7 +159,7 @@ export class AppPage {
   /******************************************/
 
   getSectionHeadings() {
-    return element.all(by.css('.content-section h2'));
+    return element.all(by.css('.content-sections h2'));
   }
 
 }
