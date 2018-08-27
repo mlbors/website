@@ -119,8 +119,8 @@ class MockMenuService implements IQueryService, IMenuService {
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
-  let navigationWrapper: DebugElement;
-  let navbar: DebugElement;
+  let debugElement: DebugElement;
+  let htmlElement: HTMLElement;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -157,9 +157,6 @@ describe('NavigationComponent', () => {
     fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    navigationWrapper = fixture.debugElement.query(By.css('div.navigation-wrapper'));
-    navbar = fixture.debugElement.query(By.css('div.navbar-nav'));
   });
 
   /********************************************************************************/
@@ -171,5 +168,232 @@ describe('NavigationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*****************************************/
+  /********** CHECK QUERY SERVICE **********/
+  /*****************************************/
+
+  it('should have queryService', () => {
+    expect(component.queryService).not.toBeNull();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************************/
+  /********** RECIEVED VALUES WITH ID **********/
+  /*********************************************/
+
+  it('should have recieved values with given id', () => {
+    const navigationItems: Array<INavigationItem> = [
+      {
+        id: 'home',
+        title: 'home',
+        link: '/',
+        route: '',
+        target: '_self',
+        order: 1,
+        menu: 'main-menu'
+      },
+      {
+        id: 'about',
+        title: 'about',
+        link: '/about',
+        route: 'about',
+        target: '_self',
+        order: 2,
+        menu: 'main-menu'
+      },
+      {
+        id: 'project-list',
+        title: 'projects',
+        link: '/projects',
+        route: 'projects',
+        target: '_self',
+        order: 3,
+        menu: 'main-menu'
+      }
+    ];
+
+    const menu: IMenu = {
+      id: 'main-menu',
+      slug: 'main-menu',
+      name: 'Main menu',
+      items: navigationItems
+    };
+
+    const spy = spyOn(MenuService.prototype, 'getByIDAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(menu);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.componentInstance.id = 'main-menu';
+    fixture.detectChanges();
+    component.ngOnInit();
+
+    expect(component.menu.id).toEqual('main-menu');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***********************************************/
+  /********** RECIEVED VALUES WITH SLUG **********/
+  /***********************************************/
+
+  it('should have recieved values with given slug', () => {
+    const navigationItems: Array<INavigationItem> = [
+      {
+        id: 'home',
+        title: 'home',
+        link: '/',
+        route: '',
+        target: '_self',
+        order: 1,
+        menu: 'main-menu'
+      },
+      {
+        id: 'about',
+        title: 'about',
+        link: '/about',
+        route: 'about',
+        target: '_self',
+        order: 2,
+        menu: 'main-menu'
+      },
+      {
+        id: 'project-list',
+        title: 'projects',
+        link: '/projects',
+        route: 'projects',
+        target: '_self',
+        order: 3,
+        menu: 'main-menu'
+      }
+    ];
+
+    const menu: IMenu = {
+      id: 'main-menu',
+      slug: 'main-menu',
+      name: 'Main menu',
+      items: navigationItems
+    };
+
+    const spy = spyOn(MenuService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(menu);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.componentInstance.slug = 'main-menu';
+    fixture.detectChanges();
+    component.ngOnInit();
+
+    expect(component.menu.slug).toEqual('main-menu');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************************************/
+  /********** NOT RECIEVED VALUES WITH NULL ID **********/
+  /******************************************************/
+
+  it('should have not recieved values with null id', () => {
+    fixture.componentInstance.id = null;
+    fixture.detectChanges();
+    component.ngOnInit();
+    expect(component.menu).toBeUndefined();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************************/
+  /********** NOT RECIEVED VALUES WITH NULL SLUG **********/
+  /********************************************************/
+
+  it('should have not recieved values with null slug', () => {
+    fixture.componentInstance.slug = null;
+    fixture.detectChanges();
+    component.ngOnInit();
+    expect(component.menu).toBeUndefined();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***********************************/
+  /********** HTML ELEMENTS **********/
+  /***********************************/
+
+  it('should have HTML elements', () => {
+    const navigationItems: Array<INavigationItem> = [
+      {
+        id: 'home',
+        title: 'home',
+        link: '/',
+        route: '',
+        target: '_self',
+        order: 1,
+        menu: 'main-menu'
+      },
+      {
+        id: 'about',
+        title: 'about',
+        link: '/about',
+        route: 'about',
+        target: '_self',
+        order: 2,
+        menu: 'main-menu'
+      },
+      {
+        id: 'project-list',
+        title: 'projects',
+        link: '/projects',
+        route: 'projects',
+        target: '_self',
+        order: 3,
+        menu: 'main-menu'
+      }
+    ];
+
+    const menu: IMenu = {
+      id: 'main-menu',
+      slug: 'main-menu',
+      name: 'Main menu',
+      items: navigationItems
+    };
+
+    const spy = spyOn(MenuService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(menu);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.componentInstance.slug = 'main-menu';
+    fixture.detectChanges();
+    component.ngOnInit();
+
+    setTimeout(() => {
+      debugElement = fixture.debugElement.query(By.css('.nav-item'));
+      htmlElement = debugElement.nativeElement;
+      expect(htmlElement).toBeTruthy();
+
+      debugElement = fixture.debugElement.query(By.css('.navbar-nav'));
+      htmlElement = debugElement.nativeElement;
+      expect(htmlElement.childElementCount).toEqual(3);
+    }, 500);
   });
 });
