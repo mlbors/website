@@ -16,6 +16,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 
 import { IDataService } from '../interfaces/idata-service';
+import { IMenu } from '../interfaces/imenu';
 import { IWebData } from '../interfaces/iweb-data';
 import { DataService } from './data.service';
 
@@ -30,8 +31,15 @@ import { MenuService } from './menu.service';
 
 class MockDataService implements IDataService {
   getData(): Observable<IWebData> {
+    const menu: IMenu = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      name: 'foo-name',
+      items: null
+    };
+
     const result: IWebData = {
-      navigationData: null,
+      navigationData: [menu],
       postsData: null,
       taxonomiesData: null,
       termsData: null
@@ -78,5 +86,19 @@ describe('MenuService', () => {
 
   it('should be created', inject([MenuService], (service: MenuService) => {
     expect(service).toBeTruthy();
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** GET DATA BY SLUG **********/
+  /**************************************/
+
+  it('should get data by slug', inject([MenuService], (service: MenuService) => {
+    service.getBySlugAsync('foo-slug').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as IMenu).id).toEqual('foo-id');
+    });
   }));
 });

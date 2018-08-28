@@ -46,10 +46,19 @@ export class PostTaxonomyPipe implements PipeTransform {
     }
 
     return items.filter(item => {
-      (item as IPost).taxonomies.filter(obj => {
-        return obj.slug === taxonomySlug;
-      });
+      const itemTaxonomies = (item as IPost).taxonomies;
+
+      if (typeof itemTaxonomies === undefined || !itemTaxonomies || itemTaxonomies.length === 0 || itemTaxonomies === null) {
+        return;
+      }
+
+      const p = itemTaxonomies.find(obj => obj.slug === taxonomySlug);
+
+      if (p) {
+        return item;
+      }
+
+      return;
     });
   }
-
 }

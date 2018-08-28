@@ -12,7 +12,7 @@
 /*****************************/
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SimpleChange } from '@angular/core';
@@ -26,13 +26,13 @@ import { IDataService } from '../../interfaces/idata-service';
 import { IMetaData } from '../../interfaces/imeta-data';
 import { IPost } from '../../interfaces/ipost';
 import { IPostService } from '../../interfaces/ipost-service';
-import { IQueryable} from '../../interfaces/iqueryable';
+import { IQueryable } from '../../interfaces/iqueryable';
 import { IQueryService } from '../../interfaces/iquery-service';
 import { ITaxonomy } from '../../interfaces/itaxonomy';
 import { ITaxonomyService } from '../../interfaces/itaxonomy-service';
-import { ITerm} from '../../interfaces/iterm';
+import { ITerm } from '../../interfaces/iterm';
 import { ITermService } from '../../interfaces/iterm-service';
-import { IType} from '../../interfaces/itype';
+import { IType } from '../../interfaces/itype';
 import { IWebData } from '../../interfaces/iweb-data';
 
 import { DataService } from '../../services/data.service';
@@ -435,7 +435,7 @@ describe('PostComponent', () => {
   /********************************************************/
 
   it('should return image when it exists', () => {
-    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const postType: IType = { id: 'post', name: 'post', slug: 'post' };
     const post: IPost = {
       id: 'foo-id',
       slug: 'foo-slug',
