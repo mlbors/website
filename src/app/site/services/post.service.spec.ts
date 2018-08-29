@@ -25,6 +25,7 @@ import { ITaxonomy } from '../interfaces/itaxonomy';
 import { ITaxonomyService } from '../interfaces/itaxonomy-service';
 import { ITerm} from '../interfaces/iterm';
 import { ITermService } from '../interfaces/iterm-service';
+import { IType } from '../interfaces/itype';
 import { IWebData } from '../interfaces/iweb-data';
 
 import { DataService } from './data.service';
@@ -42,9 +43,45 @@ import { PostService } from './post.service';
 
 class MockDataService implements IDataService {
   getData(): Observable<IWebData> {
+    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const posts: Array<IPost> = [
+      {
+        id: 'foo-id',
+        slug: 'foo-slug',
+        title: 'foo title',
+        excerpt: 'foo excerpt',
+        content: 'foo content',
+        sections: null,
+        image: null,
+        images: ['foo', 'foo2'],
+        type: postType,
+        order: 1,
+        taxonomies: null,
+        terms: null,
+        meta: null,
+        template: 'foo-template'
+      },
+      {
+        id: 'foo2-id',
+        slug: 'foo2-slug',
+        title: 'foo2 title',
+        excerpt: 'foo2 excerpt',
+        content: 'foo2 content',
+        sections: null,
+        image: null,
+        images: ['foo', 'foo2'],
+        type: postType,
+        order: 1,
+        taxonomies: null,
+        terms: null,
+        meta: null,
+        template: 'foo-template'
+      }
+    ];
+
     const result: IWebData = {
       navigationData: null,
-      postsData: null,
+      postsData: posts,
       taxonomiesData: null,
       termsData: null
     };
@@ -86,10 +123,10 @@ class MockTaxonomyService implements IQueryService, ITaxonomyService {
     return result;
   }
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     const result: IQueryable = {};
     return new Observable(observer => {
-      observer.next(result);
+      observer.next([result]);
       observer.complete();
       return;
     });
@@ -147,10 +184,10 @@ class MockTermService implements IQueryService, ITermService {
     return [result];
   }
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     const result: IQueryable = {};
     return new Observable(observer => {
-      observer.next(result);
+      observer.next([result]);
       observer.complete();
       return;
     });
@@ -211,5 +248,94 @@ describe('PostServicee', () => {
 
   it('should be created', inject([PostService], (service: PostService) => {
     expect(service).toBeTruthy();
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**********************************/
+  /********** GET ALL DATA **********/
+  /**********************************/
+
+  it('should get all data', inject([PostService], (service: PostService) => {
+    setTimeout(() => {
+      const result = service.getAll();
+      expect(result).toBeTruthy();
+      expect((result as Array<IPost>)[0].id).toEqual('foo-id');
+      expect((result as Array<IPost>)[1].id).toEqual('foo2-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /************************************/
+  /********** GET DATA BY ID **********/
+  /************************************/
+
+  it('should get data by id', inject([PostService], (service: PostService) => {
+    setTimeout(() => {
+      const result = service.getByID('foo-id');
+      expect(result).toBeTruthy();
+      expect((result as IPost).id).toEqual('foo-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** GET DATA BY SLUG **********/
+  /**************************************/
+
+  it('should get data by slug', inject([PostService], (service: PostService) => {
+    setTimeout(() => {
+      const result = service.getBySlug('foo-slug');
+      expect(result).toBeTruthy();
+      expect((result as IPost).id).toEqual('foo-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /****************************************/
+  /********** GET ALL DATA ASYNC **********/
+  /****************************************/
+
+  it('should get all data async', inject([PostService], (service: PostService) => {
+    service.getAllAsync().subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as Array<IPost>)[0].id).toEqual('foo-id');
+      expect((result as Array<IPost>)[1].id).toEqual('foo2-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************************/
+  /********** GET DATA BY ID ASYNC **********/
+  /******************************************/
+
+  it('should get data by id async', inject([PostService], (service: PostService) => {
+    service.getByIDAsync('foo-id').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as IPost).id).toEqual('foo-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************/
+  /********** GET DATA BY SLUG ASYNC **********/
+  /********************************************/
+
+  it('should get data by slug async', inject([PostService], (service: PostService) => {
+    service.getBySlugAsync('foo-slug').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as IPost).id).toEqual('foo-id');
+    });
   }));
 });

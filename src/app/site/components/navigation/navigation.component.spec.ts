@@ -81,10 +81,10 @@ class MockMenuService implements IQueryService, IMenuService {
     return [result];
   }
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     const result: IQueryable = {};
     return new Observable(observer => {
-      observer.next(result);
+      observer.next([result]);
       observer.complete();
       return;
     });

@@ -94,10 +94,10 @@ class MockPostService implements IQueryService, IPostService {
     return result;
   }
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     const result: IQueryable = {};
     return new Observable(observer => {
-      observer.next(result);
+      observer.next([result]);
       observer.complete();
       return;
     });
@@ -179,10 +179,10 @@ class MockTaxonomyService implements IQueryService, ITaxonomyService {
     return result;
   }
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     const result: IQueryable = {};
     return new Observable(observer => {
-      observer.next(result);
+      observer.next([result]);
       observer.complete();
       return;
     });
@@ -240,10 +240,10 @@ class MockTermService implements IQueryService, ITermService {
     return [result];
   }
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     const result: IQueryable = {};
     return new Observable(observer => {
-      observer.next(result);
+      observer.next([result]);
       observer.complete();
       return;
     });

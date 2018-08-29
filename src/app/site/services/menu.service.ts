@@ -168,13 +168,13 @@ export class MenuService implements IQueryService, IMenuService {
   /***********************************/
 
   /**
-   * @return Observable<IQueryable>
+   * @return Observable<Array<IQueryable>>
    */
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     return new Observable(observer => {
       this._getData().subscribe(data => {
-        const result = data;
+        const result = this.getAll();
         observer.next(result);
         observer.complete();
         return;

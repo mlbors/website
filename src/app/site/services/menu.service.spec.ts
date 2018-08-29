@@ -31,15 +31,23 @@ import { MenuService } from './menu.service';
 
 class MockDataService implements IDataService {
   getData(): Observable<IWebData> {
-    const menu: IMenu = {
-      id: 'foo-id',
-      slug: 'foo-slug',
-      name: 'foo-name',
-      items: null
-    };
+    const menus: Array<IMenu> = [
+      {
+        id: 'foo-id',
+        slug: 'foo-slug',
+        name: 'foo-name',
+        items: null
+      },
+      {
+        id: 'foo2-id',
+        slug: 'foo2-slug',
+        name: 'foo2-name',
+        items: null
+      }
+    ];
 
     const result: IWebData = {
-      navigationData: [menu],
+      navigationData: menus,
       postsData: null,
       taxonomiesData: null,
       termsData: null
@@ -91,11 +99,86 @@ describe('MenuService', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /**********************************/
+  /********** GET ALL DATA **********/
+  /**********************************/
+
+  it('should get all data', inject([MenuService], (service: MenuService) => {
+    setTimeout(() => {
+      const result = service.getAll();
+      expect(result).toBeTruthy();
+      expect((result as Array<IMenu>)[0].id).toEqual('foo-id');
+      expect((result as Array<IMenu>)[1].id).toEqual('foo2-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /************************************/
+  /********** GET DATA BY ID **********/
+  /************************************/
+
+  it('should get data by id', inject([MenuService], (service: MenuService) => {
+    setTimeout(() => {
+      const result = service.getByID('foo-id');
+      expect(result).toBeTruthy();
+      expect((result as IMenu).id).toEqual('foo-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /**************************************/
   /********** GET DATA BY SLUG **********/
   /**************************************/
 
   it('should get data by slug', inject([MenuService], (service: MenuService) => {
+    setTimeout(() => {
+      const result = service.getBySlug('foo-slug');
+      expect(result).toBeTruthy();
+      expect((result as IMenu).id).toEqual('foo-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /****************************************/
+  /********** GET ALL DATA ASYNC **********/
+  /****************************************/
+
+  it('should get all data async', inject([MenuService], (service: MenuService) => {
+    service.getAllAsync().subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as Array<IMenu>)[0].id).toEqual('foo-id');
+      expect((result as Array<IMenu>)[1].id).toEqual('foo2-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************************/
+  /********** GET DATA BY ID ASYNC **********/
+  /******************************************/
+
+  it('should get data by id async', inject([MenuService], (service: MenuService) => {
+    service.getByIDAsync('foo-id').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as IMenu).id).toEqual('foo-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************/
+  /********** GET DATA BY SLUG ASYNC **********/
+  /********************************************/
+
+  it('should get data by slug async', inject([MenuService], (service: MenuService) => {
     service.getBySlugAsync('foo-slug').subscribe(result => {
       expect(result).toBeTruthy();
       expect((result as IMenu).id).toEqual('foo-id');

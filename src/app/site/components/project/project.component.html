@@ -13,19 +13,19 @@
       </div>
     </section>
 
-    <section class="row white-section text-center">
+    <section *ngIf="p.content" class="row white-section text-center content-section">
       <div class="col">
-        <p *ngIf="p.content">{{p.content}}</p>
+        <p>{{p.content}}</p>
       </div>
     </section>
 
-    <section *ngIf="p.images" class="row white-section text-center">
+    <section *ngIf="p.images" class="row white-section text-center images-section">
       <div *ngFor="let img of p.images; index as i" class="col">
         <app-image-viewer-wrapper imageUrl="{{img}}"></app-image-viewer-wrapper>
       </div>
     </section>
   
-    <section *ngIf="p.meta" class="row white-section text-center">
+    <section *ngIf="p.meta" class="row white-section text-center meta-section">
       <div class="col">
         <ul *ngFor="let meta of p.meta" class="meta">
           <li><strong>{{meta.name}}: </strong>{{meta.content}}</li>

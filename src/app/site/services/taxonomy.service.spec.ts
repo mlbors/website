@@ -41,10 +41,25 @@ import { TaxonomyService } from './taxonomy.service';
 
 class MockDataService implements IDataService {
   getData(): Observable<IWebData> {
+    const taxonomies: Array<ITaxonomy> = [
+      {
+        id: 'foo-id',
+        slug: 'foo-slug',
+        name: 'foo-name',
+        terms: null
+      },
+      {
+        id: 'foo2-id',
+        slug: 'foo2-slug',
+        name: 'foo2-name',
+        terms: null
+      }
+    ];
+
     const result: IWebData = {
       navigationData: null,
       postsData: null,
-      taxonomiesData: null,
+      taxonomiesData: taxonomies,
       termsData: null
     };
     return new Observable(observer => {
@@ -79,10 +94,10 @@ class MockTermService implements IQueryService, ITermService {
     return [result];
   }
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     const result: IQueryable = {};
     return new Observable(observer => {
-      observer.next(result);
+      observer.next([result]);
       observer.complete();
       return;
     });
@@ -142,5 +157,94 @@ describe('TaxonomyService', () => {
 
   it('should be created', inject([TaxonomyService], (service: TaxonomyService) => {
     expect(service).toBeTruthy();
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**********************************/
+  /********** GET ALL DATA **********/
+  /**********************************/
+
+  it('should get all data', inject([TaxonomyService], (service: TaxonomyService) => {
+    setTimeout(() => {
+      const result = service.getAll();
+      expect(result).toBeTruthy();
+      expect((result as Array<ITaxonomy>)[0].id).toEqual('foo-id');
+      expect((result as Array<ITaxonomy>)[1].id).toEqual('foo2-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /************************************/
+  /********** GET DATA BY ID **********/
+  /************************************/
+
+  it('should get data by id', inject([TaxonomyService], (service: TaxonomyService) => {
+    setTimeout(() => {
+      const result = service.getByID('foo-id');
+      expect(result).toBeTruthy();
+      expect((result as ITaxonomy).id).toEqual('foo-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** GET DATA BY SLUG **********/
+  /**************************************/
+
+  it('should get data by slug', inject([TaxonomyService], (service: TaxonomyService) => {
+    setTimeout(() => {
+      const result = service.getBySlug('foo-slug');
+      expect(result).toBeTruthy();
+      expect((result as ITaxonomy).id).toEqual('foo-id');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /****************************************/
+  /********** GET ALL DATA ASYNC **********/
+  /****************************************/
+
+  it('should get all data async', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getAllAsync().subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as Array<ITaxonomy>)[0].id).toEqual('foo-id');
+      expect((result as Array<ITaxonomy>)[1].id).toEqual('foo2-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************************/
+  /********** GET DATA BY ID ASYNC **********/
+  /******************************************/
+
+  it('should get data by id async', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getByIDAsync('foo-id').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as ITaxonomy).id).toEqual('foo-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************/
+  /********** GET DATA BY SLUG ASYNC **********/
+  /********************************************/
+
+  it('should get data by slug async', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getBySlugAsync('foo-slug').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result as ITaxonomy).id).toEqual('foo-id');
+    });
   }));
 });

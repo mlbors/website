@@ -87,6 +87,42 @@ describe('PostTermPipe', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /***********************************/
+  /********** WITH NO TERMS **********/
+  /***********************************/
+
+  it('should return empty array with no slug', () => {
+    const pipe = new PostTermPipe();
+
+    const postType: IType = { id: 'post', name: 'post', slug: 'post' };
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: ['foo', 'foo2'],
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    const items: Array<IQueryable> = [post];
+    const termSlug = 'foo-term';
+
+    const result = pipe.transform(items, termSlug);
+
+    expect(result.length).toEqual(0);
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /*****************************************/
   /********** RETURN RIGHT RESULT **********/
   /*****************************************/

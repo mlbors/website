@@ -26,7 +26,7 @@ export interface IQueryService {
   getAll(): Array<IQueryable>;
   getByID(id: string): IQueryable;
   getBySlug(slug: string): IQueryable;
-  getAllAsync(): Observable<IQueryable>;
+  getAllAsync(): Observable<Array<IQueryable>>;
   getByIDAsync(id: string): Observable<IQueryable>;
   getBySlugAsync(slug: string): Observable<IQueryable>;
 }

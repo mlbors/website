@@ -20,6 +20,7 @@ import { IPost } from '../interfaces/ipost';
 import { IPostService } from '../interfaces/ipost-service';
 import { IQueryable } from '../interfaces/iqueryable';
 import { IQueryService } from '../interfaces/iquery-service';
+import { ITaxonomyService } from '../interfaces/itaxonomy-service';
 import { IWebData } from '../interfaces/iweb-data';
 
 import { DataService } from './data.service';
@@ -215,13 +216,13 @@ export class PostService implements IQueryService, IPostService {
   /***********************************/
 
   /**
-   * @return Observable<IQueryable>
+   * @return Observable<Array<IQueryable>>
    */
 
-  getAllAsync(): Observable<IQueryable> {
+  getAllAsync(): Observable<Array<IQueryable>> {
     return new Observable(observer => {
       this._getData().subscribe(data => {
-        const result = data;
+        const result = this.getAll();
         observer.next(result);
         observer.complete();
         return;
