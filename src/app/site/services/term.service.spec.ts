@@ -174,6 +174,19 @@ describe('TermService', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /*****************************************************/
+  /********** GET DATA BY ID ASYNC WITH NO ID **********/
+  /*****************************************************/
+
+  it('should not get data by id async with no id', inject([TermService], (service: TermService) => {
+    service.getByIDAsync(null).subscribe(result => {
+      expect(result).toBeNull();
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /********************************************/
   /********** GET DATA BY SLUG ASYNC **********/
   /********************************************/
@@ -182,6 +195,19 @@ describe('TermService', () => {
     service.getBySlugAsync('foo-slug').subscribe(result => {
       expect(result).toBeTruthy();
       expect((result as ITerm).id).toEqual('foo-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************************************/
+  /********** GET DATA BY SLUG ASYNC WITH NO SLUG **********/
+  /*********************************************************/
+
+  it('should not get data by slug async with no slug', inject([TermService], (service: TermService) => {
+    service.getBySlugAsync(null).subscribe(result => {
+      expect(result).toBeNull();
     });
   }));
 });

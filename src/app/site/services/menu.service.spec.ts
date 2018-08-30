@@ -174,6 +174,19 @@ describe('MenuService', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /*****************************************************/
+  /********** GET DATA BY ID ASYNC WITH NO ID **********/
+  /*****************************************************/
+
+  it('should not get data by id async with no id', inject([MenuService], (service: MenuService) => {
+    service.getByIDAsync(null).subscribe(result => {
+      expect(result).toBeNull();
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /********************************************/
   /********** GET DATA BY SLUG ASYNC **********/
   /********************************************/
@@ -182,6 +195,19 @@ describe('MenuService', () => {
     service.getBySlugAsync('foo-slug').subscribe(result => {
       expect(result).toBeTruthy();
       expect((result as IMenu).id).toEqual('foo-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************************************/
+  /********** GET DATA BY SLUG ASYNC WITH NO SLUG **********/
+  /*********************************************************/
+
+  it('should not get data by slug async with no slug', inject([MenuService], (service: MenuService) => {
+    service.getBySlugAsync(null).subscribe(result => {
+      expect(result).toBeNull();
     });
   }));
 });

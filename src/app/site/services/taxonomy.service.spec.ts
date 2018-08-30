@@ -46,13 +46,35 @@ class MockDataService implements IDataService {
         id: 'foo-id',
         slug: 'foo-slug',
         name: 'foo-name',
-        terms: null
+        terms: [{
+          id: 'foo-term',
+          name: 'foo-term-name',
+          slug: 'foo-term-slug',
+          taxonomy: 'foo-id'
+        },
+        {
+          id: 'foo2-term',
+          name: 'foo2-term-name',
+          slug: 'foo2-term-slug',
+          taxonomy: 'foo-id'
+        }]
       },
       {
         id: 'foo2-id',
         slug: 'foo2-slug',
         name: 'foo2-name',
-        terms: null
+        terms: [{
+          id: 'foo-term',
+          name: 'foo-term-name',
+          slug: 'foo-term-slug',
+          taxonomy: 'foo2-id'
+        },
+        {
+          id: 'foo2-term',
+          name: 'foo2-term-name',
+          slug: 'foo2-term-slug',
+          taxonomy: 'foo2-id'
+        }]
       }
     ];
 
@@ -208,6 +230,52 @@ describe('TaxonomyService', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /*************************************/
+  /********** GET TERMS BY ID **********/
+  /*************************************/
+
+  it('should get terms by id', inject([TaxonomyService], (service: TaxonomyService) => {
+    setTimeout(() => {
+      const result = service.getTerms('foo-id');
+      expect(result).toBeTruthy();
+      expect(result.length).toEqual(2);
+      expect(result[0].id).toEqual('foo-term');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***************************************/
+  /********** GET TERMS BY SLUG **********/
+  /***************************************/
+
+  it('should get terms by slug', inject([TaxonomyService], (service: TaxonomyService) => {
+    setTimeout(() => {
+      const result = service.getTerms(null, 'foo-slug');
+      expect(result).toBeTruthy();
+      expect(result.length).toEqual(2);
+      expect(result[0].id).toEqual('foo-term');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************/
+  /********** GET TERMS WITH NO ARGS **********/
+  /********************************************/
+
+  it('should not get terms with no args', inject([TaxonomyService], (service: TaxonomyService) => {
+    setTimeout(() => {
+      const result = service.getTerms();
+      expect(result).toBeNull();
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /****************************************/
   /********** GET ALL DATA ASYNC **********/
   /****************************************/
@@ -237,6 +305,19 @@ describe('TaxonomyService', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /*****************************************************/
+  /********** GET DATA BY ID ASYNC WITH NO ID **********/
+  /*****************************************************/
+
+  it('should not get data by id async with no id', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getByIDAsync(null).subscribe(result => {
+      expect(result).toBeNull();
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /********************************************/
   /********** GET DATA BY SLUG ASYNC **********/
   /********************************************/
@@ -245,6 +326,62 @@ describe('TaxonomyService', () => {
     service.getBySlugAsync('foo-slug').subscribe(result => {
       expect(result).toBeTruthy();
       expect((result as ITaxonomy).id).toEqual('foo-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************************************/
+  /********** GET DATA BY SLUG ASYNC WITH NO SLUG **********/
+  /*********************************************************/
+
+  it('should not get data by slug async with no slug', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getBySlugAsync(null).subscribe(result => {
+      expect(result).toBeNull();
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /************************************************/
+  /********** GET DATA TERMS BY ID ASYNC **********/
+  /************************************************/
+
+  it('should get terms by id async', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getTermsAsync('foo-id').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect(result.length).toEqual(2);
+      expect(result[0].id).toEqual('foo-term');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************************/
+  /********** GET DATA TERMS BY SLUG ASYNC **********/
+  /**************************************************/
+
+  it('should get terms by slug async', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getTermsAsync(null, 'foo-id').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect(result.length).toEqual(2);
+      expect(result[0].id).toEqual('foo-term');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*******************************************************/
+  /********** GET DATA TERMS WITH NO ARGS ASYNC **********/
+  /*******************************************************/
+
+  it('should not get terms with no args async', inject([TaxonomyService], (service: TaxonomyService) => {
+    service.getTermsAsync(null, null).subscribe(result => {
+      expect(result).toBeNull();
     });
   }));
 });

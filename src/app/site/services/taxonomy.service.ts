@@ -205,6 +205,8 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
       const taxonomy = this.getBySlug(slug) as ITaxonomy;
       return taxonomy.terms;
     }
+
+    return;
   }
 
   /********************************************************************************/

@@ -352,7 +352,10 @@ describe('ProjectsListComponent', () => {
   /************************************************************/
 
   it('should have queryService and taxonomyService', () => {
-    expect(component.queryService).not.toBeNull();
-    expect(component.taxonomyService).not.toBeNull();
+    fixture.detectChanges();
+    setTimeout(() => {
+      expect(component.queryService).not.toBeNull();
+      expect(component.taxonomyService).not.toBeNull();
+    }, 1000);
   });
 });
