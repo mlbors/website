@@ -29,6 +29,7 @@ import { ITaxonomy } from '../../interfaces/itaxonomy';
 import { ITaxonomyService } from '../../interfaces/itaxonomy-service';
 import { ITerm} from '../../interfaces/iterm';
 import { ITermService } from '../../interfaces/iterm-service';
+import { IType } from '../../interfaces/itype';
 import { IWebData } from '../../interfaces/iweb-data';
 
 import { DataService } from '../../services/data.service';
@@ -341,6 +342,7 @@ describe('ProjectsListComponent', () => {
   /**************************************/
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -353,9 +355,108 @@ describe('ProjectsListComponent', () => {
 
   it('should have queryService and taxonomyService', () => {
     fixture.detectChanges();
-    setTimeout(() => {
-      expect(component.queryService).not.toBeNull();
-      expect(component.taxonomyService).not.toBeNull();
-    }, 1000);
+    expect(component.queryService).toBeTruthy();
+    expect(component.taxonomyService).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************/
+  /********** GET ALL BY TYPE **********/
+  /*************************************/
+
+  it('should get all by type', () => {
+    const projectType: IType = { id: 'project', name: 'project', slug: 'project' };
+    const results: Array<IPost> = [
+      {
+        id: 'foo-id',
+        slug: 'foo-slug',
+        title: 'foo title',
+        excerpt: 'foo excerpt',
+        content: 'foo content',
+        sections: null,
+        image: null,
+        images: null,
+        type: projectType,
+        order: 2,
+        taxonomies: null,
+        terms: null,
+        meta: null,
+        template: 'foo-template'
+      },
+      {
+        id: 'foo2-id',
+        slug: 'foo2-slug',
+        title: 'foo2 title',
+        excerpt: 'foo2 excerpt',
+        content: 'foo2 content',
+        sections: null,
+        image: null,
+        images: null,
+        type: projectType,
+        order: 1,
+        taxonomies: null,
+        terms: null,
+        meta: null,
+        template: 'foo-template'
+      }
+    ];
+
+    const spy = spyOn(PostService.prototype, 'getAllByType').and.returnValue(
+      new Observable(observer => {
+        observer.next(results);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.detectChanges();
+    expect(component.posts.length).toEqual(2);
+    expect((component.posts[1] as IPost).id).toEqual('foo2-id');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*******************************/
+  /********** GET TERMS **********/
+  /*******************************/
+
+  it('should get terms', () => {
+    const results: Array<ITaxonomy> = [
+      {
+        id: 'foo-id',
+        slug: 'project-category',
+        name: 'foo-name',
+        terms: [{
+          id: 'foo-id',
+          slug: 'foo-slug',
+          name: 'foo-name',
+          taxonomy: 'project-category'
+        },
+        {
+          id: 'foo2-id',
+          slug: 'foo2-slug',
+          name: 'foo2-name',
+          taxonomy: 'project-category'
+        }]
+      }
+    ];
+
+    const spy = spyOn(TaxonomyService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(results);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.destroy();
+    fixture = TestBed.createComponent(ProjectsListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component.terms.length).toEqual(2);
+    expect((component.terms[1] as ITerm).id).toEqual('foo-id');
   });
 });

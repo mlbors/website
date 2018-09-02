@@ -12,7 +12,7 @@
 /*****************************/
 
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DebugElement } from '@angular/core';
@@ -27,7 +27,7 @@ import { ImageViewerWrapperComponent } from './image-viewer-wrapper.component';
 /********************************************************************************/
 
 /*********************************************/
-/********** APP POST COMPONENT MOCK **********/
+/********** APP SITE COMPONENT MOCK **********/
 /*********************************************/
 
 @Component({
@@ -36,6 +36,13 @@ import { ImageViewerWrapperComponent } from './image-viewer-wrapper.component';
 })
 class MockSiteComponent {
 }
+
+/********************************************************************************/
+/********************************************************************************/
+
+/*******************************************/
+/********** APP IMAGE VIEWER MOCK **********/
+/*******************************************/
 
 @Component({
   selector: 'app-image-viewer',
@@ -47,6 +54,10 @@ class MockImageViewerComponent {
 
 /********************************************************************************/
 /********************************************************************************/
+
+/*********************************/
+/********** ROUTES MOCK **********/
+/*********************************/
 
 const MockRoutes: Routes = [
   {

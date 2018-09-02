@@ -25,8 +25,9 @@ import { IQueryable} from '../../interfaces/iqueryable';
 import { IQueryService } from '../../interfaces/iquery-service';
 import { ITaxonomy } from '../../interfaces/itaxonomy';
 import { ITaxonomyService } from '../../interfaces/itaxonomy-service';
-import { ITerm} from '../../interfaces/iterm';
+import { ITerm } from '../../interfaces/iterm';
 import { ITermService } from '../../interfaces/iterm-service';
+import { IType } from '../../interfaces/itype';
 import { IWebData } from '../../interfaces/iweb-data';
 
 import { DataService } from '../../services/data.service';
@@ -322,5 +323,76 @@ describe('PostsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*****************************************/
+  /********** CHECK QUERY SERVICE **********/
+  /*****************************************/
+
+  it('should have queryService', () => {
+    expect(component.queryService).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************/
+  /********** GET ALL BY TYPE **********/
+  /*************************************/
+
+  it('should get all by type', () => {
+    const postType: IType = { id: 'post', name: 'post', slug: 'post' };
+    const results: Array<IPost> = [
+      {
+        id: 'foo-id',
+        slug: 'foo-slug',
+        title: 'foo title',
+        excerpt: 'foo excerpt',
+        content: 'foo content',
+        sections: null,
+        image: null,
+        images: null,
+        type: postType,
+        order: 1,
+        taxonomies: null,
+        terms: null,
+        meta: null,
+        template: 'foo-template'
+      },
+      {
+        id: 'foo2-id',
+        slug: 'foo2-slug',
+        title: 'foo2 title',
+        excerpt: 'foo2 excerpt',
+        content: 'foo2 content',
+        sections: null,
+        image: null,
+        images: null,
+        type: postType,
+        order: 2,
+        taxonomies: null,
+        terms: null,
+        meta: null,
+        template: 'foo-template'
+      }
+    ];
+
+    const spy = spyOn(PostService.prototype, 'getAllByType').and.returnValue(
+      new Observable(observer => {
+        observer.next(results);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.destroy();
+    fixture = TestBed.createComponent(PostsComponent);
+    component = fixture.componentInstance;
+    fixture.componentInstance.type = 'post';
+    fixture.detectChanges();
+    expect(component.posts.length).toEqual(2);
   });
 });

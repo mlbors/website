@@ -340,7 +340,7 @@ describe('PostComponent', () => {
   /*****************************************/
 
   it('should have queryService', () => {
-    expect(component.queryService).not.toBeNull();
+    expect(component.queryService).toBeTruthy();
   });
 
   /********************************************************************************/
