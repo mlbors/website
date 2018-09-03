@@ -154,6 +154,19 @@ describe('NavigationComponent', () => {
   /*********************************/
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        NavigationComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NgbModule
+      ],
+      providers: [
+        { provide: DataService, useClass: MockDataService },
+        { provide: MenuService, useClass: MockMenuService }
+      ]
+    });
     fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -178,7 +191,7 @@ describe('NavigationComponent', () => {
   /*****************************************/
 
   it('should have queryService', () => {
-    expect(component.queryService).not.toBeNull();
+    expect(component.queryService).toBeTruthy();
   });
 
   /********************************************************************************/
@@ -382,6 +395,9 @@ describe('NavigationComponent', () => {
       })
     );
 
+    fixture.destroy();
+    fixture = TestBed.createComponent(NavigationComponent);
+    component = fixture.componentInstance;
     fixture.componentInstance.slug = 'main-menu';
     fixture.detectChanges();
     component.ngOnInit();
@@ -394,6 +410,6 @@ describe('NavigationComponent', () => {
       debugElement = fixture.debugElement.query(By.css('.navbar-nav'));
       htmlElement = debugElement.nativeElement;
       expect(htmlElement.childElementCount).toEqual(3);
-    }, 1000);
+    }, 2000);
   });
 });

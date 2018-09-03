@@ -365,7 +365,7 @@ describe('TaxonomyService', () => {
   /**************************************************/
 
   it('should get terms by slug async', inject([TaxonomyService], (service: TaxonomyService) => {
-    service.getTermsAsync(null, 'foo-id').subscribe(result => {
+    service.getTermsAsync(null, 'foo-slug').subscribe(result => {
       expect(result).toBeTruthy();
       expect(result.length).toEqual(2);
       expect(result[0].id).toEqual('foo-term');
