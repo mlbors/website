@@ -112,6 +112,17 @@ describe('ImageViewerWrapperComponent', () => {
   /*********************************/
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        ImageViewerWrapperComponent,
+        MockSiteComponent,
+        MockImageViewerComponent
+      ],
+      imports: [
+        RouterTestingModule.withRoutes(MockRoutes),
+        NoopAnimationsModule
+      ]
+    });
     fixture = TestBed.createComponent(ImageViewerWrapperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

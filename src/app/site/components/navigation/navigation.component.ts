@@ -172,5 +172,6 @@ export class NavigationComponent implements OnInit, IQuerierComponent {
       });
       return;
     }
+    return;
   }
 }

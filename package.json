@@ -6,8 +6,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "test": "ng test",
-    "test-coverage": "ng test --watch false  --code-coverage true",
+    "test": "ng test --source-map=false",
+    "test-coverage": "ng test --watch false  --source-map=false --code-coverage true",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

@@ -61,6 +61,15 @@ describe('ImageViewerComponent', () => {
   /*********************************/
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        ImageViewerComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NoopAnimationsModule
+      ]
+    });
     fixture = TestBed.createComponent(ImageViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -329,6 +329,22 @@ describe('ProjectComponent', () => {
   /*********************************/
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        MockImageViewerWrapperComponent,
+        ProjectComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NoopAnimationsModule
+      ],
+      providers: [
+        { provide: DataService, useClass: MockDataService },
+        { provide: PostService, useClass: MockPostService },
+        { provide: TaxonomyService, useClass: MockTaxonomyService },
+        { provide: TermService, useClass: MockTermService }
+      ]
+    });
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -189,6 +189,7 @@ export class PostComponent implements OnInit, OnChanges, IQuerierComponent {
       this.queryService.getBySlugAsync(this.slug).subscribe(post => this._setData(post as IPost));
       return;
     }
+    return;
   }
 
   /********************************************************************************/

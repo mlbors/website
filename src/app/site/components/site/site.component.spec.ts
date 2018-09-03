@@ -30,8 +30,6 @@ import { SiteComponent } from './site.component';
   template: ''
 })
 class MockNavigationComponent {
-  @Input('navID') id: string;
-  @Input('navSlug') slug: string;
 }
 
 /********************************************************************************/
@@ -73,6 +71,15 @@ describe('SiteComponent', () => {
   /*********************************/
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        MockNavigationComponent,
+        SiteComponent
+      ],
+      imports: [
+        RouterTestingModule
+      ]
+    });
     fixture = TestBed.createComponent(SiteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

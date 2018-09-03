@@ -279,8 +279,6 @@ class MockTermService implements IQueryService, ITermService {
 describe('PostComponent', () => {
   let component: PostComponent;
   let fixture: ComponentFixture<PostComponent>;
-  let debugElement: DebugElement;
-  let htmlElement: HTMLElement;
 
   /********************************************************************************/
   /********************************************************************************/
@@ -316,6 +314,21 @@ describe('PostComponent', () => {
   /*********************************/
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        PostComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NoopAnimationsModule
+      ],
+      providers: [
+        { provide: DataService, useClass: MockDataService },
+        { provide: PostService, useClass: MockPostService },
+        { provide: TaxonomyService, useClass: MockTaxonomyService },
+        { provide: TermService, useClass: MockTermService }
+      ]
+    });
     fixture = TestBed.createComponent(PostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -329,6 +342,34 @@ describe('PostComponent', () => {
   /**************************************/
 
   it('should create', () => {
+    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: null,
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    const spy = spyOn(PostService.prototype, 'getByIDAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.componentInstance.slug = 'foo-slug';
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
@@ -340,6 +381,34 @@ describe('PostComponent', () => {
   /*****************************************/
 
   it('should have queryService', () => {
+    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: null,
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    const spy = spyOn(PostService.prototype, 'getByIDAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.componentInstance.slug = 'foo-slug';
+    fixture.detectChanges();
     expect(component.queryService).toBeTruthy();
   });
 
@@ -453,9 +522,19 @@ describe('PostComponent', () => {
       template: 'foo-template'
     };
 
-    component.post = post;
-    fixture.detectChanges();
+    const spy = spyOn(PostService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
 
+    fixture.componentInstance.slug = 'foo-slug';
+    fixture.componentInstance.ngOnChanges({
+      slug: new SimpleChange(null, fixture.componentInstance.slug, true),
+    });
+    fixture.detectChanges();
     expect(component.checkIfImageExists(1)).toEqual('foo2');
   });
 
@@ -485,9 +564,19 @@ describe('PostComponent', () => {
       template: 'foo-template'
     };
 
-    component.post = post;
-    fixture.detectChanges();
+    const spy = spyOn(PostService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
 
+    fixture.componentInstance.slug = 'foo-slug';
+    fixture.componentInstance.ngOnChanges({
+      slug: new SimpleChange(null, fixture.componentInstance.slug, true),
+    });
+    fixture.detectChanges();
     expect(component.checkIfImageExists(2)).toBeNull();
   });
 });

@@ -303,7 +303,7 @@ export class PostService implements IQueryService, IPostService {
 
   getMetaAsync(id?: string, slug?: string): Observable<Array<IMetaData>> {
     return new Observable(observer => {
-      if ((!id || id.length < 0) && (!slug && slug.length < 0)) {
+      if ((!id || id.length < 0) && (!slug || slug.length < 0)) {
         observer.next(null);
         observer.complete();
         return;

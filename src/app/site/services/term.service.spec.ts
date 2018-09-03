@@ -11,7 +11,7 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { TestBed, inject } from '@angular/core/testing';
+import { async, TestBed, inject } from '@angular/core/testing';
 
 import { Observable } from 'rxjs';
 

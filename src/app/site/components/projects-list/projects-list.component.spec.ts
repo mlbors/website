@@ -302,73 +302,8 @@ describe('ProjectsListComponent', () => {
   /*****************************************/
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        MockPostTermPipe,
-        ProjectsListComponent
-      ],
-      imports: [
-        RouterTestingModule,
-        NoopAnimationsModule
-      ],
-      providers: [
-        { provide: DataService, useClass: MockDataService },
-        { provide: PostService, useClass: MockPostService },
-        { provide: TaxonomyService, useClass: MockTaxonomyService },
-        { provide: TermService, useClass: MockTermService }
-      ]
-    })
-    .compileComponents();
-  }));
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*********************************/
-  /********** BEFORE EACH **********/
-  /*********************************/
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectsListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /**************************************/
-  /********** CREATE COMPONENT **********/
-  /**************************************/
-
-  it('should create', () => {
-    fixture.detectChanges();
-    expect(component).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /************************************************************/
-  /********** CHECK PROPERTIES PASSED BY CONSTRUCTOR **********/
-  /************************************************************/
-
-  it('should have queryService and taxonomyService', () => {
-    fixture.detectChanges();
-    expect(component.queryService).toBeTruthy();
-    expect(component.taxonomyService).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*************************************/
-  /********** GET ALL BY TYPE **********/
-  /*************************************/
-
-  it('should get all by type', () => {
     const projectType: IType = { id: 'project', name: 'project', slug: 'project' };
-    const results: Array<IPost> = [
+    const posts: Array<IPost> = [
       {
         id: 'foo-id',
         slug: 'foo-slug',
@@ -403,28 +338,15 @@ describe('ProjectsListComponent', () => {
       }
     ];
 
-    const spy = spyOn(PostService.prototype, 'getAllByType').and.returnValue(
+    const spyPosts = spyOn(PostService.prototype, 'getAllByType').and.returnValue(
       new Observable(observer => {
-        observer.next(results);
+        observer.next(posts);
         observer.complete();
         return;
       })
     );
 
-    fixture.detectChanges();
-    expect(component.posts.length).toEqual(2);
-    expect((component.posts[1] as IPost).id).toEqual('foo2-id');
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*******************************/
-  /********** GET TERMS **********/
-  /*******************************/
-
-  it('should get terms', () => {
-    const results: Array<ITaxonomy> = [
+    const taxonomies: Array<ITaxonomy> = [
       {
         id: 'foo-id',
         slug: 'project-category',
@@ -444,19 +366,96 @@ describe('ProjectsListComponent', () => {
       }
     ];
 
-    const spy = spyOn(TaxonomyService.prototype, 'getBySlugAsync').and.returnValue(
+    const spyTaxnonomies = spyOn(TaxonomyService.prototype, 'getBySlugAsync').and.returnValue(
       new Observable(observer => {
-        observer.next(results);
+        observer.next(taxonomies);
         observer.complete();
         return;
       })
     );
 
-    fixture.destroy();
+    TestBed.configureTestingModule({
+      declarations: [
+        MockPostTermPipe,
+        ProjectsListComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NoopAnimationsModule
+      ],
+      providers: [
+        { provide: DataService, useClass: MockDataService },
+        { provide: PostService, useClass: MockPostService, useValue: spyPosts },
+        { provide: TaxonomyService, useClass: MockTaxonomyService, useValue: spyTaxnonomies },
+        { provide: TermService, useClass: MockTermService }
+      ]
+    })
+    .compileComponents();
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************/
+  /********** BEFORE EACH **********/
+  /*********************************/
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(ProjectsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    expect(component.terms.length).toEqual(2);
-    expect((component.terms[1] as ITerm).id).toEqual('foo-id');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** CREATE COMPONENT **********/
+  /**************************************/
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /************************************************************/
+  /********** CHECK PROPERTIES PASSED BY CONSTRUCTOR **********/
+  /************************************************************/
+
+  it('should have queryService and taxonomyService', () => {
+    expect(component.queryService).toBeTruthy();
+    expect(component.taxonomyService).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************/
+  /********** GET ALL BY TYPE **********/
+  /*************************************/
+
+  it('should get all posts by type and sorted', () => {
+    fixture.detectChanges();
+    setTimeout(() => {
+      expect(component.posts.length).toEqual(2);
+      expect((component.posts[0] as IPost).id).toEqual('foo2-id');
+    }, 1000);
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*******************************/
+  /********** GET TERMS **********/
+  /*******************************/
+
+  it('should get terms', () => {
+    fixture.detectChanges();
+    setTimeout(() => {
+      expect(component.terms.length).toEqual(2);
+      expect((component.terms[1] as ITerm).id).toEqual('foo-id');
+    }, 1000);
   });
 });

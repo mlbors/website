@@ -283,67 +283,6 @@ describe('PostsComponent', () => {
   /*****************************************/
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        PostsComponent
-      ],
-      imports: [
-        RouterTestingModule,
-        NoopAnimationsModule
-      ],
-      providers: [
-        { provide: DataService, useClass: MockDataService },
-        { provide: PostService, useClass: MockPostService },
-        { provide: TaxonomyService, useClass: MockTaxonomyService },
-        { provide: TermService, useClass: MockTermService }
-      ]
-    })
-    .compileComponents();
-  }));
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*********************************/
-  /********** BEFORE EACH **********/
-  /*********************************/
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PostsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /**************************************/
-  /********** CREATE COMPONENT **********/
-  /**************************************/
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*****************************************/
-  /********** CHECK QUERY SERVICE **********/
-  /*****************************************/
-
-  it('should have queryService', () => {
-    expect(component.queryService).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*************************************/
-  /********** GET ALL BY TYPE **********/
-  /*************************************/
-
-  it('should get all by type', () => {
     const postType: IType = { id: 'post', name: 'post', slug: 'post' };
     const results: Array<IPost> = [
       {
@@ -388,11 +327,69 @@ describe('PostsComponent', () => {
       })
     );
 
-    fixture.destroy();
+    TestBed.configureTestingModule({
+      declarations: [
+        PostsComponent
+      ],
+      imports: [
+        RouterTestingModule,
+        NoopAnimationsModule
+      ],
+      providers: [
+        { provide: DataService, useClass: MockDataService },
+        { provide: PostService, useClass: MockPostService },
+        { provide: TaxonomyService, useClass: MockTaxonomyService, useValue: spy },
+        { provide: TermService, useClass: MockTermService }
+      ]
+    })
+    .compileComponents();
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************/
+  /********** BEFORE EACH **********/
+  /*********************************/
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(PostsComponent);
     component = fixture.componentInstance;
-    fixture.componentInstance.type = 'post';
+    component.type = 'post';
     fixture.detectChanges();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** CREATE COMPONENT **********/
+  /**************************************/
+
+  it('should create', () => {
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*****************************************/
+  /********** CHECK QUERY SERVICE **********/
+  /*****************************************/
+
+  it('should have queryService', () => {
+    expect(component.queryService).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************/
+  /********** GET ALL BY TYPE **********/
+  /*************************************/
+
+  it('should get all by type', () => {
     expect(component.posts.length).toEqual(2);
   });
 });

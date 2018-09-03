@@ -394,6 +394,6 @@ describe('NavigationComponent', () => {
       debugElement = fixture.debugElement.query(By.css('.navbar-nav'));
       htmlElement = debugElement.nativeElement;
       expect(htmlElement.childElementCount).toEqual(3);
-    }, 500);
+    }, 1000);
   });
 });

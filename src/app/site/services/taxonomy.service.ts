@@ -304,7 +304,7 @@ export class TaxonomyService implements IQueryService, ITaxonomyService {
 
   getTermsAsync(id?: string, slug?: string): Observable<Array<ITerm>> {
     return new Observable(observer => {
-      if ((!id || id.length < 0) && (!slug && slug.length < 0)) {
+      if ((!id || id.length < 0) && (!slug || slug.length < 0)) {
         observer.next(null);
         observer.complete();
         return;
