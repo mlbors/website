@@ -12,6 +12,7 @@
 /*****************************/
 
 import { AppPage } from './projects-list.po';
+import { browser, by, element } from 'protractor';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -226,4 +227,25 @@ describe('projects list page', () => {
     });
   });
 
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***********************************************/
+  /********** SHOULD NAVIGATE TO DETAIL **********/
+  /***********************************************/
+
+  it('should navigate to detail', () => {
+    page.navigateTo();
+    page.getFirstProjectTitle().getText().then(result => {
+      page.getFirstProjectButton().click().then(project => {
+        const projectImage = element(by.css('.project-cover-image'));
+        const projectDetailTitle = element(by.css('h1'));
+        expect(projectImage).toBeTruthy();
+        expect(projectDetailTitle).toBeTruthy();
+        projectDetailTitle.getText().then(projectDetailTitleText => {
+          expect(projectDetailTitleText).toEqual(result);
+        });
+      });
+    });
+  });
 });

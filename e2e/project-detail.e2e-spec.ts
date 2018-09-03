@@ -12,6 +12,7 @@
 /*****************************/
 
 import { AppPage } from './project-detail.po';
+import { browser, by, element } from 'protractor';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -20,7 +21,7 @@ import { AppPage } from './project-detail.po';
 /********** SET UP **********/
 /****************************/
 
-describe('about page', () => {
+describe('project detail page', () => {
   let page: AppPage;
 
   /********************************************************************************/
@@ -168,4 +169,20 @@ describe('about page', () => {
     expect(page.getMetaSection()).toBeTruthy();
   });
 
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*****************************************************/
+  /********** SHOULD NAVIGATE TO LARGER IMAGE **********/
+  /*****************************************************/
+
+  it('should navigate to larger image', () => {
+    page.navigateTo();
+    page.getFirstImage().click().then(result => {
+      const imageViewer = element(by.css('.image-viewer'));
+      const backButton = element(by.css('.btn-outline-primary'));
+      expect(imageViewer).toBeTruthy();
+      expect(backButton).toBeTruthy();
+    });
+  });
 });
