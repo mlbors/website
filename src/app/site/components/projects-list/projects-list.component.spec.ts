@@ -458,4 +458,21 @@ describe('ProjectsListComponent', () => {
       expect((component.terms[1] as ITerm).id).toEqual('foo-id');
     }, 1000);
   });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /****************************/
+  /********** FILTER **********/
+  /****************************/
+
+  it('should filter', () => {
+    fixture.detectChanges();
+    component.filterProjects('foo-slug');
+    expect(component.filterState).toEqual('filtering');
+    setTimeout(() => {
+      expect(component.selectedTerm).toEqual('foo-slug');
+      expect(component.filterState).toEqual('filtered');
+    }, 1000);
+  });
 });

@@ -43,7 +43,7 @@ import { PostService } from './post.service';
 
 class MockDataService implements IDataService {
   getData(): Observable<IWebData> {
-    const postType: IType = {id: 'post', name: 'post', slug: 'post'};
+    const postType: IType = { id: 'post', name: 'post', slug: 'post' };
     const posts: Array<IPost> = [
       {
         id: 'foo-id',
@@ -58,7 +58,10 @@ class MockDataService implements IDataService {
         order: 1,
         taxonomies: null,
         terms: null,
-        meta: null,
+        meta: [
+          { id: 'foo-meta', name: 'foo-meta', content: 'foo-value' },
+          { id: 'foo2-meta', name: 'foo2-meta', content: 'foo2-value' }
+        ],
         template: 'foo-template'
       },
       {
@@ -299,6 +302,50 @@ describe('PostService', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /************************************/
+  /********** GET META BY ID **********/
+  /************************************/
+
+  it('should get meta by id', inject([PostService], (service: PostService) => {
+    setTimeout(() => {
+      const result = service.getMeta('foo-id');
+      expect(result).toBeTruthy();
+      expect((result[0] as IMetaData).id).toEqual('foo-meta');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************/
+  /********** GET META BY SLUG **********/
+  /**************************************/
+
+  it('should get meta by slug', inject([PostService], (service: PostService) => {
+    setTimeout(() => {
+      const result = service.getMeta(null, 'foo-slug');
+      expect(result).toBeTruthy();
+      expect((result[0] as IMetaData).id).toEqual('foo-meta');
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*******************************************/
+  /********** GET META WITH NO ARGS **********/
+  /*******************************************/
+
+  it('should not get meta with no args', inject([PostService], (service: PostService) => {
+    setTimeout(() => {
+      const result = service.getMeta(null, null);
+      expect(result).toBeNull();
+    }, 1000);
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /****************************************/
   /********** GET ALL DATA ASYNC **********/
   /****************************************/
@@ -361,6 +408,61 @@ describe('PostService', () => {
 
   it('should not get data by slug async with no slug', inject([PostService], (service: PostService) => {
     service.getBySlugAsync(null).subscribe(result => {
+      expect(result).toBeNull();
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************************/
+  /********** GET DATA BY CRITERIA **********/
+  /******************************************/
+
+  it('should get data by criteria', inject([PostService], (service: PostService) => {
+    service.getAllByCriteria({ excerpt: 'foo excerpt' }).subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result[0] as IPost).id).toEqual('foo-id');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************************/
+  /********** GET META BY ID ASYNC **********/
+  /******************************************/
+
+  it('should get meta by id async', inject([PostService], (service: PostService) => {
+    service.getMetaAsync('foo-id').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result[0] as IMetaData).id).toEqual('foo-meta');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /********************************************/
+  /********** GET META BY SLUG ASYNC **********/
+  /********************************************/
+
+  it('should get meta by id async', inject([PostService], (service: PostService) => {
+    service.getMetaAsync(null, 'foo-slug').subscribe(result => {
+      expect(result).toBeTruthy();
+      expect((result[0] as IMetaData).id).toEqual('foo-meta');
+    });
+  }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************************/
+  /********** GET META WITH NO ARGS ASYNC **********/
+  /*************************************************/
+
+  it('should not get meta with no args async', inject([PostService], (service: PostService) => {
+    service.getMetaAsync(null, null).subscribe(result => {
       expect(result).toBeNull();
     });
   }));
