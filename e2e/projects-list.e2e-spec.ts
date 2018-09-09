@@ -63,6 +63,21 @@ describe('projects list page', () => {
   /********************************************************************************/
 
   /*************************************************/
+  /********** SHOULD HAVE COLOR FOR BRAND **********/
+  /*************************************************/
+
+  it('should have color for brand', () => {
+    page.navigateTo();
+    page.getBrand().getCssValue('color').then(result => {
+      const color = page.convertRgbToHex(result);
+      expect(color).toEqual('#00c3b6');
+    });
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*************************************************/
   /********** SHOULD HAVE NAVIGATION LIST **********/
   /*************************************************/
 
@@ -100,6 +115,23 @@ describe('projects list page', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /************************************************************/
+  /********** SHOULD HAVE COLOR FOR NAVIGATION ITEMS **********/
+  /************************************************************/
+
+  it('should have color for navigation items', () => {
+    page.navigateTo();
+    page.getNavigationLinks().each(item => {
+      item.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+    });
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /*****************************************/
   /********** SHOULD HAVE CONTENT **********/
   /*****************************************/
@@ -119,6 +151,21 @@ describe('projects list page', () => {
   it('should have H1', () => {
     page.navigateTo();
     expect(page.getH1()).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**********************************************/
+  /********** SHOULD HAVE COLOR FOR H1 **********/
+  /**********************************************/
+
+  it('should have color for h1', () => {
+    page.navigateTo();
+    page.getH1().getCssValue('color').then(result => {
+      const color = page.convertRgbToHex(result);
+      expect(color).toEqual('#00c3b6');
+    });
   });
 
   /********************************************************************************/
@@ -144,6 +191,45 @@ describe('projects list page', () => {
     page.navigateTo();
     page.getTermsButtons().count().then(result => {
       expect(result).toBeGreaterThan(0);
+    });
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**************************************************************************/
+  /********** SHOULD HAVE SAME NUMBER OF TERMS LI AND TERMS BUTTON **********/
+  /**************************************************************************/
+
+  it('should have same number of terms li and terms button', () => {
+    page.navigateTo();
+    page.getTermsButtons().count().then(li => {
+      page.getTermsButtonLinks().count().then(links => {
+        expect(li).toEqual(links);
+      });
+    });
+  });
+
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*********************************************************/
+  /********** SHOULD HAVE COLOR FOR TERMS BUTTONS **********/
+  /*********************************************************/
+
+  it('should have color for terms buttons', () => {
+    page.navigateTo();
+    page.getTermsButtonLinks().each(item => {
+      item.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+
+      item.getCssValue('border-bottom-color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
     });
   });
 
@@ -182,11 +268,28 @@ describe('projects list page', () => {
 
   it('should have project titles', () => {
     page.navigateTo();
-    page.getProjectCards().count().then(result => {
+    page.getProjectTitles().count().then(result => {
       expect(result).toBeGreaterThan(0);
 
       page.getProjectCards().count().then(cards => {
         expect(result).toEqual(cards);
+      });
+    });
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /**********************************************************/
+  /********** SHOULD HAVE COLOR FOR PROJECT TITLES **********/
+  /**********************************************************/
+
+  it('should have color for project titles', () => {
+    page.navigateTo();
+    page.getProjectTitles().each(item => {
+      item.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
       });
     });
   });
@@ -212,6 +315,23 @@ describe('projects list page', () => {
   /********************************************************************************/
   /********************************************************************************/
 
+  /*********************************************************/
+  /********** SHOULD HAVE COLOR FOR PROJECTS TEXT **********/
+  /*********************************************************/
+
+  it('should have color for projects text', () => {
+    page.navigateTo();
+    page.getProjectsText().each(item => {
+      item.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#b4b0b0');
+      });
+    });
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /*************************************************/
   /********** SHOULD HAVE PROJECT BUTTONS **********/
   /*************************************************/
@@ -223,6 +343,28 @@ describe('projects list page', () => {
 
       page.getProjectCards().count().then(cards => {
         expect(result).toEqual(cards);
+      });
+    });
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***********************************************************/
+  /********** SHOULD HAVE COLOR FOR PROJECT BUTTONS **********/
+  /***********************************************************/
+
+  it('should have color for project buttons', () => {
+    page.navigateTo();
+    page.getProjectButtons().each(item => {
+      item.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+
+      item.getCssValue('border-bottom-color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
       });
     });
   });
