@@ -12,6 +12,7 @@
 /*****************************/
 
 import { AppPage } from './app.po';
+import { browser, ExpectedConditions } from 'protractor';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -67,10 +68,13 @@ describe('homepage', () => {
 
   it('should have color for brand', () => {
     page.navigateTo();
-    page.getBrand().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#00c3b6');
-    });
+    const brand = page.getBrand();
+    setTimeout(() => {
+      brand.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -120,12 +124,15 @@ describe('homepage', () => {
 
   it('should have color for navigation items', () => {
     page.navigateTo();
-    page.getNavigationLinks().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const navigationLinks = page.getNavigationLinks();
+    setTimeout(() => {
+      navigationLinks.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -173,9 +180,12 @@ describe('homepage', () => {
 
   it('should have color for excerpt', () => {
     page.navigateTo();
-    page.getExcerpt().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#b4b0b0');
-    });
+    const excerpt = page.getExcerpt();
+    setTimeout(() => {
+      excerpt.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#b4b0b0');
+      });
+    }, 5000);
   });
 });

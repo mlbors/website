@@ -74,7 +74,7 @@ describe('project detail page', () => {
         const color = page.convertRgbToHex(result);
         expect(color).toEqual('#00c3b6');
       });
-    }, 2000);
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -124,12 +124,15 @@ describe('project detail page', () => {
 
   it('should have color for navigation items', () => {
     page.navigateTo();
-    page.getNavigationLinks().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const navigationLinks = page.getNavigationLinks();
+    setTimeout(() => {
+      navigationLinks.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -165,10 +168,13 @@ describe('project detail page', () => {
 
   it('should have color for h1', () => {
     page.navigateTo();
-    page.getH1().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#00c3b6');
-    });
+    const h1 = page.getH1();
+    setTimeout(() => {
+      h1.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -204,10 +210,13 @@ describe('project detail page', () => {
 
   it('should have color for content section', () => {
     page.navigateTo();
-    page.getContentSection().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#b4b0b0');
-    });
+    const contentSection = page.getContentSection();
+    setTimeout(() => {
+      contentSection.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#b4b0b0');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -243,10 +252,13 @@ describe('project detail page', () => {
 
   it('should have color for meta section', () => {
     page.navigateTo();
-    page.getMetaSection().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#b4b0b0');
-    });
+    const metaSection = page.getMetaSection();
+    setTimeout(() => {
+      metaSection.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#b4b0b0');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -259,10 +271,12 @@ describe('project detail page', () => {
   it('should navigate to larger image', () => {
     page.navigateTo();
     page.getFirstImage().click().then(result => {
-      const imageViewer = element(by.css('.image-viewer'));
-      const backButton = element(by.css('.btn-outline-primary'));
-      expect(imageViewer).toBeTruthy();
-      expect(backButton).toBeTruthy();
+      setTimeout(() => {
+        const imageViewer = element(by.css('.image-viewer'));
+        const backButton = element(by.css('.btn-outline-primary'));
+        expect(imageViewer).toBeTruthy();
+        expect(backButton).toBeTruthy();
+      }, 5000);
     });
   });
 });

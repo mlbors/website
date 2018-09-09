@@ -68,10 +68,13 @@ describe('about page', () => {
 
   it('should have color for brand', () => {
     page.navigateTo();
-    page.getBrand().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#00c3b6');
-    });
+    const brand = page.getBrand();
+    setTimeout(() => {
+      brand.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -121,12 +124,15 @@ describe('about page', () => {
 
   it('should have color for navigation items', () => {
     page.navigateTo();
-    page.getNavigationLinks().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const navigationLinks = page.getNavigationLinks();
+    setTimeout(() => {
+      navigationLinks.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -162,10 +168,13 @@ describe('about page', () => {
 
   it('should have color for h1', () => {
     page.navigateTo();
-    page.getH1().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#00c3b6');
-    });
+    const h1 = page.getH1();
+    setTimeout(() => {
+      h1.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -227,12 +236,15 @@ describe('about page', () => {
 
   it('should have color for sections', () => {
     page.navigateTo();
-    page.getSectionsContent().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#b4b0b0');
+    const pageSections = page.getSectionsContent();
+    setTimeout(() => {
+      pageSections.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#b4b0b0');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -272,11 +284,14 @@ describe('about page', () => {
 
   it('should have color for h2', () => {
     page.navigateTo();
-    page.getSectionHeadings().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const sectionHeadings = page.getSectionHeadings();
+    setTimeout(() => {
+      sectionHeadings.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 });

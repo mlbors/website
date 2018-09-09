@@ -68,10 +68,13 @@ describe('projects list page', () => {
 
   it('should have color for brand', () => {
     page.navigateTo();
-    page.getBrand().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#00c3b6');
-    });
+    const brand = page.getBrand();
+    setTimeout(() => {
+      brand.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -121,12 +124,15 @@ describe('projects list page', () => {
 
   it('should have color for navigation items', () => {
     page.navigateTo();
-    page.getNavigationLinks().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const navigationLinks = page.getNavigationLinks();
+    setTimeout(() => {
+      navigationLinks.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -162,10 +168,13 @@ describe('projects list page', () => {
 
   it('should have color for h1', () => {
     page.navigateTo();
-    page.getH1().getCssValue('color').then(result => {
-      const color = page.convertRgbToHex(result);
-      expect(color).toEqual('#00c3b6');
-    });
+    const h1 = page.getH1();
+    setTimeout(() => {
+      h1.getCssValue('color').then(result => {
+        const color = page.convertRgbToHex(result);
+        expect(color).toEqual('#00c3b6');
+      });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -210,7 +219,6 @@ describe('projects list page', () => {
     });
   });
 
-
   /********************************************************************************/
   /********************************************************************************/
 
@@ -220,17 +228,20 @@ describe('projects list page', () => {
 
   it('should have color for terms buttons', () => {
     page.navigateTo();
-    page.getTermsButtonLinks().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
-      });
+    const termsButtonLinks = page.getTermsButtonLinks();
+    setTimeout(() => {
+      termsButtonLinks.getTermsButtonLinks().each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
 
-      item.getCssValue('border-bottom-color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+        item.getCssValue('border-bottom-color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -286,12 +297,15 @@ describe('projects list page', () => {
 
   it('should have color for project titles', () => {
     page.navigateTo();
-    page.getProjectTitles().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const projetTitles = page.getProjectTitles();
+    setTimeout(() => {
+      projetTitles.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -321,12 +335,15 @@ describe('projects list page', () => {
 
   it('should have color for projects text', () => {
     page.navigateTo();
-    page.getProjectsText().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#b4b0b0');
+    const projectsText = page.getProjectsText();
+    setTimeout(() => {
+      projectsText.each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#b4b0b0');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -356,17 +373,20 @@ describe('projects list page', () => {
 
   it('should have color for project buttons', () => {
     page.navigateTo();
-    page.getProjectButtons().each(item => {
-      item.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
-      });
+    const projectButtons = page.getProjectButtons();
+    setTimeout(() => {
+      projectButtons .each(item => {
+        item.getCssValue('color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
 
-      item.getCssValue('border-bottom-color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+        item.getCssValue('border-bottom-color').then(result => {
+          const color = page.convertRgbToHex(result);
+          expect(color).toEqual('#00c3b6');
+        });
       });
-    });
+    }, 5000);
   });
 
   /********************************************************************************/
@@ -380,13 +400,15 @@ describe('projects list page', () => {
     page.navigateTo();
     page.getFirstProjectTitle().getText().then(result => {
       page.getFirstProjectButton().click().then(project => {
-        const projectImage = element(by.css('.project-cover-image'));
-        const projectDetailTitle = element(by.css('h1'));
-        expect(projectImage).toBeTruthy();
-        expect(projectDetailTitle).toBeTruthy();
-        projectDetailTitle.getText().then(projectDetailTitleText => {
-          expect(projectDetailTitleText).toEqual(result);
-        });
+        setTimeout(() => {
+          const projectImage = element(by.css('.project-cover-image'));
+          const projectDetailTitle = element(by.css('h1'));
+          expect(projectImage).toBeTruthy();
+          expect(projectDetailTitle).toBeTruthy();
+          projectDetailTitle.getText().then(projectDetailTitleText => {
+            expect(projectDetailTitleText).toEqual(result);
+          });
+        }, 5000);
       });
     });
   });
