@@ -55,4 +55,18 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /*******************************************************/
+  /********** RESET SCROLL WHEN NAVIGATION ENDS **********/
+  /*******************************************************/
+
+  it('should reset scroll when navigatione ends', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(window.scrollX).toEqual(0);
+    expect(window.scrollY).toEqual(0);
+  }));
 });

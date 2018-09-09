@@ -304,6 +304,32 @@ describe('ProjectComponent', () => {
   /*****************************************/
 
   beforeEach(async(() => {
+    const postType: IType = { id: 'project', name: 'project', slug: 'project' };
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: null,
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    const spyService = spyOn(PostService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
+
     TestBed.configureTestingModule({
       declarations: [
         MockImageViewerWrapperComponent,
@@ -315,7 +341,7 @@ describe('ProjectComponent', () => {
       ],
       providers: [
         { provide: DataService, useClass: MockDataService },
-        { provide: PostService, useClass: MockPostService },
+        { provide: PostService, useClass: MockPostService, useValue: spyService },
         { provide: TaxonomyService, useClass: MockTaxonomyService },
         { provide: TermService, useClass: MockTermService }
       ]
@@ -394,27 +420,10 @@ describe('ProjectComponent', () => {
   /***********************************************/
 
   it('should have recieved values with given slug', () => {
-    const postType: IType = { id: 'project', name: 'project', slug: 'project' };
-    const post: IPost = {
-      id: 'foo-id',
-      slug: 'foo-slug',
-      title: 'foo title',
-      excerpt: 'foo excerpt',
-      content: 'foo content',
-      sections: null,
-      image: null,
-      images: null,
-      type: postType,
-      order: 1,
-      taxonomies: null,
-      terms: null,
-      meta: null,
-      template: 'foo-template'
-    };
-
-    const spy = spyOn(PostService.prototype, 'getBySlugAsync').and.returnValue(
+    const spyRoute = spyOnProperty(ActivatedRoute.prototype, 'paramMap', 'get').and.returnValue(
       new Observable(observer => {
-        observer.next(post);
+        const result = { slug: 'foo-slug' };
+        observer.next(convertToParamMap(result));
         observer.complete();
         return;
       })
