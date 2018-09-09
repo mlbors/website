@@ -194,7 +194,7 @@ describe('TaxonomyService', () => {
       expect(result).toBeTruthy();
       expect((result as Array<ITaxonomy>)[0].id).toEqual('foo-id');
       expect((result as Array<ITaxonomy>)[1].id).toEqual('foo2-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -209,7 +209,7 @@ describe('TaxonomyService', () => {
       const result = service.getByID('foo-id');
       expect(result).toBeTruthy();
       expect((result as ITaxonomy).id).toEqual('foo-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -224,7 +224,7 @@ describe('TaxonomyService', () => {
       const result = service.getBySlug('foo-slug');
       expect(result).toBeTruthy();
       expect((result as ITaxonomy).id).toEqual('foo-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -240,7 +240,7 @@ describe('TaxonomyService', () => {
       expect(result).toBeTruthy();
       expect(result.length).toEqual(2);
       expect(result[0].id).toEqual('foo-term');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -256,7 +256,7 @@ describe('TaxonomyService', () => {
       expect(result).toBeTruthy();
       expect(result.length).toEqual(2);
       expect(result[0].id).toEqual('foo-term');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -270,7 +270,7 @@ describe('TaxonomyService', () => {
     setTimeout(() => {
       const result = service.getTerms();
       expect(result).toBeNull();
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/

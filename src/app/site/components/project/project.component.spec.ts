@@ -16,6 +16,7 @@ import { RouterTestingModule} from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Component, Input } from '@angular/core';
+import { Router, Routes, ActivatedRoute, convertToParamMap } from '@angular/router';
 
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -30,8 +31,9 @@ import { IQueryable} from '../../interfaces/iqueryable';
 import { IQueryService } from '../../interfaces/iquery-service';
 import { ITaxonomy } from '../../interfaces/itaxonomy';
 import { ITaxonomyService } from '../../interfaces/itaxonomy-service';
-import { ITerm} from '../../interfaces/iterm';
+import { ITerm } from '../../interfaces/iterm';
 import { ITermService } from '../../interfaces/iterm-service';
+import { IType } from '../../interfaces/itype';
 import { IWebData } from '../../interfaces/iweb-data';
 
 import { DataService } from '../../services/data.service';
@@ -359,5 +361,75 @@ describe('ProjectComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /******************************/
+  /********** SET SLUG **********/
+  /******************************/
+
+  it('should set slug', () => {
+    const spy = spyOnProperty(ActivatedRoute.prototype, 'paramMap', 'get').and.returnValue(
+      new Observable(observer => {
+        const result = { slug: 'foo-slug' };
+        observer.next(convertToParamMap(result));
+        observer.complete();
+        return;
+      })
+    );
+    fixture.destroy();
+    fixture = TestBed.createComponent(ProjectComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component.slug).toEqual('foo-slug');
+  });
+
+  /********************************************************************************/
+  /********************************************************************************/
+
+  /***********************************************/
+  /********** RECIEVED VALUES WITH SLUG **********/
+  /***********************************************/
+
+  it('should have recieved values with given slug', () => {
+    const postType: IType = { id: 'project', name: 'project', slug: 'project' };
+    const post: IPost = {
+      id: 'foo-id',
+      slug: 'foo-slug',
+      title: 'foo title',
+      excerpt: 'foo excerpt',
+      content: 'foo content',
+      sections: null,
+      image: null,
+      images: null,
+      type: postType,
+      order: 1,
+      taxonomies: null,
+      terms: null,
+      meta: null,
+      template: 'foo-template'
+    };
+
+    const spy = spyOn(PostService.prototype, 'getBySlugAsync').and.returnValue(
+      new Observable(observer => {
+        observer.next(post);
+        observer.complete();
+        return;
+      })
+    );
+
+    fixture.destroy();
+    fixture = TestBed.createComponent(ProjectComponent);
+    fixture.componentInstance.slug = 'foo-slug';
+    fixture.detectChanges();
+
+    fixture.componentInstance.queryService.getBySlugAsync(fixture.componentInstance.slug).subscribe(result => {
+      expect((result as IPost).title).toEqual('foo title');
+      setTimeout(() => {
+        expect(component.post.title).toEqual('foo title');
+      }, 3000);
+    });
   });
 });

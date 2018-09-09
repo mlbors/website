@@ -441,7 +441,7 @@ describe('ProjectsListComponent', () => {
     setTimeout(() => {
       expect(component.posts.length).toEqual(2);
       expect((component.posts[0] as IPost).id).toEqual('foo2-id');
-    }, 1000);
+    }, 2000);
   });
 
   /********************************************************************************/
@@ -456,7 +456,7 @@ describe('ProjectsListComponent', () => {
     setTimeout(() => {
       expect(component.terms.length).toEqual(2);
       expect((component.terms[1] as ITerm).id).toEqual('foo-id');
-    }, 1000);
+    }, 2000);
   });
 
   /********************************************************************************/
@@ -473,6 +473,6 @@ describe('ProjectsListComponent', () => {
     setTimeout(() => {
       expect(component.selectedTerm).toEqual('foo-slug');
       expect(component.filterState).toEqual('filtered');
-    }, 1000);
+    }, 2000);
   });
 });

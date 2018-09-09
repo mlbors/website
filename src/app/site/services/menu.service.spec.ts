@@ -109,7 +109,7 @@ describe('MenuService', () => {
       expect(result).toBeTruthy();
       expect((result as Array<IMenu>)[0].id).toEqual('foo-id');
       expect((result as Array<IMenu>)[1].id).toEqual('foo2-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -124,7 +124,7 @@ describe('MenuService', () => {
       const result = service.getByID('foo-id');
       expect(result).toBeTruthy();
       expect((result as IMenu).id).toEqual('foo-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -139,7 +139,7 @@ describe('MenuService', () => {
       const result = service.getBySlug('foo-slug');
       expect(result).toBeTruthy();
       expect((result as IMenu).id).toEqual('foo-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/

@@ -266,7 +266,7 @@ describe('PostService', () => {
       expect(result).toBeTruthy();
       expect((result as Array<IPost>)[0].id).toEqual('foo-id');
       expect((result as Array<IPost>)[1].id).toEqual('foo2-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -281,7 +281,7 @@ describe('PostService', () => {
       const result = service.getByID('foo-id');
       expect(result).toBeTruthy();
       expect((result as IPost).id).toEqual('foo-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -296,7 +296,7 @@ describe('PostService', () => {
       const result = service.getBySlug('foo-slug');
       expect(result).toBeTruthy();
       expect((result as IPost).id).toEqual('foo-id');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -311,7 +311,7 @@ describe('PostService', () => {
       const result = service.getMeta('foo-id');
       expect(result).toBeTruthy();
       expect((result[0] as IMetaData).id).toEqual('foo-meta');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -326,7 +326,7 @@ describe('PostService', () => {
       const result = service.getMeta(null, 'foo-slug');
       expect(result).toBeTruthy();
       expect((result[0] as IMetaData).id).toEqual('foo-meta');
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
@@ -340,7 +340,7 @@ describe('PostService', () => {
     setTimeout(() => {
       const result = service.getMeta(null, null);
       expect(result).toBeNull();
-    }, 1000);
+    }, 2000);
   }));
 
   /********************************************************************************/
