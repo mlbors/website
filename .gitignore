@@ -6,11 +6,11 @@
 data/*
 !data/.gitkeep 
 
-src/assets/data/*
-src/assets/!data/.gitkeep 
+#src/assets/data/*
+#src/assets/!data/.gitkeep 
 
-src/assets/img/*
-src/assets/!img/.gitkeep 
+#src/assets/img/*
+#src/assets/!img/.gitkeep 
 
 ### Angular ###
 ## Angular ##

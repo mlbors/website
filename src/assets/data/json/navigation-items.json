@@ -1,0 +1,29 @@
+[
+  {
+    "id": "home",
+    "title": "home",
+    "link": "/",
+    "route": "",
+    "target": "_self",
+    "order": 1,
+    "menu": "main-menu"
+  },
+  {
+    "id": "about",
+    "title": "about",
+    "link": "/about",
+    "route": "about",
+    "target": "_self",
+    "order": 2,
+    "menu": "main-menu"
+  },
+  {
+    "id": "project-list",
+    "title": "projects",
+    "link": "/projects",
+    "route": "projects",
+    "target": "_self",
+    "order": 3,
+    "menu": "main-menu"
+  }
+]
