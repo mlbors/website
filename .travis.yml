@@ -1,0 +1,39 @@
+language: node_js
+sudo: true
+dist: trusty
+group: edge
+
+node_js:
+  - '8'
+
+addons:  
+  firefox: latest
+  chrome: stable
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - pip install --user codecov
+  - ./scripts/setup-github-access.sh
+
+install:
+  - npm install
+
+script:
+  - npm run test-coverage
+
+after_success:
+  - codecov
+  - ./scripts/delete-gh-pages.sh
+  - git status
+  - npm run build-gh
+  - npm run deploy-gh
+  - git checkout master
+  - sleep 10
+  - tsc -p e2e
+  - npm run e2e ./config/protractor.sauce.conf.js
+
+notifications:
+    email: false
