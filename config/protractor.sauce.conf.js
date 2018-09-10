@@ -1,4 +1,4 @@
-var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+const { SpecReporter } = require('jasmine-spec-reporter');
 
 var buildNumber = 'travis-build#'+process.env.TRAVIS_BUILD_NUMBER;
 
@@ -85,13 +85,10 @@ exports.config = {
     defaultTimeoutInterval: 360000,
     print: function() {}
   },
-  useAllAngular2AppRoots: true,
-  beforeLaunch: function() {
+  onPrepare() {
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'
     });
-  },
-  onPrepare: function() {
-    jasmine.getEnv().addReporter(new SpecReporter());
+    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };
