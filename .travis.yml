@@ -8,6 +8,7 @@ node_js:
 
 env:
   global:
+    - CHROME_BIN=/usr/bin/google-chrome
     - DISPLAY=:99.0
 
 addons:  
@@ -20,6 +21,7 @@ cache:
 
 before_install:
   - pip install --user codecov
+  - ./scripts/install-dependencies.sh
   - ./scripts/setup-github-access.sh
 
 install:
