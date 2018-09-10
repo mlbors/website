@@ -36,7 +36,7 @@ after_success:
   - git status
   - npm run build-gh
   - npm run deploy-gh
-  - git checkout master
+  - git checkout develop
   - sleep 10
   - tsc -p e2e
   - npm run e2e ./config/protractor.sauce.conf.js
