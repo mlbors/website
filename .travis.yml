@@ -6,6 +6,10 @@ group: edge
 node_js:
   - '8'
 
+env:
+  global:
+    - DISPLAY=:99.0
+
 addons:  
   firefox: latest
   chrome: stable

@@ -8,7 +8,7 @@
     "build": "ng build --prod",
     "build-gh": "ng build --prod --base-href \"/website\"",
     "test": "ng test --source-map=false",
-    "test-coverage": "ng test --watch false  --source-map=false --code-coverage true",
+    "test-coverage": "ng test --watch false --source-map=false --code-coverage true",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy-gh": "angular-cli-ghpages --repo=https://GITHUB_TOKENgithub.com/mlbors/website.git --name=mlbors --email=matyas.bors@gmail.com"
