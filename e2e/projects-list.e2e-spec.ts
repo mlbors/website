@@ -12,7 +12,7 @@
 /*****************************/
 
 import { AppPage } from './projects-list.po';
-import { browser, by, element } from 'protractor';
+import { browser, by, element, ExpectedConditions } from 'protractor';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -69,14 +69,19 @@ describe('projects list page', () => {
   it('should have color for brand', () => {
     page.navigateTo();
     const brand = page.getBrand();
-    setTimeout(() => {
-      brand.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(brand), 5000).then(result => {
+      expect(brand).toBeTruthy();
+      brand.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#00c3b6');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#00c3b6');
+        });
       });
-    }, 5000);
+    });
   });
-
   /********************************************************************************/
   /********************************************************************************/
 
@@ -125,14 +130,20 @@ describe('projects list page', () => {
   it('should have color for navigation items', () => {
     page.navigateTo();
     const navigationLinks = page.getNavigationLinks();
-    setTimeout(() => {
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 5000).then(result => {
+      expect(navigationLinks).toBeTruthy();
       navigationLinks.each(item => {
-        item.getCssValue('color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+        item.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -169,12 +180,18 @@ describe('projects list page', () => {
   it('should have color for h1', () => {
     page.navigateTo();
     const h1 = page.getH1();
-    setTimeout(() => {
-      h1.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(h1), 5000).then(result => {
+      expect(h1).toBeTruthy();
+      h1.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#00c3b6');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#00c3b6');
+        });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -229,19 +246,52 @@ describe('projects list page', () => {
   it('should have color for terms buttons', () => {
     page.navigateTo();
     const termsButtonLinks = page.getTermsButtonLinks();
-    setTimeout(() => {
-      termsButtonLinks.getTermsButtonLinks().each(item => {
-        item.getCssValue('color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(page.getFirstTermButtonLinks()), 5000).then(result => {
+      expect(termsButtonLinks).toBeTruthy();
+      termsButtonLinks.each(item => {
+        item.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
-
-        item.getCssValue('border-bottom-color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+        item.getCssValue('border-left-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        item.getCssValue('border-top-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        item.getCssValue('border-right-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        item.getCssValue('border-bottom-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -281,7 +331,6 @@ describe('projects list page', () => {
     page.navigateTo();
     page.getProjectTitles().count().then(result => {
       expect(result).toBeGreaterThan(0);
-
       page.getProjectCards().count().then(cards => {
         expect(result).toEqual(cards);
       });
@@ -298,14 +347,20 @@ describe('projects list page', () => {
   it('should have color for project titles', () => {
     page.navigateTo();
     const projetTitles = page.getProjectTitles();
-    setTimeout(() => {
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(page.getFirstProjectTitle()), 5000).then(result => {
+      expect(projetTitles).toBeTruthy();
       projetTitles.each(item => {
-        item.getCssValue('color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+        item.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -319,7 +374,6 @@ describe('projects list page', () => {
     page.navigateTo();
     page.getProjectsText().count().then(result => {
       expect(result).toBeGreaterThan(0);
-
       page.getProjectCards().count().then(cards => {
         expect(result).toEqual(cards);
       });
@@ -336,14 +390,20 @@ describe('projects list page', () => {
   it('should have color for projects text', () => {
     page.navigateTo();
     const projectsText = page.getProjectsText();
-    setTimeout(() => {
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(page.getFirstProjectText()), 5000).then(result => {
+      expect(projectsText).toBeTruthy();
       projectsText.each(item => {
-        item.getCssValue('color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#b4b0b0');
+        item.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#b4b0b0');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#b4b0b0');
+          });
         });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -357,7 +417,6 @@ describe('projects list page', () => {
     page.navigateTo();
     page.getProjectButtons().count().then(result => {
       expect(result).toBeGreaterThan(0);
-
       page.getProjectCards().count().then(cards => {
         expect(result).toEqual(cards);
       });
@@ -374,19 +433,52 @@ describe('projects list page', () => {
   it('should have color for project buttons', () => {
     page.navigateTo();
     const projectButtons = page.getProjectButtons();
-    setTimeout(() => {
-      projectButtons .each(item => {
-        item.getCssValue('color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(page.getFirstProjectButton()), 5000).then(result => {
+      expect(projectButtons).toBeTruthy();
+      projectButtons.each(item => {
+        item.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
-
-        item.getCssValue('border-bottom-color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+        item.getCssValue('border-left-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        item.getCssValue('border-top-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        item.getCssValue('border-right-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        item.getCssValue('border-bottom-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -400,15 +492,17 @@ describe('projects list page', () => {
     page.navigateTo();
     page.getFirstProjectTitle().getText().then(result => {
       page.getFirstProjectButton().click().then(project => {
-        setTimeout(() => {
-          const projectImage = element(by.css('.project-cover-image'));
-          const projectDetailTitle = element(by.css('h1'));
+        const projectImage = element(by.css('.project-cover-image'));
+        const projectDetailTitle = element(by.css('h1'));
+        const ec = ExpectedConditions;
+
+        browser.wait(ec.presenceOf(projectDetailTitle), 5000).then(condition => {
           expect(projectImage).toBeTruthy();
           expect(projectDetailTitle).toBeTruthy();
           projectDetailTitle.getText().then(projectDetailTitleText => {
             expect(projectDetailTitleText).toEqual(result);
           });
-        }, 5000);
+        });
       });
     });
   });

@@ -11,7 +11,7 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { browser, by, element } from 'protractor';
+import { browser, by, element, ExpectedConditions } from 'protractor';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -88,6 +88,17 @@ export class AppPage {
   /********************************************************************************/
   /********************************************************************************/
 
+  /***********************************************/
+  /********** GET FIRST NAVIGATION LINK **********/
+  /***********************************************/
+
+  getFirstNavigationLink() {
+    return element(by.css('.nav-link'));
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /*********************************/
   /********** GET CONTENT **********/
   /*********************************/
@@ -154,6 +165,17 @@ export class AppPage {
   /********************************************************************************/
   /********************************************************************************/
 
+  /******************************************/
+  /********** GET SECTIONS CONTENT **********/
+  /******************************************/
+
+  getFirstSectionContent() {
+    return element(by.css('.content-sections .content-section'));
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /****************************************/
   /********** GET SECTION IMAGES **********/
   /****************************************/
@@ -176,20 +198,51 @@ export class AppPage {
   /********************************************************************************/
   /********************************************************************************/
 
+  /************************************************/
+  /********** GET FIRST SECTION HEADINGS **********/
+  /************************************************/
+
+  getFirstSectionHeadings() {
+    return element(by.css('.content-sections h2'));
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /****************************************/
   /********** CONVERT RGB TO HEX **********/
   /****************************************/
 
-  convertRgbToHex(color: string) {
-    if (color.substr(0, 1) === '#') {
-      return color;
-    }
-    const digits = /(.*?)rgb\((\d+), (\d+), (\d+)\)/.exec(color);
-    const red = parseInt(digits[2]);
-    const green = parseInt(digits[3]);
-    const blue = parseInt(digits[4]);
-
-    const rgb = blue | (green << 8) | (red << 16);
-    return digits[1] + '#' + rgb.toString(16).padStart(6, '0');
+  convertRgbToHex(color: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      if (color.substr(0, 1) === '#') {
+        resolve(color);
+        return;
+      }
+      try {
+        if (color.replace(/\s/g, '').match(/^rgba\((\d+),(\d+),(\d+)/i) != null) {
+          const rgb = color.replace(/\s/g, '').match(/^rgba\((\d+),(\d+),(\d+)/i);
+          const answer = (rgb && rgb.length === 4) ? '#' +
+           ('0' + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+           ('0' + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+           ('0' + parseInt(rgb[3], 10).toString(16)).slice(-2) : color;
+           resolve(answer);
+           return;
+        } else if (color.replace(/\s/g, '').match(/^rgb\((\d+),(\d+),(\d+)/i) != null) {
+          const rgb = color.replace(/\s/g, '').match(/^rgb\((\d+),(\d+),(\d+)/i);
+          const answer = (rgb && rgb.length === 4) ? '#' +
+           ('0' + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+           ('0' + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+           ('0' + parseInt(rgb[3], 10).toString(16)).slice(-2) : color;
+           resolve(answer);
+           return;
+        } else {
+          resolve(color);
+          return;
+        }
+      } catch (error) {
+        reject(color);
+      }
+    });
   }
 }

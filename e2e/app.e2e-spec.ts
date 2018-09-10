@@ -69,12 +69,18 @@ describe('homepage', () => {
   it('should have color for brand', () => {
     page.navigateTo();
     const brand = page.getBrand();
-    setTimeout(() => {
-      brand.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(brand), 5000).then(result => {
+      expect(brand).toBeTruthy();
+      brand.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#00c3b6');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#00c3b6');
+        });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -125,14 +131,20 @@ describe('homepage', () => {
   it('should have color for navigation items', () => {
     page.navigateTo();
     const navigationLinks = page.getNavigationLinks();
-    setTimeout(() => {
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 5000).then(result => {
+      expect(navigationLinks).toBeTruthy();
       navigationLinks.each(item => {
-        item.getCssValue('color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+        item.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -181,11 +193,17 @@ describe('homepage', () => {
   it('should have color for excerpt', () => {
     page.navigateTo();
     const excerpt = page.getExcerpt();
-    setTimeout(() => {
-      excerpt.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#b4b0b0');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(excerpt), 5000).then(result => {
+      expect(excerpt).toBeTruthy();
+      excerpt.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#b4b0b0');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#b4b0b0');
+        });
       });
-    }, 5000);
+    });
   });
 });

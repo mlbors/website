@@ -12,7 +12,7 @@
 /*****************************/
 
 import { AppPage } from './project-detail.po';
-import { browser, by, element } from 'protractor';
+import { browser, by, element, ExpectedConditions } from 'protractor';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -69,12 +69,18 @@ describe('project detail page', () => {
   it('should have color for brand', () => {
     page.navigateTo();
     const brand = page.getBrand();
-    setTimeout(() => {
-      brand.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(brand), 5000).then(result => {
+      expect(brand).toBeTruthy();
+      brand.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#00c3b6');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#00c3b6');
+        });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -125,14 +131,20 @@ describe('project detail page', () => {
   it('should have color for navigation items', () => {
     page.navigateTo();
     const navigationLinks = page.getNavigationLinks();
-    setTimeout(() => {
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 5000).then(result => {
+      expect(navigationLinks).toBeTruthy();
       navigationLinks.each(item => {
-        item.getCssValue('color').then(result => {
-          const color = page.convertRgbToHex(result);
-          expect(color).toEqual('#00c3b6');
+        item.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
         });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -169,12 +181,18 @@ describe('project detail page', () => {
   it('should have color for h1', () => {
     page.navigateTo();
     const h1 = page.getH1();
-    setTimeout(() => {
-      h1.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#00c3b6');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(h1), 5000).then(result => {
+      expect(h1).toBeTruthy();
+      h1.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#00c3b6');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#00c3b6');
+        });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -211,12 +229,18 @@ describe('project detail page', () => {
   it('should have color for content section', () => {
     page.navigateTo();
     const contentSection = page.getContentSection();
-    setTimeout(() => {
-      contentSection.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#b4b0b0');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(contentSection), 5000).then(result => {
+      expect(contentSection).toBeTruthy();
+      contentSection.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#b4b0b0');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#b4b0b0');
+        });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -253,12 +277,18 @@ describe('project detail page', () => {
   it('should have color for meta section', () => {
     page.navigateTo();
     const metaSection = page.getMetaSection();
-    setTimeout(() => {
-      metaSection.getCssValue('color').then(result => {
-        const color = page.convertRgbToHex(result);
-        expect(color).toEqual('#b4b0b0');
+    const ec = ExpectedConditions;
+    browser.wait(ec.presenceOf(metaSection), 5000).then(result => {
+      expect(metaSection).toBeTruthy();
+      metaSection.getCssValue('color').then(value => {
+        page.convertRgbToHex(value).then(converted => {
+        expect(converted).toEqual('#b4b0b0');
+        }).catch(error => {
+          console.error(error);
+          expect(value).toEqual('#b4b0b0');
+        });
       });
-    }, 5000);
+    });
   });
 
   /********************************************************************************/
@@ -271,12 +301,14 @@ describe('project detail page', () => {
   it('should navigate to larger image', () => {
     page.navigateTo();
     page.getFirstImage().click().then(result => {
-      setTimeout(() => {
-        const imageViewer = element(by.css('.image-viewer'));
-        const backButton = element(by.css('.btn-outline-primary'));
+      const imageViewer = element(by.css('.image-viewer'));
+      const backButton = element(by.css('.btn-outline-primary'));
+      const ec = ExpectedConditions;
+
+      browser.wait(ec.presenceOf(backButton), 5000).then(condition => {
         expect(imageViewer).toBeTruthy();
         expect(backButton).toBeTruthy();
-      }, 5000);
+      });
     });
   });
 });
