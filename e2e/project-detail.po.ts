@@ -28,7 +28,7 @@ export class AppPage {
 
   navigateTo() {
     //return browser.get('/project/frank-the-sceptical-worm-from-outer-space');
-    return browser.get(browser.baseUrl) + '/project/frank-the-sceptical-worm-from-outer-space';
+    return browser.get(browser.baseUrl) + 'project/frank-the-sceptical-worm-from-outer-space';
   }
 
   /********************************************************************************/

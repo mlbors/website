@@ -28,7 +28,7 @@ export class AppPage {
 
   navigateTo() {
     //return browser.get('/');
-    return browser.get(browser.baseUrl + '/about');
+    return browser.get(browser.baseUrl + 'about');
   }
 
   /********************************************************************************/
