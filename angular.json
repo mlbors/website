@@ -129,7 +129,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./config/protractor.sauce.conf.js",
-            "devServerTarget": "https://mlbors.github.io/website/",
+            "host": "https://mlbors.github.io/website/",
             "port": 8000
           }
         },
