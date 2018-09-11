@@ -70,7 +70,7 @@ describe('project detail page', () => {
     page.navigateTo();
     const brand = page.getBrand();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(brand), 5000).then(result => {
+    browser.wait(ec.presenceOf(brand), 12000).then(result => {
       expect(brand).toBeTruthy();
       brand.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -132,7 +132,7 @@ describe('project detail page', () => {
     page.navigateTo();
     const navigationLinks = page.getNavigationLinks();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 5000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 12000).then(result => {
       expect(navigationLinks).toBeTruthy();
       navigationLinks.each(item => {
         item.getCssValue('color').then(value => {
@@ -182,7 +182,7 @@ describe('project detail page', () => {
     page.navigateTo();
     const h1 = page.getH1();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(h1), 5000).then(result => {
+    browser.wait(ec.presenceOf(h1), 12000).then(result => {
       expect(h1).toBeTruthy();
       h1.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -230,7 +230,7 @@ describe('project detail page', () => {
     page.navigateTo();
     const contentSection = page.getContentSection();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(contentSection), 5000).then(result => {
+    browser.wait(ec.presenceOf(contentSection), 12000).then(result => {
       expect(contentSection).toBeTruthy();
       contentSection.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -278,7 +278,7 @@ describe('project detail page', () => {
     page.navigateTo();
     const metaSection = page.getMetaSection();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(metaSection), 5000).then(result => {
+    browser.wait(ec.presenceOf(metaSection), 12000).then(result => {
       expect(metaSection).toBeTruthy();
       metaSection.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -305,7 +305,7 @@ describe('project detail page', () => {
       const backButton = element(by.css('.btn-outline-primary'));
       const ec = ExpectedConditions;
 
-      browser.wait(ec.presenceOf(backButton), 5000).then(condition => {
+      browser.wait(ec.presenceOf(backButton), 12000).then(condition => {
         expect(imageViewer).toBeTruthy();
         expect(backButton).toBeTruthy();
       });

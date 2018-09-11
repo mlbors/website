@@ -6,8 +6,8 @@ const tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
 exports.config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
-  allScriptsTimeout: 36000,
-  getPageTimeout: 36000,
+  allScriptsTimeout: 72000,
+  getPageTimeout: 72000,
   maxSessions: 1,
   specs: [
     '../out-tsc/e2e/**/*.e2e-spec.js',
@@ -99,13 +99,14 @@ exports.config = {
   sauceBuild: buildNumber,
   tunnelIdentifier: tunnelIdentifier,
   directConnect: false,
-  idleTimeout: 360,
-  commandTimeout: 450,
+  maxDuration: 7200,
+  idleTimeout: 420,
+  commandTimeout: 540,
   baseUrl: 'https://mlbors.github.io/website/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 360000,
+    defaultTimeoutInterval: 720000,
     print: function() {}
   },
   onPrepare() {
