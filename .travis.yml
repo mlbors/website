@@ -39,7 +39,7 @@ after_success:
   - npm run build-gh
   - npm run deploy-gh
   - git checkout develop
-  - sleep 60
+  - sleep 120
   - tsc -p e2e
   - npm run e2e sauce-e2e
 
