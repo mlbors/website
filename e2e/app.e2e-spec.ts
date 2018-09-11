@@ -70,7 +70,7 @@ describe('homepage', () => {
     page.navigateTo();
     const brand = page.getBrand();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(brand), 24000).then(result => {
+    browser.wait(ec.presenceOf(brand), 36000).then(result => {
       expect(brand).toBeTruthy();
       brand.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -132,7 +132,7 @@ describe('homepage', () => {
     page.navigateTo();
     const navigationLinks = page.getNavigationLinks();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 24000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 36000).then(result => {
       expect(navigationLinks).toBeTruthy();
       navigationLinks.each(item => {
         item.getCssValue('color').then(value => {
@@ -194,7 +194,7 @@ describe('homepage', () => {
     page.navigateTo();
     const excerpt = page.getExcerpt();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(excerpt), 24000).then(result => {
+    browser.wait(ec.presenceOf(excerpt), 36000).then(result => {
       expect(excerpt).toBeTruthy();
       excerpt.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
