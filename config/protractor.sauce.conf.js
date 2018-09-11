@@ -8,8 +8,8 @@ exports.config = {
   allScriptsTimeout: 72000,
   getPageTimeout: 72000,
   specs: [
-    '../dist/out-tsc-e2e/**/*.e2e-spec.js',
-    '../dist/out-tsc-e2e/**/*.po.js'
+    '../out-tsc-e2e/**/*.e2e-spec.js',
+    '../out-tsc-e2e/**/*.po.js'
   ],
   multiCapabilities: [
     {

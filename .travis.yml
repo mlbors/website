@@ -21,6 +21,7 @@ cache:
 
 before_install:
   - pip install --user codecov
+  - npm install -g typescript
   - ./scripts/install-dependencies.sh
   - ./scripts/setup-github-access.sh
 
