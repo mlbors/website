@@ -39,7 +39,7 @@ after_success:
   - git checkout develop
   - sleep 10
   - tsc -p e2e
-  - npm run e2e ./config/protractor.sauce.conf.js
+  - npm run e2e sauce-e2e
 
 notifications:
     email: false
