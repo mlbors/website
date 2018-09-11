@@ -69,6 +69,7 @@ export class DataService implements IDataService {
   private _termsJsonUrl = 'assets/data/json/terms.json';
   private _typesJsonUrl = 'assets/data/json/types.json';
 
+  private _data: IWebData = null;
   private _posts: Array<IPostJson>;
   private _menus: Array<IMenu>;
   private _navigationItems: Array<INavigationItem>;
@@ -109,14 +110,22 @@ export class DataService implements IDataService {
   public getData(): Observable<IWebData> {
     return new Observable(observer => {
       this._subscribeToDataFeed().then(result => {
+        if (this._data != null) {
+          observer.next(this._data);
+          observer.complete();
+          return;
+        }
+
         const data: IWebData = {
           navigationData: this.navigationData,
           postsData: this.postsData,
           taxonomiesData: this.taxonomiesData,
           termsData: this.termsData
         };
+        this._data = data;
         observer.next(data);
         observer.complete();
+        return;
       });
     });
   }
