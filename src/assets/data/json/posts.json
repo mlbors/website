@@ -190,7 +190,7 @@
       {
         "id": "frameworks-libraries",
         "name": "frameworks-libraries",
-        "content": "Laravel, Boostrap 4"
+        "content": "Laravel, Bootstrap 4"
       }],
     "template": "default"
   },
@@ -247,7 +247,7 @@
       {
         "id": "frameworks-libraries",
         "name": "frameworks and libraries",
-        "content": "Angular, Boostrap"
+        "content": "Angular, Bootstrap"
       }],
     "template": "default"
   },
@@ -298,7 +298,7 @@
       {
         "id": "cms-frameworks-libraries",
         "name": "CMS, frameworks and libraries",
-        "content": "WordPress, Boostrap 3, jQuery"
+        "content": "WordPress, Bootstrap 3, jQuery"
       }],
     "template": "default"
   },
@@ -498,7 +498,7 @@
       {
         "id": "cms-frameworks-libraries",
         "name": "CMS, frameworks and libraries",
-        "content": "WordPress, Boostrap 3, jQuery"
+        "content": "WordPress, Bootstrap 3, jQuery"
       }],
     "template": "default"
   }
