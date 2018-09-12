@@ -25,5 +25,23 @@
     "target": "_self",
     "order": 3,
     "menu": "main-menu"
+  },
+  {
+    "id": "contact",
+    "title": "contact",
+    "link": "/contact",
+    "route": "contact",
+    "target": "_self",
+    "order": 4,
+    "menu": "main-menu"
+  },
+  {
+    "id": "blog",
+    "title": "blog",
+    "link": "https://medium.com/@mlbors",
+    "route": null,
+    "target": "_blank",
+    "order": 5,
+    "menu": "main-menu"
   }
 ]

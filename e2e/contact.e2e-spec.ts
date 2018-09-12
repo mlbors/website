@@ -1,5 +1,5 @@
 /**
- * Website - Project Detail e2e - Specs
+ * Website - Contact e2e - Specs
  *
  * @since       2018.04.22
  * @version     1.0.0.0
@@ -11,8 +11,8 @@
 /********** IMPORTS **********/
 /*****************************/
 
-import { AppPage } from './project-detail.po';
-import { browser, by, element, ExpectedConditions } from 'protractor';
+import { AppPage } from './contact.po';
+import { browser, ExpectedConditions } from 'protractor';
 
 /********************************************************************************/
 /********************************************************************************/
@@ -21,7 +21,7 @@ import { browser, by, element, ExpectedConditions } from 'protractor';
 /********** SET UP **********/
 /****************************/
 
-describe('project detail page', () => {
+describe('contact', () => {
   let page: AppPage;
 
   /********************************************************************************/
@@ -162,77 +162,17 @@ describe('project detail page', () => {
   /********************************************************************************/
   /********************************************************************************/
 
-  /************************************/
-  /********** SHOULD HAVE H1 **********/
-  /************************************/
+  /***************************************************/
+  /********** SHOULD HAVE COLOR FOR CONTENT **********/
+  /***************************************************/
 
-  it('should have H1', () => {
+  it('should have color for excerpt', () => {
     page.navigateTo();
-    expect(page.getH1()).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /**********************************************/
-  /********** SHOULD HAVE COLOR FOR H1 **********/
-  /**********************************************/
-
-  it('should have color for h1', () => {
-    page.navigateTo();
-    const h1 = page.getH1();
+    const content = page.getContent();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(h1), 48000).then(result => {
-      expect(h1).toBeTruthy();
-      h1.getCssValue('color').then(value => {
-        page.convertRgbToHex(value).then(converted => {
-        expect(converted).toEqual('#00c3b6');
-        }).catch(error => {
-          console.error(error);
-          expect(value).toEqual('#00c3b6');
-        });
-      });
-    });
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*****************************************************/
-  /********** SHOULD HAVE PROJECT COVER IMAGE **********/
-  /*****************************************************/
-
-  it('should have project cover image', () => {
-    page.navigateTo();
-    expect(page.getProjectCoverImage()).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*************************************************/
-  /********** SHOULD HAVE CONTENT SECTION **********/
-  /*************************************************/
-
-  it('should have content section', () => {
-    page.navigateTo();
-    expect(page.getContentSection()).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /***********************************************************/
-  /********** SHOULD HAVE COLOR FOR CONTENT SECTION **********/
-  /***********************************************************/
-
-  it('should have color for content section', () => {
-    page.navigateTo();
-    const contentSection = page.getContentSection();
-    const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(contentSection), 48000).then(result => {
-      expect(contentSection).toBeTruthy();
-      contentSection.getCssValue('color').then(value => {
+    browser.wait(ec.presenceOf(content), 48000).then(result => {
+      expect(content).toBeTruthy();
+      content.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
         expect(converted).toEqual('#b4b0b0');
         }).catch(error => {
@@ -246,69 +186,24 @@ describe('project detail page', () => {
   /********************************************************************************/
   /********************************************************************************/
 
-  /************************************************/
-  /********** SHOULD HAVE IMAGES SECTION **********/
-  /************************************************/
+  /**************************************************/
+  /********** SHOULD HAVE POST COVER IMAGE **********/
+  /**************************************************/
 
-  it('should have images section', () => {
+  it('should have post cover image', () => {
     page.navigateTo();
-    expect(page.getImagesSection()).toBeTruthy();
+    expect(page.getPostCoverImage()).toBeTruthy();
   });
 
   /********************************************************************************/
   /********************************************************************************/
 
   /**********************************************/
-  /********** SHOULD HAVE META SECTION **********/
+  /********** SHOULD HAVE SOCIAL LINKS **********/
   /**********************************************/
 
-  it('should have meta section', () => {
+  it('should have social links', () => {
     page.navigateTo();
-    expect(page.getMetaSection()).toBeTruthy();
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /********************************************************/
-  /********** SHOULD HAVE COLOR FOR META SECTION **********/
-  /********************************************************/
-
-  it('should have color for meta section', () => {
-    page.navigateTo();
-    const metaSection = page.getMetaSection();
-    const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(metaSection), 48000).then(result => {
-      expect(metaSection).toBeTruthy();
-      metaSection.getCssValue('color').then(value => {
-        page.convertRgbToHex(value).then(converted => {
-        expect(converted).toEqual('#b4b0b0');
-        }).catch(error => {
-          console.error(error);
-          expect(value).toEqual('#b4b0b0');
-        });
-      });
-    });
-  });
-
-  /********************************************************************************/
-  /********************************************************************************/
-
-  /*****************************************************/
-  /********** SHOULD NAVIGATE TO LARGER IMAGE **********/
-  /*****************************************************/
-
-  it('should navigate to larger image', () => {
-    page.navigateTo();
-    page.getFirstImage().click().then(result => {
-      const imageViewer = element(by.css('.image-viewer'));
-      const backButton = element(by.css('.btn-outline-primary'));
-      const ec = ExpectedConditions;
-
-      browser.wait(ec.presenceOf(backButton), 48000).then(condition => {
-        expect(imageViewer).toBeTruthy();
-        expect(backButton).toBeTruthy();
-      });
-    });
+    expect(page.getSocialLinks()).toBeTruthy();
   });
 });

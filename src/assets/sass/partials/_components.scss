@@ -101,7 +101,7 @@
         
         li {
             display: inline-block;
-            margin: 0 $myDividedGutter/2;
+            margin: $myDividedGutter/2;
             padding: 0;
         }
 
@@ -122,4 +122,39 @@
 
     }
 
+}
+
+.social-icons {
+    float: none;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+
+    .social-icon {
+        display: inline-block;
+        margin: 0;
+        margin: 0 $myDividedGutter 0 0;
+
+        &:last-child {
+            margin: 0;
+        }
+
+        a {
+            display: block;
+            float: none;
+            clear: both;
+            overflow: hidden;
+
+            img {
+                display: block;
+                float: none;
+                width: 100%;
+                height: auto;
+                clear: both;
+                overflow: hidden;
+            }
+
+        }
+
+    }
 }

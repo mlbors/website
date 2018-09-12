@@ -176,6 +176,47 @@
       </section>
     </ng-template>
 
+    <ng-template [ngSwitchCase]="'contact'">
+      <section *ngIf="p.image" class="row white-section text-center">
+        <div class="col">
+          <img src="{{p.image}}" class="post-cover-image" />
+        </div>
+      </section>
+    
+      <section *ngIf="p.title" class="row white-section text-center">
+        <div class="col">
+          <h1>{{p.title}}</h1>
+        </div>
+      </section> 
+
+      <section *ngIf="p.excerpt" class="row white-section text-center excerpt">
+        <div class="col">
+          <p>{{p.excerpt}}</p>
+        </div>
+      </section> 
+
+      <section *ngIf="p.content" class="row white-section text-center">
+        <div class="col">
+          <p>{{p.content}}</p>
+        </div>
+      </section> 
+
+      <section class="row white-section text-center">
+        <div class="col">
+          <ul class="social-icons">
+            <li class="social-icon"><a href="https://twitter.com/mlbors" target="_blank"><img src="assets/img/icons/twitter-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://plus.google.com/103265453496705989543" target="_blank"><img src="assets/img/icons/google-plus-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://fr.pinterest.com/lancelotbohort/" target="_blank"><img src="assets/img/icons/pinterest-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://ch.linkedin.com/in/m%C3%A1ty%C3%A1s-lancelot-bors-47b57841" target="_blank"><img src="assets/img/icons/linkedin-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://www.youtube.com/channel/UCGQJK-C_R0nyfSn8Ttuz8Xg" target="_blank"><img src="assets/img/icons/youtube-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://github.com/mlbors" target="_blank"><img src="assets/img/icons/github-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://mlbors.tumblr.com" target="_blank"><img src="assets/img/icons/tumblr-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://medium.com/@mlbors" target="_blank"><img src="assets/img/icons/medium-45-45-min.png" /></a></li>
+            <li class="social-icon"><a href="https://www.patreon.com/mlbors" target="_blank"><img src="assets/img/icons/patreon-45-45-min.png" /></a></li>
+          </ul>
+        </div>
+      </section> 
+    </ng-template>
   </div>
 </div>
   

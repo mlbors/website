@@ -109,14 +109,14 @@ describe('projects list page', () => {
   /********************************************************************************/
   /********************************************************************************/
 
-  /********************************************************/
-  /********** SHOULD HAVE THREE NAVIGATION ITEMS **********/
-  /********************************************************/
+  /****************************************************/
+  /********** SHOULD HAVE 5 NAVIGATION ITEMS **********/
+  /****************************************************/
 
-  it('should have three navigation items', () => {
+  it('should have 5 navigation items', () => {
     page.navigateTo();
     page.getNavigationItems().count().then(result => {
-      expect(result).toEqual(3);
+      expect(result).toEqual(5);
     });
   });
 

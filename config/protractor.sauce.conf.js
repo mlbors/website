@@ -6,9 +6,9 @@ const tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
 exports.config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
-  allScriptsTimeout: 84000,
-  getPageTimeout: 84000,
-  maxSessions: 1,
+  allScriptsTimeout: 120000,
+  getPageTimeout: 120000,
+  maxSessions: 2,
   specs: [
     '../out-tsc/e2e/**/*.e2e-spec.js',
     '../out-tsc/e2e/**/*.po.js'
@@ -18,59 +18,57 @@ exports.config = {
       browserName: 'safari',
       platform: 'macOS 10.13',
       name: "safari-osx-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'chrome',
       platform: 'macOS 10.13',
       name: "chrome-macos-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'chrome',
       platform: 'Windows 10',
       name: "chrome-latest-windows-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'firefox',
       platform: 'macOS 10.13',
       name: "firefox-macos-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'firefox',
       platform: 'Windows 10',
       name: "firefox-latest-windows-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'internet explorer',
       platform: 'Windows 10',
       name: "ie-latest-windows-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'MicrosoftEdge',
       platform: 'Windows 10',
       name: "edge-latest-windows-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
-      browserName: 'safari',
-      name: 'safari-ios-tests',
-      platformName: 'iOS',
-      platformVersion: '11.3',
-      deviceName: 'iPhone 8 Simulator',
-      shardTestFiles: true,
-      maxInstances: 3
+      browserName: 'chrome',
+      platform: 'Linux',
+      name: "chrome-linux-tests",
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'chrome',
@@ -78,35 +76,37 @@ exports.config = {
       platformName: 'Android',
       platformVersion: '6.0',
       deviceName: 'Android Emulator',
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
-      browserName: 'chrome',
-      platform: 'Linux',
-      name: "chrome-linux-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      browserName: 'safari',
+      name: 'safari-ios-tests',
+      platformName: 'iOS',
+      platformVersion: '11.3',
+      deviceName: 'iPhone 8 Simulator',
+      shardTestFiles: false,
+      maxInstances: 1
     },
     {
       browserName: 'firefox',
       platform: 'Linux',
       name: "firefox-linux-tests",
-      shardTestFiles: true,
-      maxInstances: 3
+      shardTestFiles: false,
+      maxInstances: 1
     }
   ],
   sauceBuild: buildNumber,
   tunnelIdentifier: tunnelIdentifier,
   directConnect: false,
   maxDuration: 8400,
-  idleTimeout: 480,
-  commandTimeout: 540,
+  idleTimeout: 720,
+  commandTimeout: 600,
   baseUrl: 'https://mlbors.github.io/website/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 84000,
+    defaultTimeoutInterval: 120000,
     print: function() {}
   },
   onPrepare() {
