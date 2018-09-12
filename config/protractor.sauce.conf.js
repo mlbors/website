@@ -67,8 +67,8 @@ exports.config = {
       browserName: 'safari',
       name: 'safari-ios-tests',
       platformName: 'iOS',
-      platformVersion: '11.4',
-      deviceName: 'iPhone 8',
+      platformVersion: '11.3',
+      deviceName: 'iPhone 8 Simulator',
       shardTestFiles: true,
       maxInstances: 3
     },
@@ -76,7 +76,7 @@ exports.config = {
       browserName: 'chrome',
       name: 'chrome-android-tests',
       platformName: 'Android',
-      platformVersion: '8.0',
+      platformVersion: '6.0',
       deviceName: 'Android Emulator',
       shardTestFiles: true,
       maxInstances: 3
