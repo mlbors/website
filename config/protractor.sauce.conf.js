@@ -19,63 +19,49 @@ exports.config = {
       platform: 'macOS 10.13',
       name: "safari-osx-tests",
       shardTestFiles: true,
-      maxInstances: 2
-    },
-    {
-      browserName: 'chrome',
-      platform: 'Linux',
-      name: "chrome-linux-tests",
-      shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'chrome',
       platform: 'macOS 10.13',
       name: "chrome-macos-tests",
       shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'chrome',
       platform: 'Windows 10',
       name: "chrome-latest-windows-tests",
       shardTestFiles: true,
-      maxInstances: 2
-    },
-    {
-      browserName: 'firefox',
-      platform: 'Linux',
-      name: "firefox-linux-tests",
-      shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'firefox',
       platform: 'macOS 10.13',
       name: "firefox-macos-tests",
       shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'firefox',
       platform: 'Windows 10',
       name: "firefox-latest-windows-tests",
       shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'internet explorer',
       platform: 'Windows 10',
       name: "ie-latest-windows-tests",
       shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'MicrosoftEdge',
       platform: 'Windows 10',
       name: "edge-latest-windows-tests",
       shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'safari',
@@ -84,7 +70,7 @@ exports.config = {
       platformVersion: '11.4',
       deviceName: 'iPhone 8',
       shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
     },
     {
       browserName: 'chrome',
@@ -93,7 +79,21 @@ exports.config = {
       platformVersion: '8.0',
       deviceName: 'Android Emulator',
       shardTestFiles: true,
-      maxInstances: 2
+      maxInstances: 3
+    },
+    {
+      browserName: 'chrome',
+      platform: 'Linux',
+      name: "chrome-linux-tests",
+      shardTestFiles: true,
+      maxInstances: 3
+    },
+    {
+      browserName: 'firefox',
+      platform: 'Linux',
+      name: "firefox-linux-tests",
+      shardTestFiles: true,
+      maxInstances: 3
     }
   ],
   sauceBuild: buildNumber,
