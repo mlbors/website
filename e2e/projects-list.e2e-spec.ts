@@ -293,6 +293,52 @@ describe('projects list page', () => {
           });
         });
       });
+    }).catch(err => {
+      const firstButtonLink = page.getFirstTermButtonLinks();
+      const ec = ExpectedConditions;
+      browser.wait(ec.presenceOf(firstButtonLink), 72000).then(result => {
+        expect(firstButtonLink).toBeTruthy();
+        firstButtonLink.getCssValue('color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        firstButtonLink.getCssValue('border-left-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        firstButtonLink.getCssValue('border-top-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        firstButtonLink.getCssValue('border-right-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+        firstButtonLink.getCssValue('border-bottom-color').then(value => {
+          page.convertRgbToHex(value).then(converted => {
+          expect(converted).toEqual('#00c3b6');
+          }).catch(error => {
+            console.error(error);
+            expect(value).toEqual('#00c3b6');
+          });
+        });
+      });
     });
   });
 
