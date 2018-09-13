@@ -245,49 +245,51 @@ describe('projects list page', () => {
 
   it('should have color for terms buttons', () => {
     page.navigateTo();
-    const termsButtonLinks = page.getTermsButtonLinks();
-    const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstTermButtonLinks()), 72000).then(result => {
-      expect(termsButtonLinks).toBeTruthy();
-      termsButtonLinks.each(item => {
-        item.getCssValue('color').then(value => {
-          page.convertRgbToHex(value).then(converted => {
-          expect(converted).toEqual('#00c3b6');
-          }).catch(error => {
-            console.error(error);
-            expect(value).toEqual('#00c3b6');
+    browser.actions().mouseMove(page.getBrand()).perform().then(move => {
+      const termsButtonLinks = page.getTermsButtonLinks();
+      const ec = ExpectedConditions;
+      browser.wait(ec.presenceOf(page.getFirstTermButtonLinks()), 72000).then(result => {
+        expect(termsButtonLinks).toBeTruthy();
+        termsButtonLinks.each(item => {
+          item.getCssValue('color').then(value => {
+            page.convertRgbToHex(value).then(converted => {
+            expect(converted).toEqual('#00c3b6');
+            }).catch(error => {
+              console.error(error);
+              expect(value).toEqual('#00c3b6');
+            });
           });
-        });
-        item.getCssValue('border-left-color').then(value => {
-          page.convertRgbToHex(value).then(converted => {
-          expect(converted).toEqual('#00c3b6');
-          }).catch(error => {
-            console.error(error);
-            expect(value).toEqual('#00c3b6');
+          item.getCssValue('border-left-color').then(value => {
+            page.convertRgbToHex(value).then(converted => {
+            expect(converted).toEqual('#00c3b6');
+            }).catch(error => {
+              console.error(error);
+              expect(value).toEqual('#00c3b6');
+            });
           });
-        });
-        item.getCssValue('border-top-color').then(value => {
-          page.convertRgbToHex(value).then(converted => {
-          expect(converted).toEqual('#00c3b6');
-          }).catch(error => {
-            console.error(error);
-            expect(value).toEqual('#00c3b6');
+          item.getCssValue('border-top-color').then(value => {
+            page.convertRgbToHex(value).then(converted => {
+            expect(converted).toEqual('#00c3b6');
+            }).catch(error => {
+              console.error(error);
+              expect(value).toEqual('#00c3b6');
+            });
           });
-        });
-        item.getCssValue('border-right-color').then(value => {
-          page.convertRgbToHex(value).then(converted => {
-          expect(converted).toEqual('#00c3b6');
-          }).catch(error => {
-            console.error(error);
-            expect(value).toEqual('#00c3b6');
+          item.getCssValue('border-right-color').then(value => {
+            page.convertRgbToHex(value).then(converted => {
+            expect(converted).toEqual('#00c3b6');
+            }).catch(error => {
+              console.error(error);
+              expect(value).toEqual('#00c3b6');
+            });
           });
-        });
-        item.getCssValue('border-bottom-color').then(value => {
-          page.convertRgbToHex(value).then(converted => {
-          expect(converted).toEqual('#00c3b6');
-          }).catch(error => {
-            console.error(error);
-            expect(value).toEqual('#00c3b6');
+          item.getCssValue('border-bottom-color').then(value => {
+            page.convertRgbToHex(value).then(converted => {
+            expect(converted).toEqual('#00c3b6');
+            }).catch(error => {
+              console.error(error);
+              expect(value).toEqual('#00c3b6');
+            });
           });
         });
       });
