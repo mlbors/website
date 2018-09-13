@@ -70,7 +70,7 @@ describe('projects list page', () => {
     page.navigateTo();
     const brand = page.getBrand();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(brand), 63000).then(result => {
+    browser.wait(ec.presenceOf(brand), 72000).then(result => {
       expect(brand).toBeTruthy();
       brand.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -131,7 +131,7 @@ describe('projects list page', () => {
     page.navigateTo();
     const navigationLinks = page.getNavigationLinks();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 72000).then(result => {
       expect(navigationLinks).toBeTruthy();
       navigationLinks.each(item => {
         item.getCssValue('color').then(value => {
@@ -181,7 +181,7 @@ describe('projects list page', () => {
     page.navigateTo();
     const h1 = page.getH1();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(h1), 63000).then(result => {
+    browser.wait(ec.presenceOf(h1), 72000).then(result => {
       expect(h1).toBeTruthy();
       h1.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -247,7 +247,7 @@ describe('projects list page', () => {
     page.navigateTo();
     const termsButtonLinks = page.getTermsButtonLinks();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstTermButtonLinks()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstTermButtonLinks()), 72000).then(result => {
       expect(termsButtonLinks).toBeTruthy();
       termsButtonLinks.each(item => {
         item.getCssValue('color').then(value => {
@@ -348,7 +348,7 @@ describe('projects list page', () => {
     page.navigateTo();
     const projetTitles = page.getProjectTitles();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstProjectTitle()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstProjectTitle()), 72000).then(result => {
       expect(projetTitles).toBeTruthy();
       projetTitles.each(item => {
         item.getCssValue('color').then(value => {
@@ -391,7 +391,7 @@ describe('projects list page', () => {
     page.navigateTo();
     const projectsText = page.getProjectsText();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstProjectText()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstProjectText()), 72000).then(result => {
       expect(projectsText).toBeTruthy();
       projectsText.each(item => {
         item.getCssValue('color').then(value => {
@@ -434,7 +434,7 @@ describe('projects list page', () => {
     page.navigateTo();
     const projectButtons = page.getProjectButtons();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstProjectButton()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstProjectButton()), 72000).then(result => {
       expect(projectButtons).toBeTruthy();
       projectButtons.each(item => {
         item.getCssValue('color').then(value => {
@@ -496,7 +496,7 @@ describe('projects list page', () => {
         const projectDetailTitle = element(by.css('h1'));
         const ec = ExpectedConditions;
 
-        browser.wait(ec.presenceOf(projectDetailTitle), 63000).then(condition => {
+        browser.wait(ec.presenceOf(projectDetailTitle), 72000).then(condition => {
           expect(projectImage).toBeTruthy();
           expect(projectDetailTitle).toBeTruthy();
           projectDetailTitle.getText().then(projectDetailTitleText => {

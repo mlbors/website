@@ -71,7 +71,7 @@ describe('about page', () => {
     page.navigateTo();
     const brand = page.getBrand();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(brand), 63000).then(result => {
+    browser.wait(ec.presenceOf(brand), 72000).then(result => {
       expect(brand).toBeTruthy();
       brand.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -133,7 +133,7 @@ describe('about page', () => {
     page.navigateTo();
     const navigationLinks = page.getNavigationLinks();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstNavigationLink()), 72000).then(result => {
       expect(navigationLinks).toBeTruthy();
       navigationLinks.each(item => {
         item.getCssValue('color').then(value => {
@@ -183,7 +183,7 @@ describe('about page', () => {
     page.navigateTo();
     const h1 = page.getH1();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(h1), 63000).then(result => {
+    browser.wait(ec.presenceOf(h1), 72000).then(result => {
       expect(h1).toBeTruthy();
       h1.getCssValue('color').then(value => {
         page.convertRgbToHex(value).then(converted => {
@@ -257,7 +257,7 @@ describe('about page', () => {
     page.navigateTo();
     const pageSections = page.getSectionsContent();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstSectionContent()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstSectionContent()), 72000).then(result => {
       expect(pageSections).toBeTruthy();
       pageSections.each(item => {
         item.getCssValue('color').then(value => {
@@ -311,7 +311,7 @@ describe('about page', () => {
     page.navigateTo();
     const sectionHeadings = page.getSectionHeadings();
     const ec = ExpectedConditions;
-    browser.wait(ec.presenceOf(page.getFirstSectionHeadings()), 63000).then(result => {
+    browser.wait(ec.presenceOf(page.getFirstSectionHeadings()), 72000).then(result => {
       expect(sectionHeadings).toBeTruthy();
       sectionHeadings.each(item => {
         item.getCssValue('color').then(value => {
