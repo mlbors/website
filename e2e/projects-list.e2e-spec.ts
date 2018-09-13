@@ -245,6 +245,7 @@ describe('projects list page', () => {
 
   it('should have color for terms buttons', () => {
     page.navigateTo();
+    browser.actions().mouseMove({x: 0, y: 0}).perform();
     const termsButtonLinks = page.getTermsButtonLinks();
     const ec = ExpectedConditions;
     browser.wait(ec.presenceOf(page.getFirstTermButtonLinks()), 63000).then(result => {
@@ -432,6 +433,7 @@ describe('projects list page', () => {
 
   it('should have color for project buttons', () => {
     page.navigateTo();
+    browser.actions().mouseMove({x: 0, y: 0}).perform();
     const projectButtons = page.getProjectButtons();
     const ec = ExpectedConditions;
     browser.wait(ec.presenceOf(page.getFirstProjectButton()), 63000).then(result => {

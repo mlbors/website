@@ -6,9 +6,9 @@ const tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
 exports.config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
-  allScriptsTimeout: 1500000,
-  getPageTimeout: 1500000,
-  maxSessions: 2,
+  allScriptsTimeout: 1800000,
+  getPageTimeout: 1800000,
+  maxSessions: 3,
   specs: [
     '../out-tsc/e2e/**/*.e2e-spec.js',
     '../out-tsc/e2e/**/*.po.js'
@@ -106,7 +106,7 @@ exports.config = {
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 1500000,
+    defaultTimeoutInterval: 1800000,
     print: function() {}
   },
   onPrepare() {
