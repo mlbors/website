@@ -11,7 +11,7 @@
       <div id="project-category-terms-list-wrapper" class="project-category-terms-list-wrapper">
         <ul>
           <li>
-              <button class="btn btn-primary" (click)="filterProjects('all')">all</button>
+            <button class="btn btn-primary" (click)="filterProjects('all')">all</button>
           </li>
           <li *ngFor="let term of terms">
             <button class="btn btn-primary" (click)="filterProjects(term.slug)">{{term.name}}</button>

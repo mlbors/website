@@ -90,7 +90,7 @@ export class ProjectsListComponent implements OnInit, IQuerierComponent {
   public taxonomyService: IQueryService & ITaxonomyService;
   public posts: Array<IQueryable>;
   public terms: Array<ITerm>;
-  public selectedTerm: String;
+  public selectedTerm: String = null;
   public filterState: String = 'filtered';
 
   /********************************************************************************/

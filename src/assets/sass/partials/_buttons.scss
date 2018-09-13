@@ -7,43 +7,50 @@
  * copyright	-
  */
 
-.btn {
+a,
+button {
+
+    &.btn {
     
-    &,
-    &:link,
-    &:visited {
-        padding: $paddingBtn;
-        border: $btnBorder;
-        color: $btnTxtColor;
-        text-transform: $btnTxtTransform;
-        font-weight: $btnFontWeight;
-        opacity: $btnOpacity;
-        background-color: $btnBgColor;
-        outline: none;
-        @include my-border-radius($btnBorderRadius);
-        @include my-box-shadow(none);
-        @extend %my-standard-transition;
+        &,
+        &:link,
+        &:visited {
+            padding: $paddingBtn;
+            border: $btnBorder !important;
+            color: $btnTxtColor !important;
+            text-transform: $btnTxtTransform;
+            font-weight: $btnFontWeight;
+            opacity: $btnOpacity;
+            background-color: $btnBgColor !important;
+            outline: none;
+            @include my-border-radius($btnBorderRadius);
+            @include my-box-shadow(none);
+            @extend %my-standard-transition;
+        }
+        
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+            border: $btnBorderH !important;
+            color: $btnTxtColorH !important;
+            opacity: $btnOpacityH;
+            background-color: $btnBgColorH !important;
+            outline: none;
+            @include my-box-shadow(none);
+            @extend %my-standard-transition;
+        }
+        
+        &.lg {
+            font-size: $btnLgFontSize;
+        }
+        
+        &.xs {
+            font-size: $btnSmFontSize; 
+        }
+        
     }
-    
-    &:hover,
-    &:active,
-    &:focus,
-    &.active {
-        border: $btnBorderH !important;
-        color: $btnTxtColorH !important;
-        opacity: $btnOpacityH;
-        background-color: $btnBgColorH !important;
-        outline: none;
-        @include my-box-shadow(none);
-        @extend %my-standard-transition;
-    }
-    
-    &.lg {
-        font-size: $btnLgFontSize;
-    }
-    
-    &.xs {
-        font-size: $btnSmFontSize; 
-    }
-    
+
 }
+
+
