@@ -19,16 +19,16 @@
     "id": "about",
     "slug": "about",
     "title": "About me",
-    "excerpt": "I am a Swiss guy living in the French-speaking area of this small country, more precisely in Neuchâtel. I am currently working as a Web developer. Before that, I studied engineering and industrial design in engineering school. There I learnt mostly about product development and ergonomics. But I have never stopped learning and I really appreciate discovering new things. Some say I am self-taught.",
+    "excerpt": "I am a Swiss guy living in the French-speaking area of this small country, more precisely in Neuchâtel. I am currently working as a web developer. Before that, I studied engineering and industrial design in engineering school. There I learnt mostly about product development and ergonomics. But I have never stopped learning and I really appreciate discovering new things. Some say I am self-taught. That's how I became a developer.",
     "content": null,
     "sections": [
       {
         "title": "What I think",
-        "content": "I think that \"design\" is a word which is too much and too badly used those days. Design is not what something looks like, but how something works and how it will be used. It is not about aesthetic. Design is first of all a working method where you have to deeply understand the users that your product will meet. For me it doesn’t matter if your product is real or virtual. You have to know precisely your goal, your destination, and to know that, you have to know even better your starting point. It is like in real life: to reach your destination, you have to know from where you come from. That way, you will never get lost."
+        "content": "I think that \"design\" is a word which is too much and too badly used those days. Design is not what something looks like, but how something works and how it will be used. It is not about aesthetic. Design is first of all a working method where you have to deeply understand the users that your product will meet. For me it doesn’t matter if your product is real or virtual. You have to know precisely your goal, your destination, and to know that, you have to know even better your starting point. It is like in real life: to reach your destination, you have to know from where you come from. That way, you will never get lost. Programming is a way to create, to build and to express something. I think this is where design, as a method, and development meet."
       },
       {
         "title": "Personnal",
-        "content": "When I am not seeking information about new technologies, you will probably find me playing on my guitar, maybe singing (I am baritone), or on my synth. If it is not the case, so I am maybe writing something. In fact, I really love writing. I have already published two fantasy novels and another book of different kind (maybe more philosophical). And if you want to talk with me, I speak French, English and a little bit of Hungarian (csak egy kicsit magyarul beszélek). I am a big fan of The Beatles and Depeche Mode and I also like jazz. The adventures of Mario and Link were a part of my childhood and as an adult, I like to play video games for just a few hours a week. I like Edgar Allan Poe, H.P. Lovecraft, Jules Verne and J.R.R. Tolkien."
+        "content": "When I am not seeking information about new technologies, you will probably find me playing on my guitar, maybe singing (I am baritone), or on my synth. If it is not the case, so I am maybe writing something. In fact, I really love writing. I have already published two fantasy novels and another book of a different kind (maybe more philosophical). And if you want to talk with me, I speak French, English and a little bit of Hungarian (csak egy kicsit magyarul beszélek). I am a big fan of The Beatles and Depeche Mode and I also like jazz. The adventures of Mario and Link were a part of my childhood and as an adult, I like to play video games for just a few hours a week. I like Edgar Allan Poe, H.P. Lovecraft, Jules Verne and J.R.R. Tolkien. I appreciate old Tim Burton’s movies and Christopher Nolan’s films."
       },
       {
         "title": "Something more?",
@@ -106,7 +106,7 @@
     "slug": "blog-posts",
     "title": "Blog \\ Posts",
     "excerpt": "Posts about programming.",
-    "content": "I regularly write publish posts about programming and development. You can read me on Medium or Tumblr.",
+    "content": "I regularly write and publish posts about programming and development. You can read me on Medium or Tumblr.",
     "sections": null,
     "image": "assets/img/projects/covers/blog-min.jpg",
     "images": null,
@@ -199,7 +199,7 @@
     "slug": "au-dela-de-laurore",
     "title": "Au-delà de l'aurore",
     "excerpt": "Novel.",
-    "content": "Au-delà de l’aurore is the third novel that I wrote. This story tells the life of four different characters, each living in another time. At first sight, they have nothing in common, except their questions about reality. Through this text, I tried to explore the definition of what we call the reality, using relativity, string theory, memory and dreams.",
+    "content": "Au-delà de l’aurore is the third novel that I wrote. This story tells the life of four different characters, each living in another time. At first sight, they have nothing in common, except their questions about their reality and their world. Through this text, I tried to explore the definition of what we call the reality, using relativity, string theory, memory and dreams.",
     "sections": null,
     "image": "assets/img/projects/covers/au-dela-de-laurore-min.jpg",
     "images": null,
