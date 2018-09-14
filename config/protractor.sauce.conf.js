@@ -83,8 +83,8 @@ exports.config = {
       browserName: 'safari',
       name: 'safari-ios-tests',
       platformName: 'iOS',
-      platformVersion: '11.0',
-      deviceName: 'iPhone 7 Simulator',
+      platformVersion: '11.3',
+      deviceName: 'iPhone 8 Simulator',
       shardTestFiles: false,
       maxInstances: 1
     },

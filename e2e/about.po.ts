@@ -22,13 +22,42 @@ import { browser, by, element, ExpectedConditions } from 'protractor';
 
 export class AppPage {
 
+  /*****************************************/
+  /********** SET SYNCHRONIZATION **********/
+  /*****************************************/
+
+  setSynchronization() {
+    return new Promise((resolve, reject) => {
+      browser.getCapabilities().then(cap => {
+        const testName = cap.get('name');
+        browser.ignoreSynchronization = false;
+        if (testName === 'safari-ios-tests' || testName === 'firefox-linux-tests') {
+          browser.ignoreSynchronization = true;
+        }
+        resolve();
+        return;
+      }).catch(error => {
+        browser.ignoreSynchronization = false;
+        resolve();
+        return;
+      });
+    });
+  }
+
+  /********************************************************************************/
+  /********************************************************************************/
+
   /*********************************/
   /********** NAVIGATE TO **********/
   /*********************************/
 
   navigateTo() {
-    //return browser.get('/');
-    return browser.get(browser.baseUrl + 'about');
+    this.setSynchronization().then(result => {
+      return browser.get(browser.baseUrl + 'about');
+    }).catch(error => {
+      return browser.get(browser.baseUrl + 'about');
+    });
+    //return browser.get('/about');
   }
 
   /********************************************************************************/
