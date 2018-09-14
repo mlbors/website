@@ -52,12 +52,8 @@ export class AppPage {
   /*********************************/
 
   navigateTo() {
-    this.setSynchronization().then(result => {
-      return browser.get(browser.baseUrl + 'project/frank-the-sceptical-worm-from-outer-space');
-    }).catch(error => {
-      return browser.get(browser.baseUrl + 'project/frank-the-sceptical-worm-from-outer-space');
-    });
-    //return browser.get('/project/frank-the-sceptical-worm-from-outer-space');
+    this.setSynchronization();
+    return browser.get('/project/frank-the-sceptical-worm-from-outer-space');
   }
 
   /********************************************************************************/

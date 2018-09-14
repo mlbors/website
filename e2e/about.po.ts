@@ -52,12 +52,8 @@ export class AppPage {
   /*********************************/
 
   navigateTo() {
-    this.setSynchronization().then(result => {
-      return browser.get(browser.baseUrl + 'about');
-    }).catch(error => {
-      return browser.get(browser.baseUrl + 'about');
-    });
-    //return browser.get('/about');
+    this.setSynchronization();
+    return browser.get('/about');
   }
 
   /********************************************************************************/
