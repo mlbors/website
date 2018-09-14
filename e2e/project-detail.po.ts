@@ -52,7 +52,7 @@ export class AppPage {
   /*********************************/
 
   navigateTo() {
-    this.setSynchronization();
+    browser.ignoreSynchronization = true;
     return browser.get(browser.baseUrl + 'project/frank-the-sceptical-worm-from-outer-space');
     //return browser.get('/project/frank-the-sceptical-worm-from-outer-space');
   }

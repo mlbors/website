@@ -52,7 +52,7 @@ export class AppPage {
   /*********************************/
 
   navigateTo() {
-    this.setSynchronization();
+    browser.ignoreSynchronization = true;
     return browser.get(browser.baseUrl + 'about');
     //return browser.get('/about');
   }
