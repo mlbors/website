@@ -1,0 +1,55 @@
+/**
+ * mlbors - SCSS - Sections
+ *
+ * since		07.12.2016
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+
+@each $key, $val in $section-settings {
+    .#{$key} {
+        color: map-get($val, color);
+        background-color: map-get($val, background-color);
+        
+        @include my-links-setter(map-get($val, link-color), map-get($val, link-color-h), $txtLinkDecoration, $txtLinkDecorationH, $linkOpacity, $linkOpacityH, $transition: true);
+     
+        @for $i from 1 through 6 {
+            h#{$i}:only-child, .h#{$i}:only-child {
+                margin-bottom: 0;
+            } 
+        }
+    }
+}
+
+.content {
+
+    section.row {
+        padding-top: $myDoubleGutter;
+        padding-bottom: $myDoubleGutter;
+
+        &:first-of-type {
+            
+        }
+
+        &:last-of-type {
+        }
+        
+        .text-section {
+            float: none;
+            margin: 0 auto;
+            max-width: 991px;
+        }
+
+        & + section.row {
+            padding-top: 0;
+        }
+
+        &.image-section {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+    }
+
+}

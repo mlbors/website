@@ -1,0 +1,39 @@
+/**
+ * mlbors - SCSS - Lists
+ *
+ * since		04.01.2017
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+
+ul {
+    margin: $UlContentMargin;
+    padding: $UlContentPadding;
+    
+    li {
+        margin: $UlLiContentMargin;
+        padding: $UlLiContentPadding;
+    }
+      
+}
+
+dl {
+    margin: $DlMargin;
+    padding: $DlPadding;
+    
+    dt {
+        text-align: $DtTextAlign;
+        font-weight: $DtFontWeight;
+        
+        &.highlight {
+            color: $myBrandPrimaryColorLight;
+            font-size: 28px;
+        }
+    }
+    
+    dd {
+        text-align: $DdTextAlign;
+        font-weight: $DdFontWeight;
+    }
+}

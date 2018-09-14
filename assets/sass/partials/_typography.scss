@@ -1,0 +1,47 @@
+/**
+ * mlbors - SCSS - Typography
+ *
+ * since		04.01.2017
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+
+p {
+    margin: $pMargin;
+    line-height: $pLineHeight;
+    font-family: $bodyFontFamily;
+    color: $bodyTxtColor;
+    font-weight: $bodyFontWeight;
+    font-size: $bodyFontSize;
+    text-transform: $bodyTxtTransform;
+    text-align: $bodyTxtAlign;
+
+    &.text-center, 
+    .text-center & {
+        text-align: center;
+    }
+
+    &.text-left, 
+    .text-left & {
+        text-align: left;
+    }
+
+    &.text-right, 
+    .text-right & {
+        text-align: right;
+    }
+
+    &:last-child {
+        margin: 0;
+    }
+    
+}
+
+.introduction-txt {
+
+    &, p {
+        font-size: 1.9rem;
+    }
+    
+}

@@ -1,0 +1,33 @@
+/**
+ * mlbors - SCSS - Heading
+ *
+ * since		04.01.2017
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+
+@for $i from 1 through 6 {
+    
+    h#{$i}, .h#{$i} {
+        margin: $headingsMargin;
+        font-family: $headingFontFamily;
+        color: $headingsColor;
+        font-weight: $headingsFontWeight;
+        text-transform: $headingsFontTransform;
+        font-size: map-get( $headings-font-size, h#{$i} ); 
+    }
+    
+}
+
+.text-center {
+
+    @for $i from 1 through 6 {
+
+        h#{$i}, .h#{$i} {
+            text-align: center;
+        }
+
+    }
+
+}

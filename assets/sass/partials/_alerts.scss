@@ -1,0 +1,51 @@
+/**
+ * mlbors - SCSS - Alerts
+ *
+ * since		04.01.2017
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+
+ .alert-box {
+     float: none;
+     margin: 0 auto $myGutter;
+     padding: $myDividedGutter;
+     text-align: left;
+     border-width: 1px;
+     border-style: solid;
+     clear: both;
+
+     &.success {
+         color: $mySuccessDarkGreen;
+         border-color: $mySuccessDarkGreen;
+         background-color: $mySuccessLightGreen;
+     }
+
+     &.error {
+         color: $myErrorDarkRed;
+         border-color: $myErrorDarkRed;
+         background-color: $myErrorLightRed;
+     }
+
+     &.warning {
+         color: $myWarningDarkOrange;
+         border-color: $myWarningDarkOrange;
+         background-color: $myWarningLightOrange;
+     }
+
+     &.info {
+         color: $myInfoDarkBlue;
+         border-color: $myInfoDarkBlue;
+         background-color: $myInfoLightBlue;
+     }
+
+}
+
+.form-validation-message {
+
+    .alert-box {
+        margin-top: $myGutter;
+    }
+
+}

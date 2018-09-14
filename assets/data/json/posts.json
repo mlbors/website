@@ -1,0 +1,505 @@
+[
+  {
+    "id": "home",
+    "slug": "home",
+    "title": "Home",
+    "excerpt": "Hi! My name is Mátyás Lancelot Bors and I bid you the welcome on my personal homepage. Here you will find a little more about myself.",
+    "content": null,
+    "sections": null,
+    "image": "assets/img/me/me-001-480-min.jpg",
+    "images": null,
+    "type": "page",
+    "order": 1,
+    "taxonomies": null,
+    "terms": null,
+    "meta": null,
+    "template": "home"
+  },
+  {
+    "id": "about",
+    "slug": "about",
+    "title": "About me",
+    "excerpt": "I am a Swiss guy living in the French-speaking area of this small country, more precisely in Neuchâtel. I am currently working as a web developer. Before that, I studied engineering and industrial design in engineering school. There I learnt mostly about product development and ergonomics. But I have never stopped learning and I really appreciate discovering new things. Some say I am self-taught. That's how I became a developer.",
+    "content": null,
+    "sections": [
+      {
+        "title": "What I think",
+        "content": "I think that \"design\" is a word which is too much and too badly used those days. Design is not what something looks like, but how something works and how it will be used. It is not about aesthetic. Design is first of all a working method where you have to deeply understand the users that your product will meet. For me it doesn’t matter if your product is real or virtual. You have to know precisely your goal, your destination, and to know that, you have to know even better your starting point. It is like in real life: to reach your destination, you have to know from where you come from. That way, you will never get lost. Programming is a way to create, to build and to express something. I think this is where design, as a method, and development meet."
+      },
+      {
+        "title": "Personnal",
+        "content": "When I am not seeking information about new technologies, you will probably find me playing on my guitar, maybe singing (I am baritone), or on my synth. If it is not the case, so I am maybe writing something. In fact, I really love writing. I have already published two fantasy novels and another book of a different kind (maybe more philosophical). And if you want to talk with me, I speak French, English and a little bit of Hungarian (csak egy kicsit magyarul beszélek). I am a big fan of The Beatles and Depeche Mode and I also like jazz. The adventures of Mario and Link were a part of my childhood and as an adult, I like to play video games for just a few hours a week. I like Edgar Allan Poe, H.P. Lovecraft, Jules Verne and J.R.R. Tolkien. I appreciate old Tim Burton’s movies and Christopher Nolan’s films."
+      },
+      {
+        "title": "Something more?",
+        "content": "If I had to tell more about me, about my way of thinking, I would do it by simply quote Carl Sagan: \"The cosmos is also within us. We’re made of star stuff. We are a way for the cosmos to know itself.\""
+      }
+    ],
+    "image": "assets/img/me/me-003-480-min.jpg",
+    "images": ["assets/img/me/me-002-480-min.jpg", "assets/img/me/me-005-480-min.jpg", "assets/img/me/me-006-480-min.jpg"],
+    "type": "page",
+    "order": 2,
+    "taxonomies": null,
+    "terms": null,
+    "meta": null,
+    "template": "sections-image"
+  },
+  {
+    "id": "contact",
+    "slug": "contact",
+    "title": "Contact",
+    "excerpt": null,
+    "content": "You can reach me through different social networks:",
+    "sections": null,
+    "image": "assets/img/me/me-008-480-min.jpg",
+    "images": null,
+    "type": "page",
+    "order": 3,
+    "taxonomies": null,
+    "terms": null,
+    "meta": null,
+    "template": "contact"
+  },
+  {
+    "id": "sharepoint-development",
+    "slug": "sharepoint-development",
+    "title": "SharePoint Development",
+    "excerpt": "Development for SharePoint.",
+    "content": "SharePoint is an online platform for collaboration. It is a good candidate for things like Intranet or traditional websites.",
+    "sections": null,
+    "image": "assets/img/projects/covers/sharepoint-min.jpg",
+    "images": null,
+    "type": "project",
+    "order": 1,
+    "taxonomies": null,
+    "terms": ["web"],
+    "meta": [
+      {
+        "id": "company",
+        "name": "company",
+        "content": "État de Neuchâtel"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "ongoing"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "development, maintenance"
+      },
+      {
+        "id": "languages",
+        "name": "languages",
+        "content": "C#, JavaScript, CSS/SCSS/LESS"
+      },
+      {
+        "id": "frameworks-libraries",
+        "name": "frameworks and libraries",
+        "content": ".NET, Bootstrap"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "blog-posts",
+    "slug": "blog-posts",
+    "title": "Blog \\ Posts",
+    "excerpt": "Posts about programming.",
+    "content": "I regularly write and publish posts about programming and development. You can read me on Medium or Tumblr.",
+    "sections": null,
+    "image": "assets/img/projects/covers/blog-min.jpg",
+    "images": null,
+    "type": "project",
+    "order": 2,
+    "taxonomies": null,
+    "terms": ["web", "writing"],
+    "meta": [
+      {
+        "id": "status",
+        "name": "status",
+        "content": "ongoing"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "writing"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "cardioide",
+    "slug": "cardioide",
+    "title": "Cardioïde",
+    "excerpt": "Fantasy book.",
+    "content": "Cardioïde is the second novel that I wrote and published. It was a self-published project and it is available on Amazon and iBook Store. It is a dark story where fantasy meets steampunk.",
+    "sections": null,
+    "image": "assets/img/projects/covers/cardioide-cover-min.jpg",
+    "images": null,
+    "type": "project",
+    "order": 3,
+    "taxonomies": null,
+    "terms": ["books", "writing"],
+    "meta": [
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2014"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "linkerdev",
+    "slug": "linkerdev",
+    "title": "LinkerDev",
+    "excerpt": "Online platform fort game developers and artists.",
+    "content": "This collaborative project aimed to develop a social network where hardcore developers could meet 2D/3D artists or sound designers to create some awesome video games.",
+    "sections": null,
+    "image": "assets/img/projects/covers/linkder-dev-min.jpg",
+    "images": ["assets/img/projects/full/linkder-dev-homepage-001-min.jpg", "assets/img/projects/full/linkder-dev-profil-001-min.jpg", "assets/img/projects/full/linkder-dev-project-001-min.jpg"],
+    "type": "project",
+    "order": 4,
+    "taxonomies": null,
+    "terms": ["web", "ux"],
+    "meta": [
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2016"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished / cancelled"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "visual design, ergonomics"
+      },
+      {
+        "id": "languages",
+        "name": "languages",
+        "content": "SCSS"
+      },
+      {
+        "id": "frameworks-libraries",
+        "name": "frameworks-libraries",
+        "content": "Laravel, Bootstrap 4"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "au-dela-de-laurore",
+    "slug": "au-dela-de-laurore",
+    "title": "Au-delà de l'aurore",
+    "excerpt": "Novel.",
+    "content": "Au-delà de l’aurore is the third novel that I wrote. This story tells the life of four different characters, each living in another time. At first sight, they have nothing in common, except their questions about their reality and their world. Through this text, I tried to explore the definition of what we call the reality, using relativity, string theory, memory and dreams.",
+    "sections": null,
+    "image": "assets/img/projects/covers/au-dela-de-laurore-min.jpg",
+    "images": null,
+    "type": "project",
+    "order": 5,
+    "taxonomies": null,
+    "terms": ["books", "writing"],
+    "meta": [
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2018"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "mlbors",
+    "slug": "mlbors",
+    "title": "mlbors.com",
+    "excerpt": "Personnal website.",
+    "content": "This is my personal website. Here, you can find information about myself.",
+    "sections": null,
+    "image": "assets/img/projects/covers/mlbors-com-min.jpg",
+    "images": null,
+    "type": "project",
+    "order": 6,
+    "taxonomies": null,
+    "terms": ["web"],
+    "meta": [
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "ergonomics, UX, graphic design, development"
+      },
+      {
+        "id": "languages",
+        "name": "languages",
+        "content": "TypeScript, JavaScript, SCSS"
+      },
+      {
+        "id": "frameworks-libraries",
+        "name": "frameworks and libraries",
+        "content": "Angular, Bootstrap"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "tour-de-romandie-web",
+    "slug": "tour-de-romandie-web",
+    "title": "Tour de Romandie - Web",
+    "excerpt": "Web platform for a sport event.",
+    "content": "The Tour de Romandie is one of the biggest sport event in Switzerland. Every year, many people follow this big race. This event’s organizer asked for a tool where they can publish and edit content, but also which can track the race by updating by itself some data like rankings, teams or schedules. This Website is also synced with several social networks and provides its own REST API.",
+    "sections": null,
+    "image": "assets/img/projects/covers/tdr-2017-min.jpg",
+    "images": ["assets/img/projects/full/tdr-homepage-001-min.jpg", "assets/img/projects/full/tdr-homepage-002-min.jpg"],
+    "type": "project",
+    "order": 7,
+    "taxonomies": null,
+    "terms": ["web"],
+    "meta": [
+      {
+        "id": "client",
+        "name": "client",
+        "content": "Chassot Concept"
+      },
+      {
+        "id": "company",
+        "name": "company",
+        "content": "e-novinfo Sàr"
+      },
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2014-2018"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "project management, visual design, programming"
+      },
+      {
+        "id": "languages",
+        "name": "languages",
+        "content": "PHP, JavaScript, SCSS"
+      },
+      {
+        "id": "cms-frameworks-libraries",
+        "name": "CMS, frameworks and libraries",
+        "content": "WordPress, Bootstrap 3, jQuery"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "tour-de-romandie-ios",
+    "slug": "tour-de-romandie-ios",
+    "title": "Tour de Romandie - iOs",
+    "excerpt": "iOS application for a sport event.",
+    "content": "The Tour de Romandie is one of the biggest sport event in Switzerland. Every year, many people follow this big race. This event’s organizer asked for a mobile application running on Android and iOS. The data are retrieved mainly from the website by using REST API.",
+    "sections": null,
+    "image": "assets/img/projects/covers/tdr-2017-app-ios-min.jpg",
+    "images": ["assets/img/projects/full/tdr-ios-app-home-001-min.jpg", "assets/img/projects/full/tdr-ios-app-stages-list-001-min.jpg", "assets/img/projects/full/tdr-ios-app-single-stage-001-min.jpg", "assets/img/projects/full/tdr-ios-app-videos-list-001-min.jpg"],
+    "type": "project",
+    "order": 8,
+    "taxonomies": null,
+    "terms": ["ios"],
+    "meta": [
+      {
+        "id": "client",
+        "name": "client",
+        "content": "Chassot Concept"
+      },
+      {
+        "id": "company",
+        "name": "company",
+        "content": "e-novinfo Sàr"
+      },
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2017-2018"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "project management, visual design, programming"
+      },
+      {
+        "id": "language",
+        "name": "language",
+        "content": "Swift 3"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "frank-the-sceptical-worm-from-outer-space",
+    "slug": "frank-the-sceptical-worm-from-outer-space",
+    "title": "Frank The Sceptical Worm From Outer Space",
+    "excerpt": "2D endless runner game.",
+    "content": "Frank is a worm. And he comes from space. And he is sceptical. Frank the Sceptical Worm from Outer Space is an endless runner game developed with Unity 3D where Frank has to travel around a really strange world.",
+    "sections": null,
+    "image": "assets/img/projects/covers/frank-the-sceptic-worm-from-outer-space-001-min.jpg",
+    "images": ["assets/img/projects/full/frank-the-sceptic-worm-from-outer-space-001-min.jpg"],
+    "type": "project",
+    "order": 9,
+    "taxonomies": null,
+    "terms": ["games"],
+    "meta": [
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2017"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "in progress / refactoring"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "visual design, programming"
+      },
+      {
+        "id": "language",
+        "name": "language",
+        "content": "C#"
+      },
+      {
+        "id": "game-engine-frameworks-libraries",
+        "name": "game engine, frameworks and libraries",
+        "content": "Unity3D, Zenject"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "voyage-en-uranie",
+    "slug": "voyage-en-uranie",
+    "title": "Voyage en Uranie.",
+    "excerpt": "Fantasy book",
+    "content": "Voyage en Uranie is the first fantasy novel that I published. It was edited under author account and was available in bookstore for two years. It is all about adventure, treason, islands in the sky and Zeppelins.",
+    "sections": null,
+    "image": "assets/img/projects/covers/voyage-en-uranie-cover-min.jpg",
+    "images": null,
+    "type": "project",
+    "order": 10,
+    "taxonomies": null,
+    "terms": ["books", "writing"],
+    "meta": [
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2010"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "bee-grumpy",
+    "slug": "bee-grumpy",
+    "title": "Bee Grumpy",
+    "excerpt": "Online shop.",
+    "content": "Bee Grumpy is a clothing brand from Neuchâtel which asked for an online shop.",
+    "sections": null,
+    "image": "assets/img/projects/covers/bee-grumpy-min.jpg",
+    "images": ["assets/img/projects/full/beegrumpy-homepage-001-min.jpg"],
+    "type": "project",
+    "order": 11,
+    "taxonomies": null,
+    "terms": ["web"],
+    "meta": [
+      {
+        "id": "company",
+        "name": "company",
+        "content": "Bee Grumpy"
+      },
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2013"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "visual design, ergonomics, programming"
+      },
+      {
+        "id": "languages",
+        "name": "languages",
+        "content": "PHP, JavaScript, CSS"
+      },
+      {
+        "id": "frameworks-libraries",
+        "name": "frameworks and libraries",
+        "content": "PrestaShop, Unsemantic, jQuery"
+      }],
+    "template": "default"
+  },
+  {
+    "id": "helvetmag",
+    "slug": "helvetmag",
+    "title": "Helvetmag",
+    "excerpt": "Online media platform.",
+    "content": "This collaborative project aimed to maintain a media platform talking about movies, music, technology and fashion, mainly on the Swiss stage.",
+    "sections": null,
+    "image": "assets/img/projects/covers/helvetmag-min.jpg",
+    "images": null,
+    "type": "project",
+    "order": 12,
+    "taxonomies": null,
+    "terms": ["web", "writing"],
+    "meta": [
+      {
+        "id": "year",
+        "name": "year",
+        "content": "2015"
+      },
+      {
+        "id": "status",
+        "name": "status",
+        "content": "finished / cancelled"
+      },
+      {
+        "id": "tasks",
+        "name": "tasks",
+        "content": "project management, visual design, programming, writing, social networks management"
+      },
+      {
+        "id": "languages",
+        "name": "languages",
+        "content": "PHP, JavaScript, SCSS"
+      },
+      {
+        "id": "cms-frameworks-libraries",
+        "name": "CMS, frameworks and libraries",
+        "content": "WordPress, Bootstrap 3, jQuery"
+      }],
+    "template": "default"
+  }
+]

@@ -1,0 +1,160 @@
+/**
+ * mlbors - SCSS - Components
+ *
+ * since		07.12.2016
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+ 
+.post-template-wrapper {
+    max-width: 991px;
+    margin: 0 auto;
+
+    .post-cover-image,
+    .project-cover-image {
+        width: 100%;
+        height: auto;    
+    }
+
+    .post-cover-image {
+        max-width: 100%;
+    }
+
+    .post-cover-image {
+        max-width: 480px;
+    }
+
+    .excerpt {
+
+        p {
+            font-size: $bodyFontSize*1.2;
+        }
+
+    }
+
+    ul.meta {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        text-align: left;
+
+        li {
+
+            &:first-letter {
+                text-transform: uppercase;
+            }
+
+        }
+
+    }
+
+}
+
+.image-viewer-wrapper {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 150px;
+    margin: 0;
+    padding: 0 0 90% 0;
+    overflow: hidden;
+    clear: both;
+    opacity: 1;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @extend %my-standard-transition;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        @extend %my-standard-transition;
+    }
+}
+
+.image-viewer {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clear: both;
+
+    img {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+}
+
+.project-category-terms-list-wrapper {
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        
+        li {
+            display: inline-block;
+            margin: $myDividedGutter/2;
+            padding: 0;
+        }
+
+    }
+
+}
+
+.projects-list {
+    
+    .card {
+        display: inline-block;
+        border-color: $myBrandGrayLightest;
+
+        .card-title,
+        .card-text {
+            text-align: left;
+        }
+
+    }
+
+}
+
+.social-icons {
+    float: none;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+
+    .social-icon {
+        display: inline-block;
+        margin: 0;
+        margin: 0 $myDividedGutter 0 0;
+
+        &:last-child {
+            margin: 0;
+        }
+
+        a {
+            display: block;
+            float: none;
+            clear: both;
+            overflow: hidden;
+
+            img {
+                display: block;
+                float: none;
+                width: 100%;
+                height: auto;
+                clear: both;
+                overflow: hidden;
+            }
+
+        }
+
+    }
+}

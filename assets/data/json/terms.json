@@ -1,0 +1,38 @@
+[
+  {
+    "id": "web",
+    "slug": "web",
+    "name": "web",
+    "taxonomy": "project-category"
+  },
+  {
+    "id": "games",
+    "slug": "games",
+    "name": "games",
+    "taxonomy": "project-category"
+  },
+  {
+    "id": "books",
+    "slug": "books",
+    "name": "books",
+    "taxonomy": "project-category"
+  },
+  {
+    "id": "ios",
+    "slug": "ios",
+    "name": "ios",
+    "taxonomy": "project-category"
+  },
+  {
+    "id": "ux",
+    "slug": "ux",
+    "name": "ux",
+    "taxonomy": "project-category"
+  },
+  {
+    "id": "writing",
+    "slug": "writing",
+    "name": "writing",
+    "taxonomy": "project-category"
+  }
+]

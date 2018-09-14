@@ -1,0 +1,98 @@
+/**
+ * mlbors - SCSS - Imags
+ *
+ * since		04.01.2017
+ * version		1.0.0.0
+ * author		mlbors
+ * copyright	-
+ */
+
+ img {
+    max-width: 100%;
+ }
+
+ .image-section {
+
+    img {
+        max-width: 320px;
+    }
+
+ }
+
+.introduction-img {
+    display: block;
+    float: none;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    text-align: center;
+    clear: both;
+}
+
+.body-illustration,
+.footer-illustration {
+	display: block;
+    float: none;
+    margin: 0 auto $myGutter;
+	width: 100%;
+	height: auto;
+    text-align: center;
+    clear: both;
+}
+
+.body-illustration {
+	max-width: 480px;
+
+    &.extra-small {
+        max-width: 180px;
+    }
+
+    &.small {
+        max-width: 150px;
+    }
+
+    &.medium {
+        max-width: 240px;
+    }
+
+    &.left,
+    &.right {
+        margin: 0 0 $myGutter;
+    }
+
+    &.left {
+        float: left;
+        text-align: left;
+    }
+
+    &.right {
+        float: right;
+        text-align: right
+    }
+
+}
+
+.footer-illustration {
+	max-width: 90px;
+
+}
+
+.img-ajax-loader {
+    position: fixed;
+    width: 75px;
+    height: 75px;
+    top: 50%;
+    left: 50%;
+    margin-top: -37.5px;
+    margin-left: -37.5px
+
+}
+
+.logo {
+
+    img {
+        max-width: 100%;
+    }
+
+}

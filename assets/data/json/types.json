@@ -1,0 +1,17 @@
+[
+  {
+    "id": "foo",
+    "slug": "foo-type",
+    "name": "foo type"
+  },
+  {
+    "id": "page",
+    "slug": "page",
+    "name": "page type"
+  },
+  {
+    "id": "project",
+    "slug": "project",
+    "name": "project type"
+  }
+]
