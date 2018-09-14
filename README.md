@@ -5,15 +5,15 @@
 
 [![Build Status](https://saucelabs.com/browser-matrix/mlbors.svg)](https://saucelabs.com/beta/builds/987ed1e448a04f5fb4ea7919b3a05aa2)
 
-A new simple website project.
+A simple website project.
 
 ## About ##
 
-A repository for a new simple website made with Angular.
+A repository for a simple website made with Angular.
 
 ## Status ##
 
-In progress.
+In progress / in production.
 
 ## Done ##
 
@@ -27,9 +27,9 @@ In progress.
 * Unit tests
 * e2e tests
 * Create workflow with Travis, Codecov and Sauce Labs
+* Content
 
 ## To-Do ##
 
 * Improve code if needed
-* Improve tests (coverage report seems to be buggy)
-* Review content
+* Improve tests / Sauce Labs tests
